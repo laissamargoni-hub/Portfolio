@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prescrição do Futuro · Laíssa Margoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a story told in numbered chapters. Left rail carries the chapter number and stage,
+   right column carries the narrative; figures break out to full content width. */
+:root{
+  --bg:#F2F4F5;         /* névoa clareada */
+  --surface:#FFFFFF;
+  --ink:#172D4D;        /* azul profundo */
+  --ink-2:#4B626A;      /* azul acinzentado escurecido p/ texto */
+  --line:#BFC6C8;       /* cinza névoa */
+  --accent:#874B37;     /* cobre */
+  --accent-2:#D99A78;   /* pêssego */
+  --steel:#718A91;      /* azul acinzentado */
+  --tint:#E7ECEE;
+  --on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+    --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+  --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
+.brand small{font-family:var(--body);font-weight:500;color:var(--ink-2);font-size:14px;margin-left:10px}
+.controls{display:flex;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{font:600 13px/1 var(--body);color:var(--ink-2);background:none;border:0;border-radius:999px;padding:8px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,.tab:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.eyebrow{font:600 13px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(44px,8vw,96px);font-weight:700;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.45;max-width:36em;color:var(--ink)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.meta dt{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.meta dd{margin:0;font-size:16px;line-height:1.45}
+.headline{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:36px}
+.headline div{background:var(--surface);padding:22px 20px}
+.headline b{display:block;font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:700;line-height:1;color:var(--accent)}
+.headline span{display:block;margin-top:8px;font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+
+/* chapters */
+.chapter{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;padding:64px 0;border-top:1px solid var(--line)}
+.rail{position:sticky;top:84px;align-self:start}
+.rail .n{font-family:var(--display);font-size:54px;font-weight:700;line-height:1;color:var(--accent-2)}
+.rail .stage{font:600 13px/1.3 var(--body);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font:600 12px/1 var(--body);padding:6px 9px;border-radius:6px;background:var(--tint);color:var(--ink-2)}
+.body{display:flex;flex-direction:column;gap:22px;min-width:0}
+.body h2{font-size:clamp(28px,4vw,44px);font-weight:700;max-width:18em}
+.body p{max-width:38em}
+.body p strong{font-weight:600}
+.pull{font-family:var(--display);font-size:clamp(24px,3.4vw,36px);font-weight:500;line-height:1.2;border-left:4px solid var(--accent);padding:6px 0 6px 20px;max-width:22em}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;margin:6px 0}
+.fig h3{font-family:var(--body);font-size:16px;font-weight:600;line-height:1.35;letter-spacing:0}
+.fig .sub{font-size:14px;color:var(--ink-2);margin-top:2px}
+.note{font-size:13.5px;color:var(--ink-2);margin-top:14px;max-width:none}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ul.plain li{padding-left:18px;position:relative;font-size:16px;line-height:1.45}
+ul.plain li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--accent)}
+.label{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+
+/* bar chart */
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end;height:230px;margin-top:22px;border-bottom:1px solid var(--line)}
+.bars .col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:6px}
+.bars .v{font-weight:600;font-size:15px}
+.bars .b{width:min(72px,70%);background:var(--steel);border-radius:4px 4px 0 0}
+.bars .col.hi .b{background:var(--accent)}
+.years{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;font-size:14px;color:var(--ink-2);margin-top:8px}
+.route{width:100%;height:auto;margin-top:14px;overflow:visible}
+.route text{font-family:var(--body);font-size:13px;fill:var(--ink-2)}
+.route .strong{fill:var(--ink);font-weight:600}
+
+/* compare */
+.cmp{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.cmp .row{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-size:15px}
+.cmp .t{height:18px;border-radius:0 4px 4px 0;background:var(--steel)}
+.cmp .row.hi .t{background:var(--accent)}
+.cmp .row b{font-weight:600;text-align:right}
+
+/* timeline */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;counter-increment:s}
+.step::before{content:counter(s,decimal-leading-zero);font:700 14px/1 var(--display);color:var(--accent)}
+.step b{display:block;margin:8px 0 4px;font-weight:600;font-size:16px;line-height:1.3}
+.step span{font-size:14.5px;color:var(--ink-2);line-height:1.4;display:block}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ladder li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500}
+.ladder li:last-child{background:var(--accent);color:var(--on-accent)}
+.ladder li+li{position:relative;margin-left:18px}
+.ladder li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.shift{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.shift div{border-top:3px solid var(--accent);padding-top:12px}
+.shift b{font-family:var(--display);font-size:30px;font-weight:700;display:block;line-height:1.1}
+.shift b i{font-style:normal;color:var(--ink-2);font-weight:500}
+.shift span{font-size:14.5px;color:var(--ink-2)}
+
+/* portfolio orbit */
+.portfolio{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px) minmax(0,1fr);gap:22px;align-items:center}
+.levers{display:flex;flex-direction:column;gap:22px}
+.lever{border-left:3px solid var(--steel);padding-left:14px}
+.lever .k{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lever b{display:block;font-family:var(--display);font-size:21px;font-weight:700;margin:4px 0 6px;line-height:1.15}
+.lever span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+.orbit{position:relative;aspect-ratio:1;width:100%;max-width:400px;margin:0 auto}
+.orbit .ring{position:absolute;inset:13%;border:1.5px dashed var(--steel);border-radius:50%}
+.orbit .ring.r2{inset:30%;border-style:solid;border-color:var(--line)}
+.orbit .core{position:absolute;inset:32%;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-weight:700;font-size:clamp(17px,2.4vw,22px);line-height:1.1}
+.orbit .node{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;background:var(--surface);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-size:clamp(12.5px,1.5vw,14.5px);line-height:1.15;padding:6px}
+.orbit .n1{top:0;left:35%}.orbit .n2{top:35%;right:0}.orbit .n3{bottom:0;left:35%}.orbit .n4{top:35%;left:0}
+.actors{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.actors b{display:block;font-weight:600;margin-bottom:4px}
+.actors span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+
+/* solution */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.pillar b{font-family:var(--display);font-size:22px;font-weight:700;display:block}
+.pillar em{display:block;font-style:normal;color:var(--accent);font-weight:500;font-size:15px;margin:4px 0 10px}
+.pillar span{font-size:15px;line-height:1.5;color:var(--ink-2);display:block}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{font:600 14px/1 var(--body);padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.shot{background:#000;border-radius:10px;overflow-x:auto}
+.shot img{min-width:640px;width:100%}
+.shot[hidden]{display:none}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.quotes figure{margin:0;border-top:1px solid var(--line);padding-top:14px}
+.quotes blockquote{margin:0;font-size:17px;line-height:1.45}
+.quotes figcaption{margin-top:8px;font-size:14px;color:var(--ink-2)}
+.horizons{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.horizons div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.horizons div:nth-child(2){background:var(--tint)}
+.horizons div:last-child{border-right:0}
+.horizons b{display:block;font-weight:600;margin:6px 0 4px}
+.horizons span{font-size:14.5px;color:var(--ink-2);display:block;line-height:1.45}
+video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/9}
+
+/* table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:16px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+td.now{font-weight:600;color:var(--accent)}
+.fronts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 22px}
+.fronts div{border-top:1px solid var(--line);padding-top:10px}
+.fronts b{font-weight:600;display:block}
+.fronts span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+ol.learn{margin:0;padding:0;list-style:none;counter-reset:l;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+ol.learn li{counter-increment:l;border-top:3px solid var(--accent-2);padding-top:12px}
+ol.learn b{display:block;font-family:var(--display);font-size:20px;font-weight:700;line-height:1.2;margin-bottom:6px}
+ol.learn span{font-size:15px;color:var(--ink-2);line-height:1.5}
+
+/* about */
+.about{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.about img{border-radius:14px;width:200px;aspect-ratio:1/1.15;object-fit:cover}
+.about h2{font-size:32px;margin-bottom:6px}
+.about .role{color:var(--accent);font-weight:600;margin-bottom:12px}
+.about p{max-width:38em}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:14px;color:var(--ink-2)}
+
+@media (max-width:860px){
+  .chapter{grid-template-columns:1fr;gap:18px;padding:44px 0}
+  .rail{position:static;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+  .rail .n{font-size:36px}
+  .rail .chips{width:100%;margin-top:4px}
+  .portfolio{grid-template-columns:1fr}
+  .portfolio .orbit{order:-1}
+  .about{grid-template-columns:1fr}
+  .cmp .row{grid-template-columns:110px 1fr 60px}
+  .hero{padding-top:40px}
+}
+
+/* v2 additions */
+.bar .wrap{justify-content:flex-end}
+.exec{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 28px;margin-top:40px;padding:26px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px}
+.exec .k{font:600 12px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.exec p{font-size:15.5px;line-height:1.5}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.why div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:15px;line-height:1.45}
+.why b{display:block;font:700 14px/1 var(--display);color:var(--accent);margin-bottom:8px}
+.fly{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin:0;padding:0}
+.fly li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500;position:relative}
+.fly li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.fly li:last-child::after{content:"↻";margin-left:8px;color:var(--accent);font-weight:700}
+.gem{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gem div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.gem div:last-child{border-right:0}
+.gem .h{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.gem b{display:block;font-family:var(--display);font-size:20px;line-height:1.15;margin:8px 0 6px}
+.gem em{font-style:normal;color:var(--accent);font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+.gem span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+.shiftrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.shiftrow div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15px}
+.shiftrow s{text-decoration:none;color:var(--ink-2)}
+.shiftrow i{font-style:normal;color:var(--accent);font-weight:700}
+.shiftrow b{font-weight:600}
+
+/* phone mockups: product screens stay light in both themes */
+.phones{display:flex;gap:22px;overflow-x:auto;padding:30px 24px 22px;border-radius:12px;background:linear-gradient(135deg,var(--tint),var(--bg));justify-content:safe center}
+.phones[hidden]{display:none}
+.phw{flex:0 0 236px;margin:0}
+.phw figcaption{margin-top:14px;font-size:13.5px;line-height:1.4;color:var(--ink-2);text-align:center}
+.phw figcaption b{color:var(--ink);font-weight:600}
+.ph{height:486px;border-radius:34px;border:7px solid #0C182B;background:linear-gradient(165deg,#FBEDE4 0%,#F6F7F8 42%,#E2EAEE 100%);color:#172D4D;position:relative;overflow:hidden;font-size:11.5px;line-height:1.38;display:flex;flex-direction:column;gap:9px;padding:38px 14px 14px;box-shadow:0 22px 44px -20px rgba(12,24,43,.55)}
+.ph::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:68px;height:17px;border-radius:10px;background:#0C182B}
+.ph .top{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:12px;color:#172D4D}
+.ph .top span{color:#718A91;font-weight:400}
+.ph .hello{color:#4B626A;margin-top:26px}
+.ph .q{font-family:var(--display);font-size:23px;line-height:1.12;font-weight:500;letter-spacing:-.01em}
+.ph .grow{flex:1}
+.ph .card{background:#fff;border:1px solid #E1E7EA;border-radius:11px;padding:10px}
+.ph .card small{display:block;color:#718A91;font-size:10px;margin-top:2px}
+.ph .card hr{border:0;border-top:1px solid #E9EEF0;margin:8px 0}
+.ph .hint{background:#FBEDE4;border:1px solid #EBC9B5;border-radius:11px;padding:10px}
+.ph .tag{display:inline-block;font-weight:600;font-size:10px;color:#874B37;margin-bottom:5px}
+.ph .btns{display:flex;gap:6px;justify-content:flex-end;margin-top:9px}
+.ph .btn{font-weight:600;font-size:10.5px;padding:7px 10px;border-radius:7px;background:#172D4D;color:#fff;text-align:center}
+.ph .btn.ghost{background:none;color:#172D4D}
+.ph .btn.wide{display:block;padding:10px}
+.ph .input{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #D5DDE0;border-radius:12px;padding:11px 12px;color:#718A91}
+.ph .input.on{border-color:#874B37}
+.ph .mic{width:8px;height:13px;border-radius:5px;background:#874B37;flex:none}
+.ph .wave{flex:1;height:18px;margin-right:10px;background:repeating-linear-gradient(90deg,#D99A78 0 2px,transparent 2px 5px);-webkit-mask:radial-gradient(ellipse at center,#000 30%,transparent 72%);mask:radial-gradient(ellipse at center,#000 30%,transparent 72%)}
+.ph .typed{font-size:14px;font-weight:500}
+.ph .typed i{display:inline-block;width:1.5px;height:15px;background:#874B37;vertical-align:-2px;margin-left:1px}
+.ph .pat{display:flex;gap:9px;align-items:center}
+.ph .av{width:30px;height:30px;border-radius:50%;background:#D99A78;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:11px;flex:none}
+.ph .pat b{display:block;font-size:12.5px}
+.ph .pat small{color:#718A91;font-size:10px}
+.ph .act{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid #DCE3E6;font-size:11px}
+.ph .act::after{content:"↗";color:#718A91}
+.ph .said{font-weight:600;font-size:13px;line-height:1.35}
+.ph .reply{color:#4B626A}
+.ph .center{text-align:center;margin:auto 0;display:flex;flex-direction:column;gap:10px;align-items:center}
+.ph .center b{font-family:var(--display);font-size:17px;line-height:1.15}
+.ph .center small{color:#718A91;font-size:10.5px}
+.ph .paper{flex:1;background:#fff;border-radius:6px;padding:14px 12px;box-shadow:0 6px 16px -8px rgba(12,24,43,.4);transform:rotate(-1.5deg);margin:4px 6px;display:flex;flex-direction:column;gap:11px}
+.ph .paper u{display:block;text-decoration:none;font:700 9px/1 var(--body);letter-spacing:.14em;text-align:center;color:#4B626A;border-bottom:1px solid #BFC6C8;padding-bottom:7px}
+.ph .paper i{display:block;height:9px;border-bottom:2px solid #2B3F86;border-radius:50% 40% 60% 30%/0 0 100% 100%;transform:skewX(-18deg);opacity:.8}
+.ph .paper i:nth-child(odd){width:78%}.ph .paper i:nth-child(3n){width:55%}
+.ph .ex{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #E1E7EA;border-radius:9px;padding:8px 9px;font-size:11px}
+.ph .ex::before{content:"";width:12px;height:12px;border-radius:3px;background:#D99A78;flex:none}
+.ph .pill{display:flex;gap:8px;align-items:center}
+.ph .pill::before{content:"";width:14px;height:8px;border-radius:5px;background:#718A91;flex:none;transform:rotate(-35deg)}
+.about{grid-template-columns:210px minmax(0,1fr);align-items:start;gap:40px}
+.about img{width:200px;height:200px;aspect-ratio:1;border-radius:50%;outline:2px solid var(--accent);outline-offset:6px;margin:8px}
+.about .txt{display:flex;flex-direction:column;gap:14px}
+.about h2{margin-bottom:0}.about .role{margin:0}
+@media (max-width:860px){.about{grid-template-columns:1fr}.gem div{border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-pt" aria-pressed="true">PT</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <div class="seg" role="group" aria-label="Tema / Theme">
+        <button type="button" id="theme-light" aria-pressed="false" data-en="Light">Claro</button>
+        <button type="button" id="theme-dark" aria-pressed="false" data-en="Dark">Escuro</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <p class="eyebrow" data-en="Case study · Afya · Digital health · e-prescribing · 2025">Case · Afya · Saúde digital · Prescrição eletrônica · 2025</p>
+    <h1 data-en="The <em>Future</em> of Prescription">Prescrição do <em>Futuro</em></h1>
+    <p class="lede" data-en="From a growth thesis built in 30 days to a multi-million investment, four squads and a new product in production. An end-to-end case: diagnosis, strategy, business case, executive buy-in, discovery, delivery and go-to-market.">De uma tese de crescimento construída em 30 dias a um aporte de milhões, quatro squads e um novo produto em produção. Um case end to end: diagnóstico, estratégia, business case, buy-in executivo, discovery, delivery e go-to-market.</p>
+
+    <div class="exec">
+      <div><p class="k" data-en="The challenge">O desafio</p><p data-en="A product with proven product-market fit and 30% YoY organic growth, at one fifth of the market leader's volume. At that pace, the 60M prescriptions goal was seven years away.">Produto com product-market fit comprovado e crescimento orgânico de 30% YoY, mas com um quinto do volume do líder. Nesse ritmo, a meta de 60 milhões de prescrições estava a sete anos de distância.</p></div>
+      <div><p class="k" data-en="The bet">A aposta</p><p data-en="Reposition prescription: from a feature embedded in the medical record to the component that drives the portfolio flywheel, with a new mobile-first product and AI in the core flow.">Reposicionar a prescrição: de funcionalidade embarcada no prontuário para o componente que impulsiona a flywheel do portfólio, com um novo produto mobile first e IA no fluxo principal.</p></div>
+      <div><p class="k" data-en="My scope">Meu escopo</p><p data-en="End-to-end ownership: diagnosis, thesis and business case, managing up to the CEO and a shareholder, squad structuring, discovery, beta and go-to-market, while sustaining the core product.">Ownership end to end: diagnóstico, tese e business case, managing up até CEO e acionista, estruturação dos squads, discovery, beta e go-to-market, sustentando o produto core em paralelo.</p></div>
+      <div><p class="k" data-en="The outcome">O resultado</p><p data-en="+70% YoY in volume in the first cycle, 2.3x the organic pace. Channels from 1 to 4, team from 14 to 30 people, B2B revenue growing with it.">+70% YoY em volume no primeiro ciclo, 2,3x o ritmo orgânico. Canais de 1 para 4, time de 14 para 30 pessoas e receita B2B crescendo junto.</p></div>
+    </div>
+
+    <div class="headline">
+      <div><b class="num">+70%</b><span data-en="YoY growth in prescription volume in 2025, against a 30% organic baseline">de crescimento YoY no volume de prescrições em 2025, contra um baseline orgânico de 30%</span></div>
+      <div><b class="num" data-en="17M+">17 mi+</b><span data-en="prescriptions in 2025, the product's north star metric (10M+ in 2024)">prescrições em 2025, a métrica norte do produto (10 mi+ em 2024)</span></div>
+      <div><b class="num">14 → 30</b><span data-en="people, from 1 to 4 squads, after the investment round">pessoas, de 1 para 4 squads, após a rodada de investimento</span></div>
+      <div><b class="num">1 → 4</b><span data-en="channels: web, app, WhatsApp and smartwatch">canais: web, app, WhatsApp e smartwatch</span></div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="chapter" id="contexto">
+    <div class="rail">
+      <div class="n">01</div>
+      <div class="stage" data-en="Context">Contexto</div>
+      <div class="chips"><span class="chip" data-en="Data-driven diagnosis">Diagnóstico data-driven</span><span class="chip" data-en="Competitive analysis">Análise competitiva</span><span class="chip">Product-market fit</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Proven product-market fit, market leadership still out of reach">Product-market fit comprovado, liderança de mercado ainda fora de alcance</h2>
+      <p data-en="Afya's e-prescribing product went live in August 2021 as an MVP inside the iClinic medical record. I took over the product in 2022. In three years we scaled from zero to more than 10 million prescriptions a year and over 19 thousand active prescribers: adoption and volume confirmed the fit.">A prescrição eletrônica da Afya foi ao ar em agosto de 2021 como um MVP dentro do prontuário iClinic. Assumi o produto em 2022. Em três anos escalamos do zero para mais de 10 milhões de prescrições por ano e mais de 19 mil prescritores ativos: adoção e volume confirmavam o fit.</p>
+      <p data-en="The company's ambition, however, was category leadership. The benchmark was a market leader issuing around 52 million prescriptions a year. The gap to the goal was not incremental: it was 6x.">A ambição da companhia, porém, era liderar a categoria. O benchmark era um líder de mercado com cerca de 52 milhões de prescrições por ano. O gap para a meta não era incremental: era de 6x.</p>
+
+      <div class="two">
+        <div class="fig">
+          <h3 data-en="North star: prescriptions per year">Métrica norte: prescrições por ano</h3>
+          <p class="sub" data-en="Millions. 2025 is the cycle covered by this case.">Em milhões. 2025 é o ciclo deste case.</p>
+          <div class="bars" role="img" aria-label="2022: 2,4 mi. 2023: 7,8 mi. 2024: 10,8 mi. 2025: 17 mi+">
+            <div class="col" title="2022: 2.361.250"><span class="v num" data-en="2.4M">2,4 mi</span><div class="b" style="height:12.2%"></div></div>
+            <div class="col" title="2023: 7.788.973"><span class="v num" data-en="7.8M">7,8 mi</span><div class="b" style="height:40.3%"></div></div>
+            <div class="col" title="2024: 10.818.785"><span class="v num" data-en="10.8M">10,8 mi</span><div class="b" style="height:56%"></div></div>
+            <div class="col hi" title="2025: 17 mi+"><span class="v num" data-en="17M+">17 mi+</span><div class="b" style="height:88%"></div></div>
+          </div>
+          <div class="years num"><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+        </div>
+        <div class="fig">
+          <h3 data-en="Competitive position, 2024">Posição competitiva, 2024</h3>
+          <p class="sub" data-en="Millions of prescriptions a year. Competitor figures are estimates from our market study.">Milhões de prescrições por ano. Números dos concorrentes são estimativas do nosso estudo de mercado.</p>
+          <div class="cmp">
+            <div class="row"><span data-en="Market leader">Líder de mercado</span><div class="t" style="width:100%"></div><b class="num" data-en="52M">52 mi</b></div>
+            <div class="row hi"><span data-en="Afya e-prescribing">Prescrição Afya</span><div class="t" style="width:20.8%"></div><b class="num" data-en="10.8M">10,8 mi</b></div>
+            <div class="row"><span data-en="Second competitor">Segundo concorrente</span><div class="t" style="width:19.2%"></div><b class="num" data-en="10M">10 mi</b></div>
+          </div>
+          <p class="note" data-en="Feature and distribution gaps mapped in the benchmark: free-tier distribution, a mobile-native experience, a patient-facing app and free digital signature.">Gaps de proposta de valor e distribuição mapeados no benchmark: distribuição via acesso gratuito, experiência nativa para mobile, aplicativo para o paciente e assinatura digital gratuita.</p>
+        </div>
+      </div>
+
+      <div class="two">
+        <div>
+          <p class="label" data-en="Jobs to be done, from user research">Jobs to be done, da pesquisa com usuários</p>
+          <ul class="plain">
+            <li data-en="Give time back to the appointment: less bureaucracy, more time with the patient">Devolver tempo à consulta: menos burocracia, mais tempo com o paciente</li>
+            <li data-en="Fit a fragmented, multitasking, multi-location routine">Caber em uma rotina fragmentada, multitarefa e em vários locais de atendimento</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label" data-en="Friction in the current product">Fricções do produto atual</p>
+          <ul class="plain">
+            <li data-en="Digital signature as the main obstacle">Assinatura digital como principal obstáculo</li>
+            <li data-en="Too many steps and clicks, a rigid flow">Excesso de etapas e cliques, fluxo rígido</li>
+            <li data-en="A mobile experience below the standard of the category">Experiência mobile abaixo do padrão da categoria</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="chapter" id="tentativas">
+    <div class="rail">
+      <div class="n">02</div>
+      <div class="stage" data-en="What we had tried">As tentativas</div>
+      <div class="chips"><span class="chip">Growth</span><span class="chip" data-en="Distribution">Distribuição</span><span class="chip" data-en="Forecasting">Projeção de cenário</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="30% YoY organic growth: healthy, and not enough for the thesis">Crescimento orgânico de 30% YoY: saudável, e insuficiente para a tese</h2>
+      <p data-en="Until then, the growth lever was distribution inside the ecosystem. Architecturally, the product was a white-label web experience rendered in an iframe, embedded in the iClinic SaaS, plus one partner integrated via API, Whitebook. Each rollout unlocked a new base: 90%+ of iClinic in 2022, Whitebook in June 2023, Shosp from 2024, Portal Afya in January 2025.">Até ali, a alavanca de crescimento era distribuição dentro do ecossistema. Em arquitetura, o produto era um white label web renderizado em iframe, embarcado no SaaS do iClinic, mais um parceiro integrado via API, o Whitebook. Cada rollout destravava uma nova base: mais de 90% do iClinic em 2022, Whitebook em junho de 2023, Shosp a partir de 2024, Portal Afya em janeiro de 2025.</p>
+      <p data-en="The lever worked, but it had a ceiling: growth depended on the size of the partner bases, not on the product's own value proposition. I modeled the organic scenario to make the trade-off explicit for leadership.">A alavanca funcionava, mas tinha teto: o crescimento dependia do tamanho das bases parceiras, não da proposta de valor do próprio produto. Modelei o cenário orgânico para deixar o trade-off explícito para a liderança.</p>
+
+      <div class="fig">
+        <h3 data-en="Baseline scenario: the 60M mark would only be reached in 2031">Cenário baseline: a marca de 60 milhões só seria atingida em 2031</h3>
+        <p class="sub" data-en="Yearly prescriptions in millions, projected at 30% organic YoY, against the 2025 actual">Prescrições anuais em milhões, projetadas a 30% YoY orgânico, contra o realizado em 2025</p>
+        <svg class="route" viewBox="0 0 660 300" role="img" aria-label="Projeção orgânica: 10 mi em 2024, 13 em 2025, 16,9 em 2026, 21,9 em 2027, 28,5 em 2028, 37 em 2029, 48 em 2030, 62 em 2031. Meta de 60 mi. Realizado em 2025: 17 mi+.">
+          <line x1="40" y1="260" x2="640" y2="260" stroke="var(--line)"/>
+          <line x1="40" y1="56.9" x2="640" y2="56.9" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <text x="40" y="48" class="strong" data-en="Goal: 60M a year">Meta: 60 mi por ano</text>
+          <polyline fill="none" stroke="var(--steel)" stroke-width="2" stroke-linejoin="round" points="50,226.2 130,216 210,202.8 290,185.9 370,163.5 450,134.8 530,97.5 610,50.1"/>
+          <g fill="var(--steel)" stroke="var(--surface)" stroke-width="2">
+            <circle cx="50" cy="226.2" r="5"><title>2024: 10</title></circle><circle cx="130" cy="216" r="5"><title>2025: 13</title></circle>
+            <circle cx="210" cy="202.8" r="5"><title>2026: 16,9</title></circle><circle cx="290" cy="185.9" r="5"><title>2027: 21,9</title></circle>
+            <circle cx="370" cy="163.5" r="5"><title>2028: 28,5</title></circle><circle cx="450" cy="134.8" r="5"><title>2029: 37</title></circle>
+            <circle cx="530" cy="97.5" r="5"><title>2030: 48</title></circle><circle cx="610" cy="50.1" r="5"><title>2031: 62</title></circle>
+          </g>
+          <text x="50" y="246" text-anchor="middle" class="num">10</text>
+          <text x="130" y="238" text-anchor="middle" class="num">13</text>
+          <text x="370" y="184" text-anchor="middle" class="num" data-en="28.5">28,5</text>
+          <text x="530" y="118" text-anchor="middle" class="num">48</text>
+          <text x="610" y="38" text-anchor="middle" class="num strong">62</text>
+          <circle cx="130" cy="202.5" r="7" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"><title>2025: 17 mi+</title></circle>
+          <line x1="138" y1="198" x2="170" y2="170" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="174" y="166" class="strong" data-en="2025 actual: 17M+">Realizado em 2025: 17 mi+</text>
+          <g text-anchor="middle" class="num">
+            <text x="50" y="280">2024</text><text x="130" y="280">2025</text><text x="210" y="280">2026</text><text x="290" y="280">2027</text>
+            <text x="370" y="280">2028</text><text x="450" y="280">2029</text><text x="530" y="280">2030</text><text x="610" y="280">2031</text>
+          </g>
+        </svg>
+      </div>
+
+      <p class="pull" data-en="The product that brought us here is not the product that will be number one in the market.">O produto que nos trouxe até aqui não é o produto que vai ser o número 1 do mercado.</p>
+      <p data-en="That was the opening statement of the proposal. Optimizing the roadmap of the current product would deliver incremental gains. Growing 6x required a new bet, with its own thesis, investment and structure.">Essa foi a frase de abertura da proposta. Otimizar o roadmap do produto atual entregaria ganho incremental. Crescer 6x exigia uma nova aposta, com tese, investimento e estrutura próprios.</p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="chapter" id="virada">
+    <div class="rail">
+      <div class="n">03</div>
+      <div class="stage" data-en="The turning point">A virada</div>
+      <div class="chips"><span class="chip">Discovery</span><span class="chip">Business case</span><span class="chip">Managing up</span><span class="chip" data-en="Stakeholder management">Gestão de stakeholders</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="From diagnosis to funding in 45 days">Do diagnóstico ao aporte em 45 dias</h2>
+      <p data-en="We had one month, February, with Carnival in the middle, and a team of two: me and my Product Designer peer. The speed came from discipline in continuous discovery: three years of structured evidence were ready to be turned into a thesis.">Tínhamos um mês, fevereiro, com carnaval no meio, e um time de duas pessoas: eu e meu par Product Designer. A velocidade veio da disciplina de discovery contínuo: três anos de evidência estruturada estavam prontos para virar tese.</p>
+
+      <div class="steps">
+        <div class="step"><b data-en="Co-creation sprint">Sprint de cocriação</b><span data-en="A 3-day adapted Design Sprint with physicians, medical content, PMs, designers, CX and product marketing, to align on the problem and build a shared vision.">Design Sprint adaptada de 3 dias com médicos, conteúdo médico, PMs, designers, CX e product marketing, para nivelar o problema e construir uma visão compartilhada.</span></div>
+        <div class="step"><b data-en="Evidence synthesis">Síntese de evidências</b><span data-en="NPS and research history, TAM/SAM/SOM, Brazilian and US markets, competitive benchmark, personas, the product's P&amp;L and KPIs, and a technology assessment of AI: agents, LLMs, OCR.">Histórico de NPS e pesquisas, TAM/SAM/SOM, mercados brasileiro e americano, benchmark competitivo, personas, P&amp;L e KPIs do produto, e avaliação de tecnologia em IA: agentes, LLMs, OCR.</span></div>
+        <div class="step"><b data-en="Clickable prototype">Protótipo navegável</b><span data-en="The product vision materialized as a high-fidelity prototype, to reduce value and usability risk before any line of code.">A visão de produto materializada em protótipo de alta fidelidade, para reduzir risco de valor e de usabilidade antes de qualquer linha de código.</span></div>
+        <div class="step"><b data-en="Validation with physicians">Validação com médicos</b><span data-en="Evaluation rounds with 5 physicians, feedback consolidated and a new iteration before the executive agenda.">Rodada de avaliação com 5 médicos, feedbacks consolidados e nova iteração antes da agenda executiva.</span></div>
+        <div class="step"><b data-en="Executive narrative">Narrativa executiva</b><span data-en="Context, size of the opportunity, solution and evolution horizons, with the prototype as the centerpiece of every meeting.">Contexto, tamanho da oportunidade, solução e horizontes de evolução, com o protótipo como peça central de cada reunião.</span></div>
+      </div>
+
+      <p data-en="Buy-in was built in sequence, layer by layer. Each forum validated the thesis and sponsored the next one. In a month and a half we went through the entire decision chain:">O buy-in foi construído em sequência, camada por camada. Cada fórum validou a tese e patrocinou o seguinte. Em um mês e meio percorremos toda a cadeia de decisão:</p>
+      <ul class="ladder" style="margin:0;padding:0">
+        <li data-en="Heads of Product and Design">Heads de Produto e Design</li>
+        <li data-en="VP and all Heads (next day)">VP e todos os Heads (no dia seguinte)</li>
+        <li data-en="All VPs">Todos os VPs</li>
+        <li>CEO</li>
+        <li data-en="Shareholder (Bertelsmann)">Acionista (Bertelsmann)</li>
+      </ul>
+
+      <p data-en="The thesis was approved and funded. The operating structure changed overnight:">A tese foi aprovada e financiada. A estrutura de operação mudou da noite para o dia:</p>
+      <div class="shift">
+        <div><b class="num">14 <i>→</i> 30</b><span data-en="people in the prescription structure">pessoas na estrutura de prescrição</span></div>
+        <div><b class="num">1 <i>→</i> 4</b><span data-en="squads: core, growth, monetization and new product">squads: core, growth, monetização e novo produto</span></div>
+        <div><b data-en="Millions">Milhões</b><span data-en="in dedicated investment for the new bet">em investimento dedicado à nova aposta</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="chapter" id="portfolio">
+    <div class="rail">
+      <div class="n">04</div>
+      <div class="stage" data-en="Portfolio strategy">Estratégia de portfólio</div>
+      <div class="chips"><span class="chip" data-en="Portfolio management">Gestão de portfólio</span><span class="chip">Flywheel</span><span class="chip">Crossover</span><span class="chip" data-en="GEM model">Modelo GEM</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Prescription as the component that drives the flywheel">Prescrição como o componente que impulsiona a flywheel</h2>
+      <p data-en="Product strategy optimizes one product. Portfolio strategy defines the role each product plays so that the whole is worth more than the sum of its parts. In the 2024–2028 portfolio strategy of Afya's digital business unit, prescription was chosen as the component with the best odds of accelerating the flywheel. This case is that guideline turned into product, roadmap and results.">Estratégia de produto otimiza um produto. Estratégia de portfólio define o papel que cada produto cumpre para que o todo valha mais do que a soma das partes. Na estratégia de portfólio 2024–2028 da unidade de negócios digitais da Afya, a prescrição foi eleita o componente com mais chances de acelerar a flywheel. Este case é essa diretriz transformada em produto, roadmap e resultado.</p>
+
+      <div>
+        <p class="label" data-en="The ecosystem flywheel">A flywheel do ecossistema</p>
+        <ul class="fly">
+          <li data-en="Better solutions for physicians">Melhores soluções para o médico</li>
+          <li data-en="More physicians">Mais médicos</li>
+          <li data-en="More appointments and patients">Mais atendimentos e pacientes</li>
+          <li data-en="More data">Mais dados</li>
+          <li data-en="B2B solutions: pharma, providers, payors">Soluções B2B: pharma, providers, payors</li>
+        </ul>
+      </div>
+
+      <div class="fig">
+        <div class="portfolio">
+          <div class="levers">
+            <div class="lever"><span class="k" data-en="Weakens the competition">Enfraquece a concorrência</span><b data-en="Distribution">Distribuição</b><span data-en="Accelerate issued volume to compete for market share: patient page, medical students and residents inside the ecosystem, external partners.">Acelerar o volume emitido para disputar market share: página do paciente, graduação e pós dentro do ecossistema, parceiros externos.</span></div>
+            <div class="lever"><span class="k" data-en="Competitive advantage">Diferencial competitivo</span><b data-en="Portfolio integration">Integração de portfólio</b><span data-en="The portfolio as a barrier to entry, with 1 + 1 &gt; 2 synergy: Whitebook calculators and drug formulary, prescription protocols.">O portfólio como barreira de entrada, com sinergia 1 + 1 &gt; 2: calculadoras e formulário de medicamentos do Whitebook, protocolos de prescrição.</span></div>
+          </div>
+          <div class="orbit" role="img" aria-label="Prescrição no centro; em órbita: médicos, paciente, farmacêuticos e indústria pharma">
+            <div class="ring"></div><div class="ring r2"></div>
+            <div class="core" data-en="Prescription">Prescrição</div>
+            <div class="node n1" data-en="Physicians">Médicos</div>
+            <div class="node n2" data-en="Patient">Paciente</div>
+            <div class="node n3" data-en="Pharmacists">Farma&shy;cêuticos</div>
+            <div class="node n4" data-en="Pharma industry">Indústria pharma</div>
+          </div>
+          <div class="levers">
+            <div class="lever"><span class="k" data-en="Value proposition">Proposta de valor</span><b data-en="AI and automation">IA e automação</b><span data-en="Raise the value proposition through innovation that is hard for competitors to replicate.">Elevar a proposta de valor com inovação difícil de ser replicada pela concorrência.</span></div>
+            <div class="lever"><span class="k" data-en="Monetization">Monetização</span><b>B2B enabler</b><span data-en="Prescription as the strategic component that accelerates monetization of the B2B portfolio: insights, new sponsored formats, virtual rep.">A prescrição como componente estratégico que acelera a monetização do portfólio B2B: insights, novos formatos patrocinados, representante virtual.</span></div>
+          </div>
+        </div>
+        <div class="actors">
+          <div><b data-en="Physicians">Médicos</b><span data-en="Core user. Prescribes how and where they want, with fewer steps and clinical decision support in the flow.">Usuário core. Prescreve como e onde quiser, com menos etapas e apoio à decisão clínica no fluxo.</span></div>
+          <div><b data-en="Patient">Paciente</b><span data-en="The expansion front. Receives the prescription on the phone, with guidance, allergy alerts and renewal of continuous treatments.">Frente de expansão. Recebe a receita no celular, com orientações, alerta de alergia e renovação de tratamentos contínuos.</span></div>
+          <div><b data-en="Pharmacists">Farmacêuticos</b><span data-en="Dispensing. A legible, digitally signed prescription, accepted at pharmacies and labs, interoperable with whoever dispenses.">Dispensação. Receita legível e assinada digitalmente, aceita em farmácias e laboratórios, interoperável com quem dispensa.</span></div>
+          <div><b data-en="Pharma industry">Indústria pharma</b><span data-en="B2B revenue. Presence built into the flow, such as free samples without a sales rep, in place of traditional sponsorship that users resist.">Receita B2B. Presença integrada ao fluxo, como amostra grátis sem representante, no lugar do patrocínio tradicional que o usuário rejeita.</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="label" data-en="Why prescription is the driving component">Por que a prescrição é o componente impulsionador</p>
+        <div class="why">
+          <div><b>01</b><span data-en="It connects every actor in the healthcare chain.">Conecta todos os atores do arranjo da saúde.</span></div>
+          <div><b>02</b><span data-en="It is present throughout the physician's entire journey.">Está presente em toda a jornada do médico.</span></div>
+          <div><b>03</b><span data-en="It solves a demand that every physician has.">Resolve uma demanda que todo médico tem.</span></div>
+          <div><b>04</b><span data-en="It generates data that can be monetized through B2B.">Gera dados monetizáveis via B2B.</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="label" data-en="Three strategic challenges, sequenced with the GEM model">Três desafios estratégicos, sequenciados com o modelo GEM</p>
+        <div class="gem">
+          <div><span class="h" data-en="Short term · Business challenge">Curto prazo · Desafio de negócio</span><b data-en="Consolidate the digital thesis">Consolidar a tese do digital</b><em data-en="Monetization · get big on e-prescribing">Monetização · ganhar escala em prescrição eletrônica</em><span data-en="Accelerate prescription as a lever for revenue and market share.">Acelerar a prescrição como alavanca de receita e de market share.</span></div>
+          <div><span class="h" data-en="Mid term · Portfolio challenge">Médio prazo · Desafio de portfólio</span><b data-en="Consolidate the portfolio experience">Consolidar a experiência de portfólio</b><em data-en="Engagement · lead on portfolio perception">Engajamento · liderar a percepção de portfólio</em><span data-en="Use prescription as the integration lever across the ecosystem's products.">Usar a prescrição como alavanca de integração entre os produtos do ecossistema.</span></div>
+          <div><span class="h" data-en="Long term · Market challenge">Longo prazo · Desafio de mercado</span><b data-en="Data and connection with the patient">Dados e conexão com o paciente</b><em data-en="Growth · expand to patients">Growth · expandir para o paciente</em><span data-en="Evolve the physician-patient relationship as a business strategy.">Evoluir a relação médico-paciente como estratégia de negócio.</span></div>
+        </div>
+      </div>
+
+      <div class="shiftrow">
+        <div><s data-en="Paper prescription &gt; digital">Prescrição física &gt; digital</s><i>→</i><b data-en="Digital prescription &gt; paper">Prescrição digital &gt; física</b></div>
+        <div><s data-en="Pharma reaches physicians">Pharma acessa médicos</s><i>→</i><b data-en="Pharma reaches patients">Pharma acessa pacientes</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="chapter" id="solucao">
+    <div class="rail">
+      <div class="n">05</div>
+      <div class="stage" data-en="The solution">A solução</div>
+      <div class="chips"><span class="chip" data-en="Product vision">Visão de produto</span><span class="chip" data-en="Applied AI">IA aplicada</span><span class="chip">Roadmap</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Product vision: prescribe however and wherever you want">Visão de produto: prescreva como e onde quiser</h2>
+      <p data-en="The vision rests on three pillars, each tied to one strategic lever: flexibility drives adoption, personalization raises the value proposition, and integration turns the portfolio into a competitive advantage.">A visão se sustenta em três pilares, cada um ligado a uma alavanca estratégica: flexibilidade destrava adoção, personalização eleva a proposta de valor e integração transforma o portfólio em vantagem competitiva.</p>
+      <div class="pillars">
+        <div class="pillar"><b data-en="Flexibility">Flexibilidade</b><em data-en="Multimodal and multichannel">Multimodal e multicanal</em><span data-en="Mobile first by design. The physician types, dictates or sends an image, and AI structures the prescription. One experience across app, web, WhatsApp and smartwatch.">Mobile first por definição. O médico digita, dita ou envia uma imagem, e a IA estrutura a prescrição. Uma única experiência em app, web, WhatsApp e smartwatch.</span></div>
+        <div class="pillar"><b data-en="Personalization">Personalização</b><em data-en="An assistant that learns and anticipates">Assistente que aprende e antecipa</em><span data-en="Drug interaction checks, allergy alerts, renewal and complementary exam suggestions. Human in the loop: the physician reviews and approves in a few clicks.">Checagem de interações medicamentosas, alerta de alergias, sugestão de renovação e de exames complementares. Human in the loop: o médico revisa e aprova em poucos cliques.</span></div>
+        <div class="pillar"><b data-en="Integration">Integração</b><em data-en="Powered by the ecosystem">Powered by ecossistema</em><span data-en="Whitebook content in the flow, login through the medical record and native B2B formats that add to the prescribing experience instead of interrupting it.">Conteúdo Whitebook no fluxo, login pelo prontuário e formatos B2B nativos, que somam à experiência de prescrever em vez de interromper.</span></div>
+      </div>
+
+      <div class="fig">
+        <h3 data-en="Core flows validated with physicians">Fluxos principais validados com médicos</h3>
+        <p class="sub" style="margin-bottom:14px" data-en="Screens redrawn for this portfolio from the tested prototypes. Interface shown in Portuguese, as tested.">Telas redesenhadas para este portfólio a partir dos protótipos testados.</p>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-shot="s-texto" data-en="Text">Texto</button>
+          <button class="tab" role="tab" aria-selected="false" data-shot="s-voz" data-en="Voice">Voz</button>
+          <button class="tab" role="tab" aria-selected="false" data-shot="s-imagem" data-en="Image">Imagem</button>
+        </div>
+
+        <div class="phones" id="s-texto">
+          <figure class="phw"><div class="ph">
+            <p class="hello">Olá, Dr. César</p><p class="q">O que vamos prescrever hoje?</p><div class="grow"></div>
+            <div class="card"><b>Modelos e protocolos</b><small>Banco de modelos Whitebook · +30 modelos</small></div>
+            <div class="input"><span>Digite aqui para prescrever</span><i class="mic"></i></div>
+          </div><figcaption data-en="<b>1.</b> One entry point for every way of prescribing"><b>1.</b> Um único ponto de entrada para todas as formas de prescrever</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <p class="typed">Gabapentina 300mg<i></i></p>
+            <div class="hint"><span class="tag">✦ Sugestão de posologia</span><p>Tomar 1 cápsula, via oral, a cada 8 horas</p><div class="btns"><span class="btn ghost">Agora não</span><span class="btn">Adicionar</span></div></div>
+            <div class="grow"></div>
+            <div class="input"><span>Adicione ou edite</span><i class="mic"></i></div>
+          </div><figcaption data-en="<b>2.</b> The assistant suggests the dosage as the physician types"><b>2.</b> O assistente sugere a posologia enquanto o médico digita</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <div class="pat"><span class="av">CS</span><div><b>Camila Soares</b><small>22 anos</small></div></div>
+            <div class="card"><b class="pill">Gabapentina 300mg</b><small>Cápsula dura · 30 un</small><hr><p>Tomar 1 cápsula, via oral, a cada 8 horas</p></div>
+            <div class="act">Enviar para paciente via WhatsApp</div><div class="act">Assinar digitalmente</div><div class="act">Configurar PDF</div>
+            <div class="grow"></div>
+            <div class="input"><span>Adicione ou edite</span><i class="mic"></i></div>
+          </div><figcaption data-en="<b>3.</b> Sign and send to the patient in the same flow"><b>3.</b> Assinatura e envio ao paciente no mesmo fluxo</figcaption></figure>
+        </div>
+
+        <div class="phones" id="s-voz" hidden>
+          <figure class="phw"><div class="ph">
+            <p class="hello">Olá, Dr. César</p><p class="q">O que vamos prescrever hoje?</p><div class="grow"></div>
+            <div class="card"><b>Modelos e protocolos</b><small>Banco de modelos Whitebook · +30 modelos</small></div>
+            <div class="input on"><span class="wave"></span><i class="mic"></i></div>
+          </div><figcaption data-en="<b>1.</b> The physician speaks instead of typing"><b>1.</b> O médico fala em vez de digitar</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <p class="said">Reutilize a última prescrição que foi feita para a paciente Camila Soares.</p>
+            <p class="reply">Claro! Aqui estão os últimos itens prescritos para a paciente Camila Soares.</p>
+            <div class="grow"></div>
+            <div class="input"><span>Adicione ou edite</span><i class="mic"></i></div>
+          </div><figcaption data-en="<b>2.</b> The request is understood in natural language"><b>2.</b> O pedido é entendido em linguagem natural</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <div class="pat"><span class="av">CS</span><div><b>Camila Soares</b><small>22 anos</small></div></div>
+            <div class="card"><b class="pill">Gabapentina 300mg</b><small>Tomar 1 cápsula, via oral, a cada 8 horas</small><hr><b class="pill">Candesartana 8mg</b><small>Tomar 1 comprimido pela manhã, por 30 dias</small></div>
+            <div class="ex">Polissonografia de noite inteira</div>
+            <div class="act">Enviar para paciente</div><div class="act">Assinar digitalmente</div>
+            <div class="grow"></div>
+          </div><figcaption data-en="<b>3.</b> Previous prescription rebuilt, ready for review"><b>3.</b> Prescrição anterior remontada, pronta para revisão</figcaption></figure>
+        </div>
+
+        <div class="phones" id="s-imagem" hidden>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <div class="center"><b>Crie prescrições a partir de imagens</b><small>Fotos, PDFs e documentos. Faça o upload que nós fazemos o resto.</small><span class="btn">Selecionar arquivos</span></div>
+          </div><figcaption data-en="<b>1.</b> The physician sends a photo or a file"><b>1.</b> O médico envia uma foto ou um arquivo</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>✕</span>Imagem<span>⋯</span></div>
+            <div class="paper"><u>RECEITUÁRIO</u><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="btn wide">Enviar e gerar prescrição</span>
+          </div><figcaption data-en="<b>2.</b> OCR and AI read the handwritten prescription"><b>2.</b> OCR e IA leem a receita manuscrita</figcaption></figure>
+          <figure class="phw"><div class="ph">
+            <div class="top"><span>←</span>Prescrição<span>⋯</span></div>
+            <div class="pat"><span class="av">CS</span><div><b>Camila Soares</b><small>22 anos</small></div></div>
+            <div class="ex">Campo visual computadorizado</div><div class="ex">Gonioscopia</div><div class="ex">Microscopia especular</div><div class="ex">Paquimetria</div>
+            <div class="act">Enviar para paciente</div><div class="act">Assinar digitalmente</div>
+            <div class="grow"></div>
+          </div><figcaption data-en="<b>3.</b> Paper becomes a structured, signable prescription"><b>3.</b> O papel vira prescrição estruturada e assinável</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="quotes">
+        <figure><blockquote data-en="“It is a pain I face every day, and one I hear most of my colleagues complain about.”">“É uma dor que enfrento diariamente e que também ouço a maioria dos meus colegas se queixando.”</blockquote><figcaption data-en="Endocrinologist">Médico endocrinologista</figcaption></figure>
+        <figure><blockquote data-en="“This is the direction. It really touches the physician's pain.”">“O direcional é esse, toca na dor do médico mesmo.”</blockquote><figcaption data-en="Cardiologist and medical director">Médico cardiologista e diretor médico</figcaption></figure>
+        <figure><blockquote data-en="“It brings innovation and personalization, making good use of AI in our routine.”">“Traz inovação e personalização, otimizando o uso de IA em nossa rotina.”</blockquote><figcaption data-en="Internal medicine specialist">Médica especialista em clínica médica</figcaption></figure>
+      </div>
+
+      <div>
+        <p class="label" data-en="Roadmap in three horizons">Roadmap em três horizontes</p>
+        <div class="horizons">
+          <div><span data-en="Now">Agora</span><b data-en="Efficiency and experience">Eficiência e experiência</b><span data-en="Reduce operational load and friction in the prescribing flow.">Reduzir carga operacional e fricção no fluxo de prescrição.</span></div>
+          <div><span data-en="Next">Em seguida</span><b data-en="Automation and clinical intelligence">Automação e inteligência clínica</b><span data-en="Evolve prescription into a real clinical copilot.">Evoluir a prescrição para um copiloto clínico de verdade.</span></div>
+          <div><span data-en="Later">Depois</span><b data-en="Predictive, personalized care">Assistência preditiva e personalizada</b><span data-en="Anticipate needs and support decision making.">Antecipar necessidades e apoiar a tomada de decisão.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="chapter" id="execucao">
+    <div class="rail">
+      <div class="n">06</div>
+      <div class="stage" data-en="Execution">Execução</div>
+      <div class="chips"><span class="chip">End to end</span><span class="chip">Crossover</span><span class="chip">Go-to-market</span><span class="chip" data-en="Leading PMs">Liderança de PMs</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="From business case to go-to-market, while sustaining the core">Do business case ao go-to-market, sustentando o core</h2>
+      <p data-en="With the funding approved, my scope expanded from one product to a product line. I became the prescription lead and domain expert for four squads, operating on two fronts at once. On the core, Afya Rx: sustaining, growth initiatives and partnerships, protecting the volume that funded the bet. On the new bet: leading the new product squad, with one PM working with me on the initiative and a clear objective: build the beta, validate it, launch it and position the brand.">Com o aporte aprovado, meu escopo passou de um produto para uma linha de produtos. Assumi a liderança e a especialidade de prescrição para quatro squads, operando em duas frentes ao mesmo tempo. No core, o Afya Rx: sustentação, iniciativas de growth e parcerias, protegendo o volume que financiava a aposta. Na nova aposta: liderança do squad de novo produto, com uma PM atuando comigo na iniciativa e um objetivo claro: construir o beta, validar, lançar e posicionar a marca.</p>
+      <p data-en="I also structured the onboarding and knowledge transfer of the domain to the PMs and squads of growth, monetization and new product, and mentored the PMs through the product development process. Scaling from one to four squads without losing context was a deliverable in itself.">Também estruturei o onboarding e a passagem de conhecimento do domínio para os PMs e squads de growth, monetização e novo produto, e fiz a mentoria dos PMs no processo de desenvolvimento de produto. Escalar de um para quatro squads sem perder contexto era, por si só, uma entrega.</p>
+      <p data-en="In October 2025 the beta went live as <strong>Afya ReceitaPro</strong>. The rollout strategy was deliberate: app first, the channel with the lowest share of use and the worst experience in Afya Rx. Maximum room for experimentation, minimum risk to the core volume.">Em outubro de 2025 o beta foi ao ar como <strong>Afya ReceitaPro</strong>. A estratégia de rollout foi deliberada: app first, o canal com menor representatividade de uso e a pior experiência do Afya Rx. Máximo espaço para experimentação, mínimo risco para o volume do core.</p>
+
+      <div class="fig">
+        <h3 data-en="Launch film, Afya ReceitaPro (15 seconds)">Filme de lançamento, Afya ReceitaPro (15 segundos)</h3>
+        <video controls preload="none" poster="assets/receitapro-poster.jpg" style="margin-top:14px">
+          <source src="assets/receitapro-15s.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div>
+        <p class="label" data-en="Cross-functional fronts">Frentes cross-funcionais</p>
+        <div class="fronts">
+          <div><b data-en="Engineering">Engenharia</b><span data-en="Technical feasibility, timeline and cost estimates, and the build-or-buy decision for development.">Viabilidade técnica, estimativa de prazos e custos, e a decisão de build or buy do desenvolvimento.</span></div>
+          <div><b>Design</b><span data-en="Concept, prototyping and research with physicians, as a product and design duo.">Conceito, prototipação e pesquisa com médicos, em dupla produto e design.</span></div>
+          <div><b data-en="Finance (FP&amp;A)">Finanças (FP&amp;A)</b><span data-en="Product P&amp;L and a sustainable business plan to back the investment.">P&amp;L do produto e business plan sustentável para lastrear o investimento.</span></div>
+          <div><b data-en="Product marketing">Product marketing</b><span data-en="Go-to-market, branding, positioning and user acquisition.">Go-to-market, branding, posicionamento e aquisição de usuários.</span></div>
+          <div><b data-en="Partnerships (B2P)">Parcerias (B2P)</b><span data-en="iClinic, Whitebook, Shosp, Portal Afya and Cliquefarma, plus the expansion plan to other medical records.">iClinic, Whitebook, Shosp, Portal Afya e Cliquefarma, e o plano de expansão para outros prontuários.</span></div>
+          <div><b data-en="B2B and monetization">B2B e monetização</b><span data-en="Sponsored formats native to the flow, generating revenue without eroding the experience.">Formatos patrocinados nativos ao fluxo, gerando receita sem corroer a experiência.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="chapter" id="impacto">
+    <div class="rail">
+      <div class="n">07</div>
+      <div class="stage" data-en="Impact">Impacto</div>
+      <div class="chips"><span class="chip">Outcomes</span><span class="chip" data-en="Business results">Resultado de negócio</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="2.3x the organic pace in the first cycle">2,3x o ritmo orgânico no primeiro ciclo</h2>
+      <p data-en="2025 closed with two products in the line, Afya Rx and Afya ReceitaPro, four channels and five partners in the Afya ecosystem. The north star grew 70% YoY against a 30% baseline, and every supporting metric moved with it: active base, reach and B2B revenue.">2025 fechou com dois produtos na linha, Afya Rx e Afya ReceitaPro, quatro canais e cinco parceiros no ecossistema Afya. A métrica norte cresceu 70% YoY contra um baseline de 30%, e todas as métricas de suporte acompanharam: base ativa, alcance e receita B2B.</p>
+      <div class="fig tablewrap">
+        <table>
+          <thead><tr><th data-en="Metric">Métrica</th><th>2024</th><th>2025</th></tr></thead>
+          <tbody>
+            <tr><td data-en="Prescriptions per year (north star)">Prescrições por ano (métrica norte)</td><td data-en="10M+">10 mi+</td><td class="now" data-en="17M+">17 mi+</td></tr>
+            <tr><td data-en="Prescribed items">Itens prescritos</td><td data-en="32M+">32 mi+</td><td class="now" data-en="48M+">48 mi+</td></tr>
+            <tr><td data-en="Active prescribers">Prescritores ativos</td><td data-en="19K+">19 mil+</td><td class="now" data-en="23K+">23 mil+</td></tr>
+            <tr><td data-en="Patients reached">Pacientes alcançados</td><td data-en="3.5M+">3,5 mi+</td><td class="now" data-en="5M+">5 mi+</td></tr>
+            <tr><td data-en="Advertising revenue (B2B)">Receita de ads (B2B)</td><td data-en="R$1.3M">R$ 1,3 mi</td><td class="now" data-en="R$2.3M">R$ 2,3 mi</td></tr>
+            <tr><td data-en="Channels">Canais</td><td>1</td><td class="now">4</td></tr>
+            <tr><td data-en="Ecosystem partners">Parceiros do ecossistema</td><td>2</td><td class="now">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p data-en="The result came from a balanced portfolio of initiatives: growth and partner integrations on the core, experimentation on the new product, user acquisition, marketing investment and three new channels. The 60M ambition is still ahead, and the trajectory has changed.">O resultado veio de um portfólio equilibrado de iniciativas: growth e integrações com parceiros no core, experimentação no novo produto, aquisição de usuários, investimento em marketing e três novos canais. A ambição de 60 milhões segue à frente, e a trajetória mudou de patamar.</p>
+
+      <div>
+        <p class="label" data-en="Key learnings">Principais aprendizados</p>
+        <ol class="learn">
+          <li><b data-en="Continuous discovery is a strategic asset">Discovery contínuo é ativo estratégico</b><span data-en="The thesis was built in 30 days because three years of evidence were already structured. Speed in strategy is a consequence of discipline in discovery.">A tese foi construída em 30 dias porque três anos de evidência já estavam estruturados. Velocidade em estratégia é consequência de disciplina em discovery.</span></li>
+          <li><b data-en="Show the product, not the promise">Mostre o produto, não a promessa</b><span data-en="A prototype validated by users shortens the path to executive buy-in: the conversation moves from opinion to evidence.">Protótipo validado com usuários encurta o caminho do buy-in executivo: a conversa sai da opinião e vai para a evidência.</span></li>
+          <li><b data-en="Protect the core, experiment at the edge">Proteja o core, experimente na borda</b><span data-en="Launching the bet in the weakest channel de-risked innovation without exposing the volume that funds it.">Lançar a aposta no canal mais fraco reduziu o risco da inovação sem expor o volume que a financia.</span></li>
+          <li><b data-en="Scaling the team is a product problem">Escalar o time é um problema de produto</b><span data-en="Going from one to four squads requires treating domain knowledge as a deliverable, with knowledge transfer and mentoring.">Ir de um para quatro squads exige tratar o conhecimento do domínio como entrega, com passagem de conhecimento e mentoria.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <img src="assets/laissa.jpg" alt="Laíssa Margoni" width="720" height="720">
+    <div class="txt">
+      <h2>Laíssa Margoni</h2>
+      <p class="role">Staff Product Manager</p>
+      <p data-en="I am a Product professional with 10 years of experience, driven by curiosity, critical thinking and the will to solve problems that truly matter. I like to understand the why behind things, investigate causes, connect different perspectives and turn complexity into solutions that make sense for people and for the business.">Sou uma profissional de Produto com 10 anos de experiência, movida pela curiosidade, pelo pensamento crítico e pela vontade de resolver problemas que realmente importam. Gosto de entender o porquê das coisas, investigar causas, conectar diferentes perspectivas e transformar complexidade em soluções que façam sentido para as pessoas e para o negócio.</p>
+      <p data-en="Over the last four years I have worked in digital health, leading medical prescription products in an environment of high technical and regulatory complexity. I hold a degree in Business Administration and a postgraduate degree in Neuroscience and Behavior, and I am also a collaborating researcher in Lifestyle Medicine.">Nos últimos quatro anos, atuei em saúde digital, liderando produtos de prescrição médica em um ambiente de alta complexidade técnica e regulatória. Sou formada em Administração, pós-graduada em Neurociência e Comportamento e também atuo como pesquisadora colaboradora em Medicina do Estilo de Vida.</p>
+      <p data-en="I believe in product management that combines strategy, evidence, collaboration and accountability for decisions. More than shipping features, I care about building products that are relevant, sustainable and that create real impact.">Acredito em uma gestão de produto que combina estratégia, evidências, colaboração e responsabilidade pelas decisões. Mais do que entregar funcionalidades, me interessa construir produtos relevantes, sustentáveis e que gerem impacto real.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap" data-en="Portfolio under construction. More case studies soon.">Portfólio em construção. Mais cases em breve.</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+  /* language */
+  var nodes=[].slice.call(document.querySelectorAll('[data-en]'));
+  nodes.forEach(function(n){n._pt=n.innerHTML});
+  function setLang(l){
+    nodes.forEach(function(n){n.innerHTML=(l==='en')?n.getAttribute('data-en'):n._pt});
+    root.lang=(l==='en')?'en-US':'pt-BR';
+    document.getElementById('lang-pt').setAttribute('aria-pressed',l!=='en');
+    document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+    store('lm-lang',l);
+  }
+  document.getElementById('lang-pt').onclick=function(){setLang('pt')};
+  document.getElementById('lang-en').onclick=function(){setLang('en')};
+  if(location.hash==='#en'||(location.hash!=='#pt'&&read('lm-lang')==='en'))setLang('en');
+
+  /* theme */
+  function isDark(){
+    var t=root.getAttribute('data-theme');
+    if(t)return t==='dark';
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paintTheme(){
+    var d=isDark();
+    document.getElementById('theme-dark').setAttribute('aria-pressed',d);
+    document.getElementById('theme-light').setAttribute('aria-pressed',!d);
+  }
+  function setTheme(t){root.setAttribute('data-theme',t);store('lm-theme',t);paintTheme()}
+  document.getElementById('theme-light').onclick=function(){setTheme('light')};
+  document.getElementById('theme-dark').onclick=function(){setTheme('dark')};
+  var saved=read('lm-theme');if(saved==='dark'||saved==='light')root.setAttribute('data-theme',saved);
+  paintTheme();
+
+  /* prototype tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){t.onclick=function(){
+    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('data-shot')).hidden=!on});
+  }});
+})();
+</script>
+</body>
+</html>
