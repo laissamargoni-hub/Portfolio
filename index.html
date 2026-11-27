@@ -107,6 +107,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .c3 h3{font-size:24px}.c3 .art{height:50%;padding:0 14px 14px}.c3 .art img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}.c3 .tag{background:rgba(255,255,255,.16);color:#FBEDE4}
 .c4{background:#C9D1D3;color:#172D4D}.c4 .tag{background:rgba(23,45,77,.1);color:#172D4D}
 .c5{background:#172D4D;color:#F2F4F5}.c5 .tag{background:rgba(255,255,255,.12);color:#D99A78}
+.c4 .volt-art{height:52%;padding:0 14px 14px;display:flex;justify-content:center}.c4 .volt-art video{height:100%;aspect-ratio:400/848;object-fit:cover;object-position:top;border-radius:16px;border:5px solid #0C182B;background:#141414;box-shadow:0 10px 22px -12px rgba(0,0,0,.55)}
 .c5 .sky-art{height:50%;padding:0 14px 14px;position:relative}.c5 .sky-art img:first-child{width:100%;height:100%;object-fit:cover;object-position:60% 50%;border-radius:14px;display:block;background:#fff}.c5 .sky-art .sky-icon{position:absolute;left:26px;bottom:26px;width:56px;height:56px;border-radius:13px;box-shadow:0 8px 18px -8px rgba(0,0,0,.5)}
 .card:nth-child(5){--r:-3deg;margin-top:12px}.card:nth-child(6){--r:2deg}.card:nth-child(7){--r:-2.5deg;margin-top:8px}
 button.card{font:inherit;text-align:left;border:0;cursor:pointer}
@@ -436,12 +437,13 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
           <p class="sub" data-en="Public pre-launch of Afya ReceitaPro · Auditório Ibirapuera">Pré-lançamento do Afya ReceitaPro · Auditório Ibirapuera</p>
           <span class="go" data-en="See photos →">Ver fotos →</span>
         </button>
-        <div class="card c4" tabindex="0" data-soon="volt">
-          <span class="tag" data-en="Soon">Em breve</span>
+        <a class="card c4" href="volt/" data-case-link="volt" data-cta="case_card">
+          <span class="tag" data-en="Read">Ler case</span>
           <h3>Volt</h3>
-          <p class="sub" data-en="A skateboarding app, built end to end from scratch">App de skate, construído end to end do zero</p>
-          <svg class="art" viewBox="0 0 272 236" aria-hidden="true"><rect x="40" y="104" width="192" height="30" rx="15" fill="#172D4D"/><path d="M58 104c-10 0-18-6-22-14M214 104c10 0 18-6 22-14" stroke="#172D4D" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="82" cy="160" r="18" fill="#874B37"/><circle cx="190" cy="160" r="18" fill="#874B37"/><circle cx="82" cy="160" r="6" fill="#F2F4F5"/><circle cx="190" cy="160" r="6" fill="#F2F4F5"/><path d="M120 70l-14 26h16l-10 22 30-32h-17l11-16z" fill="#D99A78"/><path d="M30 200h212" stroke="#718A91" stroke-width="2" stroke-dasharray="6 6"/></svg>
-        </div>
+          <p class="sub" data-en="Early-stage startup · 2022 · A 0→1 skateboarding app">Startup early-stage · 2022 · App de skate 0→1</p>
+          <span class="go" data-en="Read the case →">Ler o case →</span>
+          <div class="art volt-art"><video src="assets/volt/volt-demo.mp4" poster="assets/volt/volt-demo-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div>
+        </a>
         <a class="card c5" href="minha-sky/" data-case-link="minha-sky" data-cta="case_card">
           <span class="tag" data-en="Read">Ler case</span>
           <h3>Minha SKY</h3>

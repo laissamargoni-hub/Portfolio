@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('lm-theme-case')==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volt: um app de skate do zero · Laíssa Margoni</title>
+<meta name="description" content="Volt: produto digital B2C 0→1 para skatistas em uma startup early-stage, do discovery ao MVP validado. Case de Laíssa Margoni, Product Manager.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a story told in numbered chapters. Left rail carries the chapter number and stage,
+   right column carries the narrative; figures break out to full content width. */
+:root{
+  --bg:#F2F4F5;         /* névoa clareada */
+  --surface:#FFFFFF;
+  --ink:#172D4D;        /* azul profundo */
+  --ink-2:#4B626A;      /* azul acinzentado escurecido p/ texto */
+  --line:#BFC6C8;       /* cinza névoa */
+  --accent:#874B37;     /* cobre */
+  --accent-2:#D99A78;   /* pêssego */
+  --steel:#718A91;      /* azul acinzentado */
+  --tint:#E7ECEE;
+  --on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+    --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+  --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
+.brand small{font-family:var(--body);font-weight:500;color:var(--ink-2);font-size:14px;margin-left:10px}
+.controls{display:flex;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{font:600 13px/1 var(--body);color:var(--ink-2);background:none;border:0;border-radius:999px;padding:8px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,.tab:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.eyebrow{font:600 13px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(44px,8vw,96px);font-weight:700;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.45;max-width:36em;color:var(--ink)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.meta dt{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.meta dd{margin:0;font-size:16px;line-height:1.45}
+.headline{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:36px}
+.headline div{background:var(--surface);padding:22px 20px}
+.headline b{display:block;font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:700;line-height:1;color:var(--accent)}
+.headline span{display:block;margin-top:8px;font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+
+/* chapters */
+.chapter{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;padding:64px 0;border-top:1px solid var(--line)}
+.rail{position:sticky;top:84px;align-self:start}
+.rail .n{font-family:var(--display);font-size:54px;font-weight:700;line-height:1;color:var(--accent-2)}
+.rail .stage{font:600 13px/1.3 var(--body);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font:600 12px/1 var(--body);padding:6px 9px;border-radius:6px;background:var(--tint);color:var(--ink-2)}
+.body{display:flex;flex-direction:column;gap:22px;min-width:0}
+.body h2{font-size:clamp(28px,4vw,44px);font-weight:700;max-width:18em}
+.body p{max-width:38em}
+.body p strong{font-weight:600}
+.pull{font-family:var(--display);font-size:clamp(24px,3.4vw,36px);font-weight:500;line-height:1.2;border-left:4px solid var(--accent);padding:6px 0 6px 20px;max-width:22em}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;margin:6px 0}
+.fig h3{font-family:var(--body);font-size:16px;font-weight:600;line-height:1.35;letter-spacing:0}
+.fig .sub{font-size:14px;color:var(--ink-2);margin-top:2px}
+.note{font-size:13.5px;color:var(--ink-2);margin-top:14px;max-width:none}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ul.plain li{padding-left:18px;position:relative;font-size:16px;line-height:1.45}
+ul.plain li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--accent)}
+.label{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+
+/* bar chart */
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end;height:230px;margin-top:22px;border-bottom:1px solid var(--line)}
+.bars .col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:6px}
+.bars .v{font-weight:600;font-size:15px}
+.bars .b{width:min(72px,70%);background:var(--steel);border-radius:4px 4px 0 0}
+.bars .col.hi .b{background:var(--accent)}
+.years{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;font-size:14px;color:var(--ink-2);margin-top:8px}
+.route{width:100%;height:auto;margin-top:14px;overflow:visible}
+.route text{font-family:var(--body);font-size:13px;fill:var(--ink-2)}
+.route .strong{fill:var(--ink);font-weight:600}
+
+/* compare */
+.cmp{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.cmp .row{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-size:15px}
+.cmp .t{height:18px;border-radius:0 4px 4px 0;background:var(--steel)}
+.cmp .row.hi .t{background:var(--accent)}
+.cmp .row b{font-weight:600;text-align:right}
+
+/* timeline */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;counter-increment:s}
+.step::before{content:counter(s,decimal-leading-zero);font:700 14px/1 var(--display);color:var(--accent)}
+.step b{display:block;margin:8px 0 4px;font-weight:600;font-size:16px;line-height:1.3}
+.step span{font-size:14.5px;color:var(--ink-2);line-height:1.4;display:block}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ladder li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500}
+.ladder li:last-child{background:var(--accent);color:var(--on-accent)}
+.ladder li+li{position:relative;margin-left:18px}
+.ladder li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.shift{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.shift div{border-top:3px solid var(--accent);padding-top:12px}
+.shift b{font-family:var(--display);font-size:30px;font-weight:700;display:block;line-height:1.1}
+.shift b i{font-style:normal;color:var(--ink-2);font-weight:500}
+.shift span{font-size:14.5px;color:var(--ink-2)}
+
+/* portfolio orbit */
+.portfolio{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px) minmax(0,1fr);gap:22px;align-items:center}
+.levers{display:flex;flex-direction:column;gap:22px}
+.lever{border-left:3px solid var(--steel);padding-left:14px}
+.lever .k{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lever b{display:block;font-family:var(--display);font-size:21px;font-weight:700;margin:4px 0 6px;line-height:1.15}
+.lever span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+.orbit{position:relative;aspect-ratio:1;width:100%;max-width:400px;margin:0 auto}
+.orbit .ring{position:absolute;inset:13%;border:1.5px dashed var(--steel);border-radius:50%}
+.orbit .ring.r2{inset:30%;border-style:solid;border-color:var(--line)}
+.orbit .core{position:absolute;inset:32%;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-weight:700;font-size:clamp(17px,2.4vw,22px);line-height:1.1}
+.orbit .node{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;background:var(--surface);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-size:clamp(12.5px,1.5vw,14.5px);line-height:1.15;padding:6px}
+.orbit .n1{top:0;left:35%}.orbit .n2{top:35%;right:0}.orbit .n3{bottom:0;left:35%}.orbit .n4{top:35%;left:0}
+.actors{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.actors b{display:block;font-weight:600;margin-bottom:4px}
+.actors span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+
+/* solution */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.pillar b{font-family:var(--display);font-size:22px;font-weight:700;display:block}
+.pillar em{display:block;font-style:normal;color:var(--accent);font-weight:500;font-size:15px;margin:4px 0 10px}
+.pillar span{font-size:15px;line-height:1.5;color:var(--ink-2);display:block}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{font:600 14px/1 var(--body);padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.shot{background:#000;border-radius:10px;overflow-x:auto}
+.shot img{min-width:640px;width:100%}
+.shot[hidden]{display:none}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.quotes figure{margin:0;border-top:1px solid var(--line);padding-top:14px}
+.quotes blockquote{margin:0;font-size:17px;line-height:1.45}
+.quotes figcaption{margin-top:8px;font-size:14px;color:var(--ink-2)}
+.horizons{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.horizons div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.horizons div:nth-child(2){background:var(--tint)}
+.horizons div:last-child{border-right:0}
+.horizons b{display:block;font-weight:600;margin:6px 0 4px}
+.horizons span{font-size:14.5px;color:var(--ink-2);display:block;line-height:1.45}
+video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/9}
+
+/* table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:16px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+td.now{font-weight:600;color:var(--accent)}
+.fronts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 22px}
+.fronts div{border-top:1px solid var(--line);padding-top:10px}
+.fronts b{font-weight:600;display:block}
+.fronts span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+ol.learn{margin:0;padding:0;list-style:none;counter-reset:l;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+ol.learn li{counter-increment:l;border-top:3px solid var(--accent-2);padding-top:12px}
+ol.learn b{display:block;font-family:var(--display);font-size:20px;font-weight:700;line-height:1.2;margin-bottom:6px}
+ol.learn span{font-size:15px;color:var(--ink-2);line-height:1.5}
+
+/* about */
+.about{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.about img{border-radius:14px;width:200px;aspect-ratio:1/1.15;object-fit:cover}
+.about h2{font-size:32px;margin-bottom:6px}
+.about .role{color:var(--accent);font-weight:600;margin-bottom:12px}
+.about p{max-width:38em}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:14px;color:var(--ink-2)}
+
+@media (max-width:860px){
+  .chapter{grid-template-columns:1fr;gap:18px;padding:44px 0}
+  .rail{position:static;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+  .rail .n{font-size:36px}
+  .rail .chips{width:100%;margin-top:4px}
+  .portfolio{grid-template-columns:1fr}
+  .portfolio .orbit{order:-1}
+  .about{grid-template-columns:1fr}
+  .cmp .row{grid-template-columns:110px 1fr 60px}
+  .hero{padding-top:40px}
+}
+
+/* v2 additions */
+.bar .wrap{justify-content:space-between}
+.back{font:500 20px/1 var(--display);letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:8px 0}
+.back:hover{color:var(--accent)}
+.exec{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 28px;margin-top:40px;padding:26px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px}
+.exec .k{font:600 12px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.exec p{font-size:15.5px;line-height:1.5}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.why div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:15px;line-height:1.45}
+.why b{display:block;font:700 14px/1 var(--display);color:var(--accent);margin-bottom:8px}
+.fly{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin:0;padding:0}
+.fly li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500;position:relative}
+.fly li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.fly li:last-child::after{content:"↻";margin-left:8px;color:var(--accent);font-weight:700}
+.gem{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gem div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.gem div:last-child{border-right:0}
+.gem .h{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.gem b{display:block;font-family:var(--display);font-size:20px;line-height:1.15;margin:8px 0 6px}
+.gem em{font-style:normal;color:var(--accent);font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+.gem span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+.shiftrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.shiftrow div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15px}
+.shiftrow s{text-decoration:none;color:var(--ink-2)}
+.shiftrow i{font-style:normal;color:var(--accent);font-weight:700}
+.shiftrow b{font-weight:600}
+
+/* phone mockups: product screens stay light in both themes */
+.phones{display:flex;gap:22px;overflow-x:auto;padding:30px 24px 22px;border-radius:12px;background:linear-gradient(135deg,var(--tint),var(--bg));justify-content:safe center}
+.phones[hidden]{display:none}
+.phw{flex:0 0 236px;margin:0}
+.phw figcaption{margin-top:14px;font-size:13.5px;line-height:1.4;color:var(--ink-2);text-align:center}
+.phw figcaption b{color:var(--ink);font-weight:600}
+.ph{height:486px;border-radius:34px;border:7px solid #0C182B;background:linear-gradient(165deg,#FBEDE4 0%,#F6F7F8 42%,#E2EAEE 100%);color:#172D4D;position:relative;overflow:hidden;font-size:11.5px;line-height:1.38;display:flex;flex-direction:column;gap:9px;padding:38px 14px 14px;box-shadow:0 22px 44px -20px rgba(12,24,43,.55)}
+.ph::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:68px;height:17px;border-radius:10px;background:#0C182B}
+.ph .top{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:12px;color:#172D4D}
+.ph .top span{color:#718A91;font-weight:400}
+.ph .hello{color:#4B626A;margin-top:26px}
+.ph .q{font-family:var(--display);font-size:23px;line-height:1.12;font-weight:500;letter-spacing:-.01em}
+.ph .grow{flex:1}
+.ph .card{background:#fff;border:1px solid #E1E7EA;border-radius:11px;padding:10px}
+.ph .card small{display:block;color:#718A91;font-size:10px;margin-top:2px}
+.ph .card hr{border:0;border-top:1px solid #E9EEF0;margin:8px 0}
+.ph .hint{background:#FBEDE4;border:1px solid #EBC9B5;border-radius:11px;padding:10px}
+.ph .tag{display:inline-block;font-weight:600;font-size:10px;color:#874B37;margin-bottom:5px}
+.ph .btns{display:flex;gap:6px;justify-content:flex-end;margin-top:9px}
+.ph .btn{font-weight:600;font-size:10.5px;padding:7px 10px;border-radius:7px;background:#172D4D;color:#fff;text-align:center}
+.ph .btn.ghost{background:none;color:#172D4D}
+.ph .btn.wide{display:block;padding:10px}
+.ph .input{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #D5DDE0;border-radius:12px;padding:11px 12px;color:#718A91}
+.ph .input.on{border-color:#874B37}
+.ph .mic{width:8px;height:13px;border-radius:5px;background:#874B37;flex:none}
+.ph .wave{flex:1;height:18px;margin-right:10px;background:repeating-linear-gradient(90deg,#D99A78 0 2px,transparent 2px 5px);-webkit-mask:radial-gradient(ellipse at center,#000 30%,transparent 72%);mask:radial-gradient(ellipse at center,#000 30%,transparent 72%)}
+.ph .typed{font-size:14px;font-weight:500}
+.ph .typed i{display:inline-block;width:1.5px;height:15px;background:#874B37;vertical-align:-2px;margin-left:1px}
+.ph .pat{display:flex;gap:9px;align-items:center}
+.ph .av{width:30px;height:30px;border-radius:50%;background:#D99A78;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:11px;flex:none}
+.ph .pat b{display:block;font-size:12.5px}
+.ph .pat small{color:#718A91;font-size:10px}
+.ph .act{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid #DCE3E6;font-size:11px}
+.ph .act::after{content:"↗";color:#718A91}
+.ph .said{font-weight:600;font-size:13px;line-height:1.35}
+.ph .reply{color:#4B626A}
+.ph .center{text-align:center;margin:auto 0;display:flex;flex-direction:column;gap:10px;align-items:center}
+.ph .center b{font-family:var(--display);font-size:17px;line-height:1.15}
+.ph .center small{color:#718A91;font-size:10.5px}
+.ph .paper{flex:1;background:#fff;border-radius:6px;padding:14px 12px;box-shadow:0 6px 16px -8px rgba(12,24,43,.4);transform:rotate(-1.5deg);margin:4px 6px;display:flex;flex-direction:column;gap:11px}
+.ph .paper u{display:block;text-decoration:none;font:700 9px/1 var(--body);letter-spacing:.14em;text-align:center;color:#4B626A;border-bottom:1px solid #BFC6C8;padding-bottom:7px}
+.ph .paper i{display:block;height:9px;border-bottom:2px solid #2B3F86;border-radius:50% 40% 60% 30%/0 0 100% 100%;transform:skewX(-18deg);opacity:.8}
+.ph .paper i:nth-child(odd){width:78%}.ph .paper i:nth-child(3n){width:55%}
+.ph .ex{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #E1E7EA;border-radius:9px;padding:8px 9px;font-size:11px}
+.ph .ex::before{content:"";width:12px;height:12px;border-radius:3px;background:#D99A78;flex:none}
+.ph .pill{display:flex;gap:8px;align-items:center}
+.ph .pill::before{content:"";width:14px;height:8px;border-radius:5px;background:#718A91;flex:none;transform:rotate(-35deg)}
+.about{grid-template-columns:210px minmax(0,1fr);align-items:start;gap:40px}
+.about img{width:200px;height:200px;aspect-ratio:1;border-radius:50%;outline:2px solid var(--accent);outline-offset:6px;margin:8px}
+.about .txt{display:flex;flex-direction:column;gap:14px}
+.about h2{margin-bottom:0}.about .role{margin:0}
+@media (max-width:860px){.about{grid-template-columns:1fr}.gem div{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* closing (v3: about moved to Home) */
+.closing{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;padding:48px 0;border-top:1px solid var(--line)}
+.closing img{width:96px;height:96px;border-radius:50%;object-fit:cover;outline:2px solid var(--accent);outline-offset:4px;margin:4px}
+.closing h2{font-size:30px;margin-top:6px}
+.closing .role{color:var(--accent);font-weight:600;margin-top:2px}
+.closing-cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);text-decoration:none;padding:14px 20px;border-radius:999px;background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:none}
+@media (max-width:860px){.closing{grid-template-columns:auto minmax(0,1fr)}.closing-cta{grid-column:1/-1}}
+
+/* case IA + WhatsApp */
+.phones-demo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.phones-demo figure{margin:0;display:flex;flex-direction:column;gap:14px}
+.device{border-radius:30px;border:7px solid #0C182B;background:#0C182B;overflow:hidden;box-shadow:0 24px 50px -26px rgba(0,0,0,.7);aspect-ratio:9/19.5}
+.device video{display:block;width:100%;height:100%;object-fit:cover;object-position:top;background:#fff}
+.phones-demo figcaption{font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.phones-demo figcaption i{font:700 13px/1 var(--display);font-style:normal;color:var(--accent);display:block;margin-bottom:6px}
+.phones-demo figcaption b{display:block;color:var(--ink);font-family:var(--display);font-size:20px;margin-bottom:4px}
+.wa{display:grid;grid-template-columns:220px minmax(0,1fr);gap:34px;align-items:start}
+.wa-phone{border-radius:28px;overflow:hidden;background:#fff;box-shadow:0 24px 50px -26px rgba(0,0,0,.7);border:6px solid #0C182B}
+.wa-phone img{display:block;width:100%;height:auto}
+.wa-text{display:flex;flex-direction:column;gap:20px}
+.wa-steps{display:grid;gap:14px}
+.wa-steps div{background:var(--surface);border:1px solid var(--line);border-left:3px solid #25D366;border-radius:12px;padding:16px 18px}
+.wa-steps i{font:700 13px/1 var(--display);font-style:normal;color:#25D366}
+.wa-steps b{display:block;font-family:var(--display);font-size:19px;margin:6px 0 4px}
+.wa-steps span{font-size:15px;line-height:1.5;color:var(--ink-2);display:block}
+ol.pipe{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:p}
+ol.pipe li{counter-increment:p;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative}
+ol.pipe li::before{content:counter(p,decimal-leading-zero);font:700 13px/1 var(--display);color:var(--accent)}
+ol.pipe b{display:block;font-family:var(--display);font-size:19px;margin:8px 0 4px}
+ol.pipe span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+@media (max-width:860px){.phones-demo{grid-template-columns:1fr;max-width:300px}.wa{grid-template-columns:1fr}.wa-phone{max-width:220px}ol.pipe{grid-template-columns:1fr 1fr}}
+
+/* case Volt */
+.volt-hero{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(24px,5vw,64px);align-items:center;margin-top:30px}
+.volt-hero .device{max-width:260px}
+.volt-hero .device video{background:#141414}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#C8F000}
+.li-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.words{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.words span{font:700 clamp(18px,2.4vw,26px)/1 var(--display);padding:12px 18px;border-radius:999px;background:var(--surface,rgba(255,255,255,.06));border:1px solid var(--line)}
+.matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:20px 0}
+.matrix div{border:1px solid var(--line);border-radius:16px;padding:16px}
+.matrix p.k{font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.matrix ul{margin:0;padding-left:18px;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.phones-demo.still img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+@media (max-width:760px){.volt-hero{grid-template-columns:1fr}.volt-hero .device{margin:0 auto;width:min(240px,70vw)}}
+</style>
+</head>
+<body data-page="case" data-case="volt">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="../" id="back-home">Laíssa Margoni</a>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-pt" aria-pressed="true">PT</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <div class="seg" role="group" aria-label="Tema / Theme">
+        <button type="button" id="theme-light" aria-pressed="false" data-en="Light">Claro</button>
+        <button type="button" id="theme-dark" aria-pressed="false" data-en="Dark">Escuro</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <p class="eyebrow" data-en="Case study · Volt · Early-stage startup · 2022">Case · Volt · Startup early-stage · 2022</p>
+    <div class="volt-hero">
+      <div>
+        <h1 data-en="Volt: a skateboarding app from <em>zero</em>, built with skaters">Volt: um app de skate do <em>zero</em>, feito com skatistas</h1>
+        <p class="lede" data-en="0→1 creation of a B2C digital product for the sports market in an early-stage startup, with high autonomy and direct work with the Founder, Design and Engineering. I owned the end-to-end journey: from identifying the problem and defining the product strategy to building and validating the MVP.">Criação 0→1 de um produto digital B2C para o mercado de esportes em uma startup early-stage, com alta autonomia e interação direta com Founder, Design e Engineering. Fui responsável pela jornada end-to-end: da identificação do problema e da definição da Product Strategy à construção e validação do MVP.</p>
+        <span class="status" data-en="MVP built and tested in a beta version · not yet launched in the stores">MVP construído e testado em versão beta · ainda não lançado nas lojas</span><br>
+        <a class="li-link" href="https://lnkd.in/p/dFhf7y_9" target="_blank" rel="noopener" data-cta="linkedin_post" data-en="Read my LinkedIn post about Volt ↗">Ler minha publicação sobre a Volt no LinkedIn ↗</a>
+      </div>
+      <div class="device"><video data-demo src="../assets/volt/volt-demo.mp4" poster="../assets/volt/volt-demo-poster.jpg" muted loop playsinline preload="none" aria-label="Demonstração da interface do app Volt"></video></div>
+    </div>
+
+    <div class="exec">
+      <div><p class="k" data-en="The challenge">O desafio</p><p data-en="The skateboarding ecosystem was scattered: skaters struggled to promote themselves and consumed information in a fragmented way, and brands struggled to reach this audience.">O ecossistema do skate estava espalhado: skatistas tinham dificuldade de se promover e consumiam informação de forma fragmentada, e as marcas tinham dificuldade de impactar esse público.</p></div>
+      <div><p class="k" data-en="The bet">A aposta</p><p data-en="One app to connect the whole skate ecosystem: spots and parks, challenges, fun and music, with gamification to keep the community engaged.">Um app para conectar todo o ecossistema do skate: pistas e picos, desafios, diversão e música, com gamificação para manter a comunidade engajada.</p></div>
+      <div><p class="k" data-en="My scope">Meu escopo</p><p data-en="Product Manager in a lean team: discovery and delivery, market and user research, MVP scope, business model and go-to-market.">Product Manager em time enxuto: discovery e delivery, pesquisa de mercado e de usuários, escopo do MVP, modelo de negócio e go-to-market.</p></div>
+      <div><p class="k" data-en="The outcome">O resultado</p><p data-en="A 0→1 B2C product for skaters, with vision, value proposition and business model structured, and an MVP validated through research, prototypes and user feedback.">Um produto B2C 0→1 para skatistas, com visão, proposta de valor e modelo de negócio estruturados, e um MVP validado com pesquisa, protótipos e feedback de usuários.</p></div>
+    </div>
+
+    <div class="headline">
+      <div><b class="num">0→1</b><span data-en="new B2C product, from problem to MVP">produto B2C novo, do problema ao MVP</span></div>
+      <div><b class="num">4</b><span data-en="MVP pillars: spots, challenges, fun and music">pilares do MVP: pistas, desafios, diversão e música</span></div>
+      <div><b class="num">4</b><span data-en="competing apps analyzed in the benchmarking">apps concorrentes analisados no benchmarking</span></div>
+      <div><b class="num">14–24</b><span data-en="age range of the core audience, defined in research">faixa etária do público principal, definida na pesquisa</span></div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="chapter" id="problema">
+    <div class="rail">
+      <div class="n">01</div>
+      <div class="stage" data-en="The problem">O problema</div>
+      <div class="chips"><span class="chip">Market Research</span><span class="chip">Benchmarking</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="A passionate community, with scattered information">Uma comunidade apaixonada, com informação espalhada</h2>
+      <p data-en="Skateboarding is a diverse universe, but its ecosystem was spread across maps, social networks and niche apps. Benchmarking four competing apps showed the same pattern: spots, challenges and content existed, but always in pieces, and none of them did it well.">O skate é um universo diverso, mas o ecossistema estava espalhado entre mapas, redes sociais e apps de nicho. O benchmarking de quatro apps concorrentes mostrou o mesmo padrão: pistas, desafios e conteúdo existiam, mas sempre aos pedaços, e nenhum deles fazia isso bem.</p>
+      <div class="two">
+        <div>
+          <p class="label" data-en="For skaters">Para os skatistas</p>
+          <ul class="plain">
+            <li data-en="Hard to find good spots, especially when traveling">Dificuldade de achar boas pistas e picos, principalmente viajando</li>
+            <li data-en="Hard to promote themselves and follow their own evolution">Dificuldade de se promover e acompanhar a própria evolução</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label" data-en="For brands">Para as marcas</p>
+          <ul class="plain">
+            <li data-en="Hard to reach a young, engaged audience in an authentic way">Dificuldade de impactar um público jovem e engajado de forma autêntica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="chapter" id="discovery">
+    <div class="rail">
+      <div class="n">02</div>
+      <div class="stage">Discovery</div>
+      <div class="chips"><span class="chip">User Research</span><span class="chip">Persona</span><span class="chip">JTBD</span><span class="chip" data-en="Empathy Map">Mapa de empatia</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Listening to skaters before designing for them">Ouvir os skatistas antes de desenhar para eles</h2>
+      <p data-en="Interviews with skaters, persona, empathy map and jobs to be done to understand pains, behaviors and needs. When we asked what skateboarding meant to them, these were the words that came up:">Entrevistas com skatistas, persona, mapa de empatia e jobs to be done para entender dores, comportamentos e necessidades. Quando perguntamos o que o skate significava para eles, estas foram as palavras que apareceram:</p>
+      <div class="words"><span data-en="Freedom">Liberdade</span><span data-en="Friendship">Amizade</span><span data-en="My life">Minha vida</span><span data-en="Everything">Tudo</span></div>
+      <p class="pull" data-en="&quot;Skateboarding is more than tricks.&quot;, a phrase heard in the interviews that became the product's compass.">"Skate é mais do que manobra.", frase ouvida nas entrevistas que virou bússola do produto.</p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="chapter" id="estrategia">
+    <div class="rail">
+      <div class="n">03</div>
+      <div class="stage" data-en="Strategy">Estratégia</div>
+      <div class="chips"><span class="chip">Lean Canvas</span><span class="chip">SWOT</span><span class="chip">Golden Circle</span><span class="chip">Working Backwards</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="From vision to what goes in, and what stays out">Da visão ao que entra e ao que fica de fora</h2>
+      <p data-en="Lean Canvas, SWOT and Golden Circle structured the vision and the value proposition: connect the whole skate ecosystem, giving voice to the community. Following Amazon's working backwards method, we wrote the launch press release before building, centered on the user's problem.">Lean Canvas, SWOT e Golden Circle estruturaram a visão e a proposta de valor: conectar todo o ecossistema do skate, dando voz à comunidade. Seguindo o método working backwards, da Amazon, escrevemos o comunicado de lançamento antes de construir, centrado no problema do usuário.</p>
+      <p class="label" data-en="Scope prioritization">Priorização de escopo</p>
+      <div class="matrix">
+        <div><p class="k" data-en="MVP has">O MVP tem</p><ul><li data-en="Skate parks and spots">Pistas e picos</li><li data-en="Challenges with community voting">Desafios com votação da comunidade</li><li data-en="Check-in at spots">Check-in nas pistas</li></ul></div>
+        <div><p class="k" data-en="Could have">Poderia ter</p><ul><li data-en="Content to learn tricks">Conteúdo para aprender manobras</li><li data-en="Playlists made by skaters">Playlists criadas por skatistas</li><li data-en="Session performance data">Dados de desempenho da sessão</li></ul></div>
+        <div><p class="k" data-en="Will never have">Nunca terá</p><ul><li data-en="Anything that makes it look like a company building an app for skaters, instead of skaters building for skaters">Nada que pareça uma empresa fazendo app para skatistas, em vez de skatistas fazendo para skatistas</li></ul></div>
+      </div>
+      <p class="label" data-en="Product principles">Princípios de produto</p>
+      <ol class="learn">
+        <li><b data-en="Simple product, easy UX">Produto simples, UX fácil</b><span data-en="An audience that lives on Instagram and YouTube does not read manuals.">Um público que vive no Instagram e no YouTube não lê manual.</span></li>
+        <li><b data-en="Gamification">Gamificação</b><span data-en="Points for using the app, adding spots, joining and voting in challenges, redeemable for rewards from skate brands.">Pontos por usar o app, cadastrar pistas, participar e votar em desafios, trocados por recompensas de marcas do skate.</span></li>
+        <li><b data-en="Connection with skaters">Conexão com os skatistas</b><span data-en="Made by skaters, for skaters.">Produto de skatistas, feito para skatistas.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="chapter" id="mvp">
+    <div class="rail">
+      <div class="n">04</div>
+      <div class="stage">MVP</div>
+      <div class="chips"><span class="chip">Prototyping</span><span class="chip">Experimentation</span><span class="chip">A/B Testing</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="The MVP in the skater's hands">O MVP na mão do skatista</h2>
+      <p data-en="Prototypes, user tests, experimentation and A/B testing, in short learning cycles. The beta version brought the map of parks and spots, the details of each place and the community reviews.">Protótipos, testes com usuários, experimentação e testes A/B, em ciclos curtos de aprendizado. A versão beta trouxe o mapa de pistas e picos, os detalhes de cada lugar e as avaliações da comunidade.</p>
+      <div class="phones-demo still">
+        <figure><div class="device"><img src="../assets/volt/tela-22.webp" alt="Mapa de pistas e picos" loading="lazy" width="400" height="848"></div><figcaption><i>01</i><b data-en="Map">Mapa</b><span data-en="Parks, spots and events on the map, with filters.">Pistas, picos e eventos no mapa, com filtros.</span></figcaption></figure>
+        <figure><div class="device"><img src="../assets/volt/tela-38.webp" alt="Detalhes de uma pista" loading="lazy" width="400" height="848"></div><figcaption><i>02</i><b data-en="Spot details">Detalhes do lugar</b><span data-en="Hours, infrastructure, obstacles and check-in.">Horários, infraestrutura, obstáculos e check-in.</span></figcaption></figure>
+        <figure><div class="device"><img src="../assets/volt/tela-42.webp" alt="Avaliações da comunidade" loading="lazy" width="400" height="848"></div><figcaption><i>03</i><b data-en="Reviews">Avaliações</b><span data-en="Ratings and comments from the community.">Notas e comentários da própria comunidade.</span></figcaption></figure>
+      </div>
+      <p class="note" data-en="Screens from the beta version. The app has not been launched in the stores.">Telas da versão beta. O app não foi lançado nas lojas.</p>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="chapter" id="negocio">
+    <div class="rail">
+      <div class="n">05</div>
+      <div class="stage" data-en="Business">Negócio</div>
+      <div class="chips"><span class="chip">Business Model</span><span class="chip">Go-to-Market</span><span class="chip">Product-Market Fit</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="A free app, with a model to stand on its own">Um app gratuito, com modelo para se sustentar</h2>
+      <div class="two">
+        <div>
+          <p class="label" data-en="Business model">Modelo de negócio</p>
+          <ul class="plain">
+            <li data-en="Free app, with a paid plan (B2C)">App gratuito, com plano pago (B2C)</li>
+            <li data-en="Ads and partnerships with skate brands (B2B)">Anúncios e parcerias com marcas do universo do skate (B2B)</li>
+            <li data-en="Business plan with market analyses, competition and projections">Plano de negócios com análises de mercado, concorrência e projeções</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label" data-en="Go-to-market and metrics">Go-to-market e métricas</p>
+          <ul class="plain">
+            <li data-en="Acquisition through skater creators, social media, events and ASO">Aquisição com skatistas criadores de conteúdo, redes sociais, eventos e ASO</li>
+            <li data-en="North metrics: downloads, DAU, MAU, LTV and store rating above 4.2">Métricas: downloads, DAU, MAU, LTV e nota nas lojas acima de 4,2</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" id="fim">
+    <img src="../assets/laissa.jpg" alt="Laíssa Margoni" width="720" height="720" loading="lazy">
+    <div>
+      <p class="eyebrow" data-en="Case led by">Case conduzido por</p>
+      <h2>Laíssa Margoni</h2>
+      <p class="role" data-en="Product Manager at the time">Product Manager na época</p>
+    </div>
+    <div class="closing-cta">
+      <a class="btn" href="../minha-sky/" data-case-link="minha-sky" data-cta="next_case" data-en="Next case: Minha SKY →">Próximo case: Minha SKY →</a>
+      <a class="btn ghost" href="https://lnkd.in/p/dFhf7y_9" target="_blank" rel="noopener" data-cta="linkedin_post" data-en="LinkedIn post ↗">Publicação no LinkedIn ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© Laíssa Margoni</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+  /* language */
+  var nodes=[].slice.call(document.querySelectorAll('[data-en]'));
+  nodes.forEach(function(n){n._pt=n.innerHTML});
+  function setLang(l){
+    nodes.forEach(function(n){n.innerHTML=(l==='en')?n.getAttribute('data-en'):n._pt});
+    root.lang=(l==='en')?'en-US':'pt-BR';
+    document.getElementById('lang-pt').setAttribute('aria-pressed',l!=='en');
+    document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+    store('lm-lang',l);
+  }
+  document.getElementById('lang-pt').onclick=function(){setLang('pt')};
+  document.getElementById('lang-en').onclick=function(){setLang('en')};
+  if(location.hash==='#en'||(location.hash!=='#pt'&&read('lm-lang')==='en'))setLang('en');
+
+  /* theme */
+  function isDark(){
+    var t=root.getAttribute('data-theme');
+    if(t)return t==='dark';
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paintTheme(){
+    var d=isDark();
+    document.getElementById('theme-dark').setAttribute('aria-pressed',d);
+    document.getElementById('theme-light').setAttribute('aria-pressed',!d);
+  }
+  function setTheme(t){root.setAttribute('data-theme',t);store('lm-theme-case',t);paintTheme()}
+  document.getElementById('theme-light').onclick=function(){setTheme('light')};
+  document.getElementById('theme-dark').onclick=function(){setTheme('dark')};
+  var saved=read('lm-theme-case');root.setAttribute('data-theme',saved==='light'?'light':'dark'); /* case: escuro por padrão */
+  paintTheme();
+
+  /* prototype tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){t.onclick=function(){
+    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('data-shot')).hidden=!on});
+  }});
+})();
+</script>
+<script>
+/* vídeos de demonstração: tocam só quando aparecem na tela (sem som) */
+(function(){var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+[].forEach.call(document.querySelectorAll('video[data-demo]'),function(v){
+  if(still||!('IntersectionObserver' in window)){v.controls=true;return}
+  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){v.play().catch(function(){})}else v.pause()})},{threshold:.35}).observe(v);
+});})();
+</script>
+<script src="../analytics.js" defer></script>
+<script src="../feedback.js" defer></script>
+</body>
+</html>
