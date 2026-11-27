@@ -110,7 +110,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .card:nth-child(5){--r:-3deg;margin-top:12px}.card:nth-child(6){--r:2deg}.card:nth-child(7){--r:-2.5deg;margin-top:8px}
 button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .photo-card{background:#874B37;color:#fff}
-.photo-card.live{background:#172D4D}
+.photo-card.live,.photo-card.summit{background:#172D4D}.photo-card.summit .bg{object-position:50% 45%}
 .photo-card.talk{background:#C9D1D3;color:#172D4D}
 .photo-card .bg{position:absolute;left:14px;right:14px;bottom:14px;width:calc(100% - 28px);height:50%;object-fit:cover;border-radius:14px;transition:transform .8s cubic-bezier(.2,.8,.2,1);box-shadow:0 10px 24px -14px rgba(0,0,0,.5)}
 .photo-card:hover .bg{transform:scale(1.04)}
@@ -120,7 +120,7 @@ button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .photo-card .bg{object-position:50% 40%}
 .photo-card.live .bg{object-position:50% 80%}
 .photo-card.talk .bg{object-position:50% 78%}
-.card:nth-child(8){--r:3deg;margin-top:12px}.card:nth-child(9){--r:-2deg;margin-top:6px}
+.card:nth-child(8){--r:3deg;margin-top:12px}.card:nth-child(9){--r:-2deg;margin-top:6px}.card:nth-child(10){--r:2.5deg;margin-top:12px}
 .offwork{margin-top:18px}
 .ow-btn{display:inline-flex;align-items:center;gap:10px;padding:9px 14px 9px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .2s,color .2s}
 .ow-btn:hover,.ow-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
@@ -370,6 +370,13 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
           <span class="go" data-en="Read the case →">Ler o case →</span>
           <div class="art"><img src="assets/fluxo/capa-prescreva.jpg" alt="" width="820" height="897" loading="lazy"></div>
         </a>
+        <button type="button" class="card photo-card summit" data-event="summit">
+          <img class="bg" src="assets/eventos/summit-palco.jpg" alt="" loading="lazy">
+          <span class="tag" data-en="Event · Launch">Evento · Lançamento</span>
+          <h3>Afya Summit 2025</h3>
+          <p class="sub" data-en="Public pre-launch of Afya ReceitaPro · Auditório Ibirapuera">Pré-lançamento do Afya ReceitaPro · Auditório Ibirapuera</p>
+          <span class="go" data-en="See photos →">Ver fotos →</span>
+        </button>
         <button type="button" class="card photo-card" data-event="cbmev">
           <img class="bg" src="assets/eventos/cbmev-equipe-vertical.jpg" alt="" loading="lazy">
           <span class="tag" data-en="Event · Congress">Evento · Congresso</span>
@@ -619,6 +626,22 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   /* ===== eventos: conteúdo da janela ===== */
   const ARTICLE='https://journals.sagepub.com/doi/10.1177/15598276261484525';
   const EVENTS={
+    summit:{
+      pt:{k:'Afya Summit 2025 · Auditório Ibirapuera, São Paulo · 23/08/2025',t:'O pré-lançamento do Afya ReceitaPro',
+        p:['O Afya Summit é o evento anual da Afya sobre o futuro da medicina. A edição de 2025, com o tema <i>Viva agora a medicina do amanhã</i>, reuniu cerca de 1.500 participantes e 27 palestrantes em um dia inteiro no Auditório Ibirapuera.',
+           'Foi o palco do pré-lançamento público do Afya ReceitaPro, o novo produto de prescrição que liderei: renovação de receitas com IA, prescrição por voz e integração com o smartwatch. Os médicos presentes receberam o convite para estar entre os primeiros a testar a nova prescrição digital.',
+           'Participei do evento com o time, acompanhando a recepção do produto pelos médicos.'],
+        f:['<b>~1.500</b> participantes','<b>27</b> palestrantes','Pré-lançamento do <b>ReceitaPro</b>'],
+        cta:'Ver o case Prescrição do Futuro →'},
+      en:{k:'Afya Summit 2025 · Auditório Ibirapuera, São Paulo · Aug 23, 2025',t:'The pre-launch of Afya ReceitaPro',
+        p:['Afya Summit is Afya\'s annual event on the future of medicine. The 2025 edition, themed <i>Live tomorrow\'s medicine today</i>, brought together around 1,500 attendees and 27 speakers for a full day at Auditório Ibirapuera.',
+           'It was the stage for the public pre-launch of Afya ReceitaPro, the new prescription product I led: AI-powered prescription renewal, voice prescribing and smartwatch integration. Physicians at the event were invited to be among the first to try the new digital prescription.',
+           'I attended with the team, following how physicians received the product.'],
+        f:['<b>~1,500</b> attendees','<b>27</b> speakers','<b>ReceitaPro</b> pre-launch'],
+        cta:'See the Prescription of the Future case →'},
+      href:'prescricao-do-futuro/',internal:true,
+      media:['summit-palco.jpg','summit-folder.jpg','video:../pulso/lancamento-smartwatch.mp4|../pulso/lancamento-poster.jpg','summit-palestra.jpg','summit-amigas.jpg','summit-time.jpg','summit-selfie.jpg','summit-cracha.jpg']
+    },
     cbmev:{
       pt:{k:'Congresso Brasileiro de Medicina do Estilo de Vida · 2026',t:'Não há remédio para o tempo',
         p:['Apresentei com o GPMEV o pôster <i>O Determinante Ausente da Medicina do Estilo de Vida: Não Há Remédio Para o Tempo</i>, que depois virou artigo no American Journal of Lifestyle Medicine. A pergunta de partida veio do consultório: pacientes dizem que não têm tempo para cuidar da saúde. Mas quanto tempo, de fato, um estilo de vida saudável exige?',
@@ -670,13 +693,13 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   function renderEvt(){
     if(!curEvt)return;const e=EVENTS[curEvt],l=root.lang==='en-US'?'en':'pt',c=e[l];
     const media=e.media.map(m=>m.startsWith('video:')
-      ?'<video controls playsinline preload="none" poster="assets/eventos/cbmev-apresentacao-poster.jpg" src="assets/eventos/'+m.slice(6)+'"></video>'
+      ?(v=>'<video controls playsinline preload="none" data-video="'+v[0].split('/').pop().replace('.mp4','')+'" poster="assets/eventos/'+(v[1]||'cbmev-apresentacao-poster.jpg')+'" src="assets/eventos/'+v[0]+'"></video>')(m.slice(6).split('|'))
       :'<img src="assets/eventos/'+m+'" alt="" loading="lazy">').join('');
     const story=e.storyHref?'<a class="story" href="'+e.storyHref+'" target="_blank" rel="noopener" data-cta="event_story"><span class="ring"><img src="assets/eventos/'+e.storyImg+'" alt=""></span><span><b>'+c.story+'</b><small>'+(l==='en'?'Tap to open on Instagram ↗':'Toque para abrir no Instagram ↗')+'</small></span></a>':'';
     const clock=e.clockImg?'<figure class="evt-clock"><img src="assets/eventos/'+e.clockImg+'" alt="" loading="lazy"><figcaption>'+c.clock+'</figcaption></figure>':'';
     $('evt-body').innerHTML='<div class="evt-in"><p class="kicker">'+c.k+'</p><h3 id="evt-title">'+c.t+'</h3>'+story+c.p.map(x=>'<p>'+x+'</p>').join('')+
       '<div class="evt-facts">'+c.f.map(x=>'<span>'+x+'</span>').join('')+'</div>'+clock+'<div class="gallery">'+media+'</div>'+
-      (e.href&&c.cta?'<div class="ctas"><a class="btn" href="'+e.href+'" target="_blank" rel="noopener" data-cta="'+(curEvt==='cbmev'?'article':'event_link')+'">'+c.cta+'</a></div>':'')+'</div>';
+      (e.href&&c.cta?'<div class="ctas"><a class="btn" href="'+e.href+'"'+(e.internal?' data-case-link="prescricao-do-futuro"':' target="_blank" rel="noopener"')+' data-cta="'+(curEvt==='cbmev'?'article':'event_link')+'">'+c.cta+'</a></div>':'')+'</div>';
     $('evt-close').setAttribute('aria-label',l==='en'?'Close':'Fechar');
   }
   document.querySelectorAll('[data-event]').forEach(b=>b.addEventListener('click',()=>{curEvt=b.dataset.event;renderEvt();evt.showModal()}));

@@ -210,6 +210,17 @@
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') exit(); });
   window.addEventListener('pagehide', exit);
 
+  // Vídeos com controles, inclusive os que entram depois (janela de eventos). O loop sem som da capa não conta.
+  // Eventos de mídia não sobem na árvore, então escutamos na fase de captura.
+  function vid(e) { var v = e.target; return v && v.tagName === 'VIDEO' && v.hasAttribute('controls') ? v : null; }
+  function vname(v) { return v.getAttribute('data-video') || 'receitapro-15s'; }
+  document.addEventListener('play', function (e) { var v = vid(e); if (v) track('video_play', { video: vname(v) }); }, true);
+  document.addEventListener('timeupdate', function (e) {
+    var v = vid(e); if (!v || v._half || !v.duration) return;
+    if (v.currentTime / v.duration >= 0.5) { v._half = true; track('video_progress', { video: vname(v), percent: 50 }); }
+  }, true);
+  document.addEventListener('ended', function (e) { var v = vid(e); if (v) track('video_complete', { video: vname(v) }); }, true);
+
   if (PAGE !== 'case') return;
 
   /* ---------- eventos só do case ---------- */
@@ -219,16 +230,6 @@
     t.addEventListener('click', function () {
       track('prototype_tab_view', { prototype_mode: t.getAttribute('data-shot').replace('s-', '') });
     });
-  });
-
-  // Vídeos com controles (o loop sem som da capa não conta)
-  [].forEach.call(document.querySelectorAll('video[controls]'), function (video) {
-    var name = video.getAttribute('data-video') || 'receitapro-15s', half = false;
-    video.addEventListener('play', function () { track('video_play', { video: name }); });
-    video.addEventListener('timeupdate', function () {
-      if (!half && video.duration && video.currentTime / video.duration >= 0.5) { half = true; track('video_progress', { video: name, percent: 50 }); }
-    });
-    video.addEventListener('ended', function () { track('video_complete', { video: name }); });
   });
 
 })();
