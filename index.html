@@ -162,10 +162,13 @@ button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .logos{background:#172D4D;color:#F2F4F5;border-radius:28px;padding:26px 30px;display:flex;align-items:center;gap:22px 34px;flex-wrap:wrap}
 .logos .kicker{color:#F2F4F5;margin:0;max-width:230px;line-height:1.5}
 .logos ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px}
-.logos li{width:104px;height:72px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 19px/1 var(--display);letter-spacing:-.01em;color:#F2F4F5;transition:background .25s,border-color .25s,transform .25s}
-.logos li:hover{background:rgba(217,154,120,.14);border-color:#D99A78;transform:translateY(-2px)}
-.logos li small{font:500 11px/1 var(--body);color:#BFC6C8;margin-top:6px;letter-spacing:0}
-@media (max-width:720px){.logos{padding:22px}.logos li{width:calc(33.33% - 8px);height:64px;font-size:17px}}
+.logos li{width:118px;height:72px;border-radius:16px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .25s,box-shadow .25s}
+.logos li:hover{transform:translateY(-3px);box-shadow:0 10px 22px -12px rgba(0,0,0,.55)}
+.logos li img{display:block;width:auto;max-width:82%;object-fit:contain}
+.logos li.pulses b{font:700 19px/1 var(--display);color:#172D4D;letter-spacing:-.01em}
+.logos li small{display:flex;align-items:center;gap:4px;font:500 11px/1 var(--body);color:#55666C;margin-top:6px}
+.logos li small img{width:12px;height:12px}
+@media (max-width:720px){.logos{padding:22px}.logos li{width:calc(33.33% - 8px);height:64px}}
 .about .txt{display:flex;flex-direction:column;gap:18px}
 .about .txt p{max-width:36em}
 .about .lead{font-family:var(--display);font-size:clamp(23px,2.6vw,30px);font-weight:400;line-height:1.3;letter-spacing:-.015em}
@@ -352,7 +355,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
     <div class="logos">
       <p class="kicker" data-en="Some companies I've worked with">Algumas empresas com as quais já trabalhei</p>
       <ul aria-label="Empresas">
-        <li>Afya</li><li>Sky</li><li>Zurich</li><li>iClinic</li><li>AeC</li><li>Pulses<small data-en="now Gupy">hoje Gupy</small></li>
+        <li><img src="assets/empresas/afya.svg" alt="Afya" style="height:30px"></li>
+        <li><img src="assets/empresas/sky.webp" alt="Sky" style="height:34px"></li>
+        <li><img src="assets/empresas/zurich.svg" alt="Zurich" style="height:30px"></li>
+        <li><img src="assets/empresas/iclinic.svg" alt="iClinic" style="height:20px"></li>
+        <li><img src="assets/empresas/aec.webp" alt="AeC" style="height:30px"></li>
+        <li class="pulses"><b>Pulses</b><small><img src="assets/empresas/gupy.svg" alt="" width="12" height="12"><span data-en="now Gupy">hoje Gupy</span></small></li>
       </ul>
     </div>
   </div>
