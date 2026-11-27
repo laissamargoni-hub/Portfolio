@@ -107,6 +107,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .c3 h3{font-size:24px}.c3 .art{height:50%;padding:0 14px 14px}.c3 .art img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}.c3 .tag{background:rgba(255,255,255,.16);color:#FBEDE4}
 .c4{background:#C9D1D3;color:#172D4D}.c4 .tag{background:rgba(23,45,77,.1);color:#172D4D}
 .c5{background:#172D4D;color:#F2F4F5}.c5 .tag{background:rgba(255,255,255,.12);color:#D99A78}
+.c5 .sky-art{height:50%;padding:0 14px 14px;position:relative}.c5 .sky-art img:first-child{width:100%;height:100%;object-fit:cover;object-position:60% 50%;border-radius:14px;display:block;background:#fff}.c5 .sky-art .sky-icon{position:absolute;left:26px;bottom:26px;width:56px;height:56px;border-radius:13px;box-shadow:0 8px 18px -8px rgba(0,0,0,.5)}
 .card:nth-child(5){--r:-3deg;margin-top:12px}.card:nth-child(6){--r:2deg}.card:nth-child(7){--r:-2.5deg;margin-top:8px}
 button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .photo-card{background:#874B37;color:#fff}
@@ -441,12 +442,13 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
           <p class="sub" data-en="A skateboarding app, built end to end from scratch">App de skate, construído end to end do zero</p>
           <svg class="art" viewBox="0 0 272 236" aria-hidden="true"><rect x="40" y="104" width="192" height="30" rx="15" fill="#172D4D"/><path d="M58 104c-10 0-18-6-22-14M214 104c10 0 18-6 22-14" stroke="#172D4D" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="82" cy="160" r="18" fill="#874B37"/><circle cx="190" cy="160" r="18" fill="#874B37"/><circle cx="82" cy="160" r="6" fill="#F2F4F5"/><circle cx="190" cy="160" r="6" fill="#F2F4F5"/><path d="M120 70l-14 26h16l-10 22 30-32h-17l11-16z" fill="#D99A78"/><path d="M30 200h212" stroke="#718A91" stroke-width="2" stroke-dasharray="6 6"/></svg>
         </div>
-        <div class="card c5" tabindex="0" data-soon="minha-sky">
-          <span class="tag" data-en="Soon">Em breve</span>
-          <h3>Minha Sky</h3>
-          <p class="sub" data-en="A customer app, built from scratch">App de autoatendimento, construído do zero</p>
-          <svg class="art" viewBox="0 0 272 236" aria-hidden="true"><rect x="96" y="58" width="80" height="150" rx="16" fill="none" stroke="#F2F4F5" stroke-width="3"/><rect x="108" y="82" width="56" height="10" rx="5" fill="#D99A78"/><rect x="108" y="102" width="40" height="8" rx="4" fill="#718A91"/><rect x="108" y="124" width="56" height="30" rx="8" fill="#874B37"/><rect x="108" y="162" width="56" height="8" rx="4" fill="#718A91"/><path d="M196 92a40 40 0 0 1 0 56M210 78a60 60 0 0 1 0 84" stroke="#D99A78" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
-        </div>
+        <a class="card c5" href="minha-sky/" data-case-link="minha-sky" data-cta="case_card">
+          <span class="tag" data-en="Read">Ler case</span>
+          <h3>Minha SKY</h3>
+          <p class="sub" data-en="SKY · B2C mobile · From self-service to entertainment · 3M+ downloads">SKY · B2C mobile · Do self-service ao entretenimento · +3 mi downloads</p>
+          <span class="go" data-en="Read the case →">Ler o case →</span>
+          <div class="art sky-art"><img src="assets/sky-app-banner.webp" alt="" width="1400" height="868" loading="lazy"><img class="sky-icon" src="assets/minha-sky-logo.png" alt="" width="339" height="340" loading="lazy"></div>
+        </a>
       </div>
       <div class="deck-bar" id="deck-bar" aria-hidden="true"><span class="deck-thumb" id="deck-thumb"></span></div>
     </div>
