@@ -6,6 +6,7 @@
    - GA4:       analytics.google.com > Admin > Data streams > Measurement ID (ex.: "G-XXXXXXXXXX")
    - Mixpanel:  mixpanel.com > Project settings > Project token (ex.: "a1b2c3...")
    Debug: abra o site com ?debug=1 para ver os eventos no console.
+   Acesso interno: abra com ?eu=1 para seus acessos não contarem (?eu=0 desfaz).
    Páginas: cada página declara no <body> data-page="home" ou data-page="case" data-case="<slug>".
    Página nova precisa incluir <script src="analytics.js" defer> (ou "../analytics.js" dentro de uma pasta). */
 (function () {
@@ -25,6 +26,15 @@
   // Só mede o site publicado (GitHub Pages). Arquivo local, localhost e prévias ficam de fora.
   var isLive = /\.github\.io$/.test(location.hostname);
   if (!isLive && !DEBUG) return;
+
+  // Acessos da própria Laíssa não entram nas métricas.
+  // Abra o site uma vez com ?eu=1 em cada aparelho/navegador para marcar como interno; ?eu=0 desfaz.
+  try {
+    var eu = new URLSearchParams(location.search).get('eu');
+    if (eu === '1') localStorage.setItem('lm-internal', '1');
+    if (eu === '0') localStorage.removeItem('lm-internal');
+    if (localStorage.getItem('lm-internal') === '1' && !DEBUG) { console.info('[analytics] acesso interno: métricas desligadas neste navegador'); return; }
+  } catch (e) {}
 
   function lang() { return root.lang === 'en-US' ? 'en' : 'pt'; }
   function theme() {
@@ -65,7 +75,7 @@
     mixpanel.init(CONFIG.mixpanelToken, {
       api_host: CONFIG.mixpanelHost,
       persistence: 'localStorage',
-      ip: false,              // não guarda geolocalização por IP
+      ip: true,               // usa o IP só para país, estado e cidade (o Mixpanel não guarda o IP)
       track_pageview: true,
       debug: DEBUG
     });
@@ -94,6 +104,8 @@
     if (window.mixpanel && CONFIG.mixpanelToken) mixpanel.track(name, props);
     if (window.clarity) clarity('event', name);
   }
+
+  window.lmTrack = track; // usado pelo feedback.js
 
   function setProp(key, value) {
     if (window.mixpanel && CONFIG.mixpanelToken) { var o = {}; o[key] = value; mixpanel.register(o); }
