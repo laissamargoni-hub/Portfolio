@@ -24,7 +24,7 @@
   var root = document.documentElement;
 
   // Só mede o site publicado (GitHub Pages). Arquivo local, localhost e prévias ficam de fora.
-  var isLive = /\.github\.io$/.test(location.hostname);
+  var isLive = /(\.github\.io|(^|\.)laissamargoni\.com\.br)$/.test(location.hostname);
   if (!isLive && !DEBUG) return;
 
   // Acessos da própria Laíssa não entram nas métricas.
