@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laíssa Margoni · Staff Product Manager</title>
+<meta name="description" content="Laíssa Margoni, Staff Product Manager. 10 anos em Produto, 5 em saúde digital. Estratégia e posicionamento de produto, do diagnóstico ao go-to-market.">
+<script>
+document.documentElement.className='js';
+/* Links antigos do case (ex.: /Portfolio/#impacto) continuam funcionando */
+(function(){var h=location.hash.slice(1);if(['contexto','tentativas','virada','portfolio','solucao','execucao','impacto'].indexOf(h)>-1)location.replace('prescricao-do-futuro/'+location.search+'#'+h)})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Home v3 · mesma paleta e fontes do case, em outra temperatura:
+   o case é névoa fria; a Home é quente (pêssego claro) com uma faixa em azul profundo.
+   Movimento: frase digitada, globo de pontos, retrato em partículas, cards inclinados, entradas suaves. */
+:root{
+  --bg:#F8F2EE;--bg-2:#F1E6DF;--surface:#FFFFFF;--ink:#172D4D;--ink-2:#55666C;--line:#E2D6CF;
+  --accent:#874B37;--accent-2:#D99A78;--steel:#718A91;--tint:#EFE3DB;--on-accent:#FFFFFF;
+  --band:#172D4D;--band-ink:#EEF1F2;--band-2:#AEBBBF;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,canvas{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;letter-spacing:-.015em}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+/* cabeçalho · como o da Kate: nome à esquerda, links em linha à direita */
+.bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:68px}
+.name{font:500 21px/1 var(--display);letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.links{display:flex;align-items:center;gap:clamp(18px,3vw,40px);margin-left:auto}
+.links a{font:400 16px/1 var(--body);text-decoration:none;color:var(--ink);padding:8px 0;position:relative;white-space:nowrap}
+.links a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1.5px;background:var(--accent);transition:right .3s ease}
+.links a:hover::after,.links a[aria-current="true"]::after{right:0}
+.controls{display:flex;gap:6px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.seg button{font:600 11.5px/1 var(--body);color:var(--ink-2);background:none;border:0;border-radius:999px;padding:7px 9px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.menu-btn{display:none;font:600 14px/1 var(--body);background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:10px 14px;cursor:pointer}
+.progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+
+/* hero · frase digitada + globo de pontos */
+.hero{position:relative;padding-top:clamp(56px,11vh,130px);padding-bottom:56px;min-height:min(84vh,760px);display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:56px;align-content:center;align-items:center}
+.brain{position:relative;grid-column:2;grid-row:1;align-self:start;justify-self:end;width:min(291px,21.3vw);aspect-ratio:1100/729;margin-top:calc(clamp(32px,3.9vw,54px)*1.18);pointer-events:none}
+.brain img,.brain canvas{position:absolute;inset:0;width:100%;height:100%}
+.brain img{opacity:.92}
+.hero-text{position:relative;z-index:1;grid-column:1;grid-row:1;max-width:700px}
+.intro{font-family:var(--display);font-weight:400;font-size:clamp(32px,3.9vw,54px);line-height:1.14;letter-spacing:-.022em;min-height:4.6em}
+.intro .me{display:inline-block;width:.95em;height:.95em;border-radius:50%;object-fit:cover;vertical-align:-.14em;margin-right:.2em;outline:2px solid var(--accent-2);outline-offset:2px}
+.intro .word{color:var(--accent);font-weight:500}
+.caret{display:inline-block;width:.055em;height:.92em;background:var(--accent);vertical-align:-.1em;margin-left:.04em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.pill{font:500 15px/1 var(--body);padding:12px 18px;border-radius:999px;background:var(--tint);color:var(--ink)}
+.pill.hl{background:var(--ink);color:var(--bg)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero .ctas{margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);text-decoration:none;padding:15px 22px;border-radius:999px;background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);transition:transform .2s,background .2s,color .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.scroll-cue{position:absolute;left:28px;bottom:14px;font:500 13px/1 var(--body);color:var(--ink-2);display:flex;gap:10px;align-items:center}
+.scroll-cue i{width:1.5px;height:34px;background:linear-gradient(var(--accent),transparent);display:block;animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* cabeçalhos de seção */
+.sec{padding:96px 0 0}
+.kicker{font:600 13px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.sec-head h2{font-size:clamp(30px,3.8vw,46px);font-weight:500;margin-top:10px;max-width:19em;text-wrap:balance;letter-spacing:-.02em}
+.sec-head.center{justify-content:center;text-align:center}
+.sec-head.center h2{margin-inline:auto}
+
+/* deck de cards · Paravela */
+.deck{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px max(28px,calc((100vw - 1104px)/2)) 50px;scrollbar-width:none;justify-content:safe center}
+.deck::-webkit-scrollbar{display:none}
+.card{flex:0 0 276px;height:388px;margin-right:-10px;border-radius:24px;padding:24px 22px;position:relative;overflow:hidden;scroll-snap-align:center;text-decoration:none;display:flex;flex-direction:column;
+  transform:rotate(var(--r,0deg));transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;box-shadow:0 20px 44px -28px rgba(12,24,43,.55)}
+.card:nth-child(1){--r:-4deg}.card:nth-child(2){--r:2.5deg;margin-top:14px}.card:nth-child(3){--r:-1.5deg}.card:nth-child(4){--r:3.5deg;margin-top:10px}
+.card:hover,.card:focus-visible{transform:rotate(0) translateY(-14px) scale(1.035);z-index:2;box-shadow:0 34px 64px -30px rgba(12,24,43,.6)}
+.card .tag{align-self:flex-start;margin-bottom:14px;font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:7px 9px;border-radius:999px;position:relative;z-index:1}
+.card h3{font-size:27px;font-weight:700;line-height:1.08;position:relative;z-index:1}
+.card .sub{font-size:14px;margin-top:8px;position:relative;z-index:1;opacity:.85;line-height:1.35}
+.card .art{position:absolute;inset:auto 0 0 0;height:62%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover .art{transform:translateY(-6px) scale(1.03)}
+.card .go{margin-top:auto;position:relative;z-index:1;font:600 14px/1 var(--body);background:#172D4D;color:#fff;padding:11px 15px;border-radius:999px;align-self:flex-start;opacity:0;transform:translateY(6px);transition:.3s}
+.card:hover .go,.card:focus-visible .go{opacity:1;transform:none}
+.c1{background:#FBEDE4;color:#172D4D}
+.c1 .art{height:50%}.c1 .art img{width:100%;height:100%;object-fit:cover;object-position:20% 0;border-radius:14px 14px 0 0;transform:translateX(18px) rotate(-2deg);box-shadow:0 -6px 20px -10px rgba(12,24,43,.35)}
+.c1 .tag{background:#874B37;color:#fff}
+.c2{background:#172D4D;color:#EEF1F2}
+.c2 h3{font-size:23px}
+.c2 .art{height:50%;padding:0 14px 14px}.c2 .art video{width:100%;height:100%;object-fit:cover;object-position:58% 50%;border-radius:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6);display:block}.c2 .art img{width:100%;height:100%;object-fit:cover;border-radius:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}.c2 .tag{background:rgba(255,255,255,.12);color:#D99A78}
+.c3{background:#874B37;color:#fff}
+.c3 h3{font-size:24px}.c3 .art{height:50%;padding:0 14px 14px}.c3 .art img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}.c3 .tag{background:rgba(255,255,255,.16);color:#FBEDE4}
+.c4{background:#C9D1D3;color:#172D4D}.c4 .tag{background:rgba(23,45,77,.1);color:#172D4D}
+.c5{background:#172D4D;color:#F2F4F5}.c5 .tag{background:rgba(255,255,255,.12);color:#D99A78}
+.card:nth-child(5){--r:-3deg;margin-top:12px}.card:nth-child(6){--r:2deg}.card:nth-child(7){--r:-2.5deg;margin-top:8px}
+button.card{font:inherit;text-align:left;border:0;cursor:pointer}
+.photo-card{background:#874B37;color:#fff}
+.photo-card.live{background:#172D4D}
+.photo-card.talk{background:#C9D1D3;color:#172D4D}
+.photo-card .bg{position:absolute;left:14px;right:14px;bottom:14px;width:calc(100% - 28px);height:50%;object-fit:cover;border-radius:14px;transition:transform .8s cubic-bezier(.2,.8,.2,1);box-shadow:0 10px 24px -14px rgba(0,0,0,.5)}
+.photo-card:hover .bg{transform:scale(1.04)}
+.photo-card .tag{background:rgba(255,255,255,.16);color:#FBEDE4}
+.photo-card.talk .tag{background:rgba(23,45,77,.1);color:#172D4D}
+.photo-card .go{position:absolute;left:22px;bottom:26px;margin:0}
+.photo-card .bg{object-position:50% 40%}
+.photo-card.live .bg{object-position:50% 80%}
+.photo-card.talk .bg{object-position:50% 78%}
+.card:nth-child(8){--r:3deg;margin-top:12px}.card:nth-child(9){--r:-2deg;margin-top:6px}
+.offwork{margin-top:18px}
+.ow-btn{display:inline-flex;align-items:center;gap:10px;padding:9px 14px 9px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .2s,color .2s}
+.ow-btn:hover,.ow-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.ow-ico{display:inline-flex}.ow-ico svg{width:26px;height:26px;padding:4px;margin-right:-6px;border-radius:50%;background:var(--surface);border:1px solid var(--line);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ow-plus{font-size:18px;transition:transform .25s}.ow-btn[aria-expanded="true"] .ow-plus{transform:rotate(45deg)}
+.ow-panel{margin-top:14px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;animation:owIn .35s ease}
+@keyframes owIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.ow-k{font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+.ow-panel ul{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-wrap:wrap;gap:8px}.ow-panel ul:last-child{margin-bottom:0}
+.ow-panel li{display:inline-flex;align-items:center;gap:7px;padding:7px 11px 7px 8px;border-radius:999px;background:var(--surface);font:500 13px/1 var(--body)}
+.ow-panel li svg{width:18px;height:18px;fill:none;stroke:#874B37;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.q-note{margin:22px auto 0;text-align:center;font-size:13px;color:var(--ink-2);max-width:60ch}
+.deck-nav{display:flex;gap:8px}
+.deck-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 18px/1 var(--body);cursor:pointer;transition:border-color .2s,color .2s}
+.deck-nav button:hover{border-color:var(--accent);color:var(--accent)}
+
+/* formação · logo abaixo dos cards */
+.edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 56px;padding:34px 0 8px;border-top:1px solid var(--line)}
+.edu .item b{display:block;font-weight:600;font-size:17px;line-height:1.35}
+.edu .item span{display:block;color:var(--ink-2);font-size:15.5px;line-height:1.45;margin-top:2px}
+.edu .item.pub{text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+.edu .item.pub:hover{border-color:var(--accent);transform:translateY(-2px)}
+.edu .item.pub:hover .when{color:var(--accent)}
+.edu .pub .ico{width:46px;height:46px;border-radius:12px;background:var(--tint);display:grid;place-items:center;color:var(--accent);font:700 20px/1 var(--display)}
+.edu .pub em{font-style:italic;font-weight:500;color:var(--ink)}
+.edu .pub .k{font:600 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.edu .pub .when{font-size:14px;color:var(--ink-2);white-space:nowrap}
+.edu .item b .now{display:inline-block;font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--tint);padding:5px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
+
+/* sobre · foto */
+.about{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;align-items:start}
+.photo{margin:6px 0 0;width:220px}
+.photo img{width:220px;height:220px;object-fit:cover;object-position:50% 30%;border-radius:50%;outline:1.5px solid var(--accent-2);outline-offset:6px}
+.about .txt{display:flex;flex-direction:column;gap:18px}
+.about .txt p{max-width:36em}
+.about .lead{font-family:var(--display);font-size:clamp(23px,2.6vw,30px);font-weight:400;line-height:1.3;letter-spacing:-.015em}
+.insta{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;text-decoration:none;font-size:15.5px;color:var(--ink-2);padding:10px 16px 10px 10px;border:1px solid var(--line);border-radius:999px;transition:border-color .2s,color .2s}
+.insta b{color:var(--ink);font-weight:600}
+.insta:hover{border-color:var(--accent);color:var(--accent)}
+.insta .ig{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#D99A78,#874B37);position:relative;flex:none}
+.insta .ig::before{content:"";position:absolute;inset:8px;border:2px solid #fff;border-radius:50%}
+.insta .ig::after{content:"";position:absolute;top:5px;right:6px;width:3px;height:3px;border-radius:50%;background:#fff}
+.about .lead em{font-style:normal;color:var(--accent);font-weight:500}
+
+/* como trabalho */
+.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.ways div{padding-top:18px;border-top:2px solid var(--ink);transition:border-color .3s}
+.ways div:hover{border-color:var(--accent)}
+.ways i{font:700 13px/1 var(--display);font-style:normal;color:var(--accent)}
+.ways b{display:block;font-family:var(--display);font-size:22px;font-weight:500;line-height:1.15;margin:12px 0 8px}
+.ways span{font-size:15px;line-height:1.5;color:var(--ink-2);display:block}
+
+/* depoimentos · faixa em azul profundo */
+.band{background:var(--band);color:var(--band-ink);margin-top:110px;padding:96px 0 104px;border-radius:40px 40px 0 0}
+.band .kicker{color:#D99A78}
+.band .sec-head h2{color:var(--band-ink)}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.qcol{display:flex;flex-direction:column;gap:24px}
+@media (max-width:760px){.quotes{grid-template-columns:1fr}}
+.q{margin:0;border-radius:24px;padding:30px 30px 26px;display:flex;flex-direction:column;gap:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.q.t0{background:#FBEDE4;color:#172D4D;border-color:#FBEDE4}
+.q.t1{background:none;border:1.5px dashed rgba(217,154,120,.55)}
+.q .mark{font:700 44px/.6 var(--display);color:#D99A78;height:18px}
+.q.t0 .mark{color:#874B37}
+.q blockquote{margin:0;font-size:16.5px;line-height:1.6}
+.q blockquote p+p{margin-top:12px}
+.q blockquote b{font-weight:600;color:#E8B396}
+.q.t0 blockquote b{color:#874B37}
+.q figcaption{display:flex;gap:12px;align-items:center}
+.q .av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 15px/1 var(--display);background:#874B37;color:#fff;flex:none}
+.q.t0 .av{background:#172D4D}
+.q .who b{display:block;font-weight:600;font-size:15.5px}
+.q .who .role{display:block;font-size:14px;opacity:.72}
+
+/* janela de evento */
+.evt{border:0;padding:0;border-radius:28px;width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 48px);background:var(--bg);color:var(--ink);box-shadow:0 40px 100px -30px rgba(0,0,0,.6)}
+.evt::backdrop{background:rgba(12,24,43,.6);backdrop-filter:blur(4px)}
+.evt[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.evt-close{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:400 26px/1 var(--body);cursor:pointer;z-index:2}
+.evt-in{padding:34px clamp(22px,4vw,44px) 40px;display:grid;gap:22px}
+.evt-in h3{font-size:clamp(28px,3.4vw,40px);font-weight:500;letter-spacing:-.02em}
+.evt-in p{max-width:44em}
+.evt-facts{display:flex;flex-wrap:wrap;gap:10px}
+.evt-facts span{background:var(--tint);border-radius:999px;padding:9px 14px;font-size:14.5px}
+.evt-facts b{color:var(--accent)}
+.story{display:inline-flex;align-items:center;gap:14px;align-self:flex-start;justify-self:start;text-decoration:none;color:var(--ink);padding:6px 18px 6px 6px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:border-color .2s,transform .2s}
+.story:hover{border-color:var(--accent);transform:translateY(-2px)}
+.story .ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(#D99A78,#874B37,#F2B5A0,#D99A78);flex:none;animation:ring 6s linear infinite}
+.story .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--surface);animation:ring 6s linear infinite reverse}
+@keyframes ring{to{transform:rotate(360deg)}}
+.story b{display:block;font-weight:600;font-size:15.5px}
+.story small{display:block;color:var(--ink-2);font-size:13px}
+.evt-clock{margin:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.evt-clock img{width:100%;height:auto;border-radius:10px}
+.evt-clock figcaption{font-size:15px;line-height:1.55;color:#172D4D}
+@media (max-width:700px){.evt-clock{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.story .ring,.story .ring img{animation:none}}
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.gallery>*{flex:0 0 auto;height:min(420px,52vh);border-radius:16px;scroll-snap-align:start;object-fit:cover;background:#000}
+.gallery img{width:auto;max-width:none}
+@media (prefers-reduced-motion:reduce){.evt[open]{animation:none}}
+
+/* contato */
+.contact{padding:120px 0 100px;text-align:center}
+.contact h2{font-size:clamp(44px,8vw,104px);font-weight:500;letter-spacing:-.035em;line-height:1}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact p{margin:18px auto 32px;color:var(--ink-2);max-width:30em}
+.contact .ctas{justify-content:center}
+footer{border-top:1px solid var(--line);padding:24px 0 36px;font-size:14px;color:var(--ink-2)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--accent)}
+.band + footer,.band ~ .contact{background:var(--bg)}
+
+/* entradas suaves */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .stagger>*{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.js .stagger.in>*{opacity:1;transform:none}
+.js .stagger.in>*:nth-child(2){transition-delay:.08s}.js .stagger.in>*:nth-child(3){transition-delay:.16s}.js .stagger.in>*:nth-child(4){transition-delay:.24s}
+.js .stagger.in>*:nth-child(5){transition-delay:.32s}.js .stagger.in>*:nth-child(6){transition-delay:.4s}.js .stagger.in>*:nth-child(7){transition-delay:.48s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal,.js .stagger>*{opacity:1;transform:none;transition:none}
+  .caret,.scroll-cue i{animation:none}
+  .card,.card:hover,.card .art{transition:none}
+}
+@media (max-width:1120px){
+  .links{display:none}
+  .links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:4px;padding:12px 28px 22px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .links.open a{font-size:19px;padding:10px 0}
+  .menu-btn{display:inline-block;margin-left:auto}
+  .hero{grid-template-columns:1fr}
+  .brain{position:absolute;right:28px;top:50%;margin-top:0;transform:translateY(-50%);opacity:.3}
+  .hero-text{max-width:780px}
+}
+@media (max-width:900px){
+  .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about{grid-template-columns:1fr;gap:56px}
+  .photo{width:160px}.photo img{width:160px;height:160px}
+  .edu{grid-template-columns:1fr;gap:20px}
+}
+@media (max-width:640px){
+  .hero{min-height:0;padding-top:36px}
+  .intro{min-height:6.3em}
+  .brain{width:213px;top:24px;transform:none;right:-90px;opacity:.25}
+  .scroll-cue{display:none}
+  .pill{font-size:14px;padding:10px 14px}
+  .sec-head .deck-nav{display:none}
+  .card{flex-basis:244px;height:344px}
+  .ways{grid-template-columns:1fr}
+  .sec{padding-top:72px}
+  .edu .item.pub{grid-template-columns:auto minmax(0,1fr)}
+  .edu .pub .when{grid-column:2}
+  .band{border-radius:28px 28px 0 0;padding:72px 0}
+  .q{padding:24px 22px}
+  .controls .seg button{padding:7px 8px}
+  .name{font-size:17px}
+  .bar .wrap{gap:8px;padding:0 16px}
+  .menu-btn{padding:8px 10px;font-size:13px}
+}
+</style>
+</head>
+<body data-page="home">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="name" href="#top">Laíssa Margoni</a>
+    <nav class="links" id="links" aria-label="Principal">
+      <a href="#trabalho" data-en="cases &amp; events">cases e eventos</a>
+      <a href="#sobre" data-en="about">sobre</a>
+      <a href="#depoimentos" id="nav-quotes" data-en="testimonials">depoimentos</a>
+      <a href="#" id="nav-resume" target="_blank" rel="noopener" hidden data-en="resume">currículo</a>
+      <a href="#" id="nav-linkedin" target="_blank" rel="noopener" hidden>linkedin</a>
+      <a href="#" id="nav-instagram" target="_blank" rel="noopener" hidden>instagram</a>
+      <a href="#" id="nav-email" hidden></a>
+    </nav>
+    <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="links">Menu</button>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-pt" aria-pressed="true">PT</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="brain" aria-hidden="true">
+      <img id="brain-img" src="assets/brain.webp" alt="" width="1100" height="729" decoding="async">
+      <canvas id="synapses"></canvas>
+    </div>
+    <div class="hero-text">
+      <h1 class="intro" id="intro" aria-label="Oi! Sou a Laíssa, Staff Product Manager com 10 anos em Produto e 5 em saúde digital, construindo produtos relevantes, sustentáveis e de impacto real.">
+        <img class="me" src="assets/laissa.jpg" alt="" width="720" height="720"><span id="typed" aria-hidden="true">Oi! Sou a Laíssa, Staff Product Manager com 10 anos em Produto e 5 em saúde digital, construindo produtos <span class="word">de impacto real.</span></span><span class="caret" aria-hidden="true"></span>
+      </h1>
+      <div class="pills stagger reveal">
+        <span class="pill hl">Staff Product Manager</span>
+        <span class="pill" data-en="10 years in Product">10 anos em Produto</span>
+        <span class="pill" data-en="5 years in digital health">5 anos em saúde digital</span>
+        <span class="pill" data-en="Product strategy and positioning">Estratégia e posicionamento de produto</span>
+        <span class="pill" data-en="3 products end to end">3 produtos end to end</span>
+      </div>
+      <div class="ctas">
+        <a class="btn" href="#trabalho" data-cta="hero_work" data-en="See my work ↓">Ver meu trabalho ↓</a>
+        <a class="btn ghost" href="#contato" data-cta="hero_contact" data-en="Get in touch">Vamos conversar</a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i><span data-en="scroll">role a página</span></div>
+  </section>
+
+  <section class="sec" id="trabalho">
+    <div class="wrap sec-head reveal">
+      <div>
+        <p class="kicker" data-en="Cases and events">Cases e eventos</p>
+        <h2 data-en="Cases told as stories, and the stages where I share what I learn">Cases contados como história, e os palcos onde compartilho o que aprendo</h2>
+      </div>
+      <div class="deck-nav">
+        <button type="button" id="deck-prev" aria-label="Anterior">←</button>
+        <button type="button" id="deck-next" aria-label="Próximo">→</button>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="deck" id="deck">
+        <a class="card c1" href="prescricao-do-futuro/" data-case-link="prescricao-do-futuro" data-cta="case_card">
+          <span class="tag" data-en="Read">Ler case</span>
+          <h3 data-en="The Future of Prescription">Prescrição do Futuro</h3>
+          <p class="sub" data-en="Afya · 2025 · From thesis to 4 squads and +57% YoY">Afya · 2025 · Da tese a 4 squads e +57% YoY</p>
+          <span class="go" data-en="Read the case →">Ler o case →</span>
+          <div class="art"><img src="assets/case-prescricao-card.jpg" alt="" width="620" height="544" loading="lazy"></div>
+        </a>
+        <a class="card c2" href="prescricao-no-pulso/" data-case-link="prescricao-no-pulso" data-cta="case_card">
+          <span class="tag" data-en="Read">Ler case</span>
+          <h3 data-en="Brazil's first prescription on a smartwatch">A primeira prescrição por smartwatch do Brasil</h3>
+          <p class="sub" data-en="Afya ReceitaPro · 2026 · Renewal by voice">Afya ReceitaPro · 2026 · Renovação por voz</p>
+          <span class="go" data-en="Read the case →">Ler o case →</span>
+          <div class="art"><video class="card-video" src="assets/pulso/smartwatch-loop.mp4" poster="assets/pulso/smartwatch-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        </a>
+        <a class="card c3" href="ia-whatsapp/" data-case-link="ia-whatsapp" data-cta="case_card">
+          <span class="tag" data-en="Read">Ler case</span>
+          <h3 data-en="AI + WhatsApp: prescribing like a conversation">IA + WhatsApp: prescrever conversando</h3>
+          <p class="sub" data-en="Text, voice and image · Afya ReceitaPro · 2025">Texto, voz e imagem · Afya ReceitaPro · 2025</p>
+          <span class="go" data-en="Read the case →">Ler o case →</span>
+          <div class="art"><img src="assets/fluxo/capa-prescreva.jpg" alt="" width="820" height="897" loading="lazy"></div>
+        </a>
+        <button type="button" class="card photo-card" data-event="cbmev">
+          <img class="bg" src="assets/eventos/cbmev-equipe-vertical.jpg" alt="" loading="lazy">
+          <span class="tag" data-en="Event · Congress">Evento · Congresso</span>
+          <h3 data-en="There is no pill for time">Não há remédio para o tempo</h3>
+          <p class="sub" data-en="Brazilian Congress of Lifestyle Medicine · 2026">Congresso Brasileiro de Medicina do Estilo de Vida · 2026</p>
+          <span class="go" data-en="See photos →">Ver fotos →</span>
+        </button>
+        <button type="button" class="card photo-card live" data-event="live">
+          <img class="bg" src="assets/eventos/live-rdc-anvisa.jpg" alt="" loading="lazy">
+          <span class="tag" data-en="Event · Live">Evento · Live</span>
+          <h3>RDC Anvisa nº 1000/2025</h3>
+          <p class="sub" data-en="E-prescriptions for controlled drugs · Afya Whitebook + iClinic">Receituários eletrônicos · Afya Whitebook + iClinic</p>
+          <span class="go" data-en="Details →">Detalhes →</span>
+        </button>
+        <button type="button" class="card photo-card talk" data-event="carreira">
+          <img class="bg" src="assets/eventos/carreira-em-foco-ia.jpg" alt="" loading="lazy">
+          <span class="tag" data-en="Event · Talk">Evento · Painel</span>
+          <h3 data-en="AI and Career at Afya">IA e Carreira na Afya</h3>
+          <p class="sub" data-en="Carreira em Foco 2025 · Facilitator">Carreira em Foco 2025 · Facilitadora</p>
+          <span class="go" data-en="Details →">Detalhes →</span>
+        </button>
+        <div class="card c4" tabindex="0" data-soon="volt">
+          <span class="tag" data-en="Soon">Em breve</span>
+          <h3>Volt</h3>
+          <p class="sub" data-en="A skateboarding app, built end to end from scratch">App de skate, construído end to end do zero</p>
+          <svg class="art" viewBox="0 0 272 236" aria-hidden="true"><rect x="40" y="104" width="192" height="30" rx="15" fill="#172D4D"/><path d="M58 104c-10 0-18-6-22-14M214 104c10 0 18-6 22-14" stroke="#172D4D" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="82" cy="160" r="18" fill="#874B37"/><circle cx="190" cy="160" r="18" fill="#874B37"/><circle cx="82" cy="160" r="6" fill="#F2F4F5"/><circle cx="190" cy="160" r="6" fill="#F2F4F5"/><path d="M120 70l-14 26h16l-10 22 30-32h-17l11-16z" fill="#D99A78"/><path d="M30 200h212" stroke="#718A91" stroke-width="2" stroke-dasharray="6 6"/></svg>
+        </div>
+        <div class="card c5" tabindex="0" data-soon="minha-sky">
+          <span class="tag" data-en="Soon">Em breve</span>
+          <h3>Minha Sky</h3>
+          <p class="sub" data-en="A customer app, built from scratch">App de autoatendimento, construído do zero</p>
+          <svg class="art" viewBox="0 0 272 236" aria-hidden="true"><rect x="96" y="58" width="80" height="150" rx="16" fill="none" stroke="#F2F4F5" stroke-width="3"/><rect x="108" y="82" width="56" height="10" rx="5" fill="#D99A78"/><rect x="108" y="102" width="40" height="8" rx="4" fill="#718A91"/><rect x="108" y="124" width="56" height="30" rx="8" fill="#874B37"/><rect x="108" y="162" width="56" height="8" rx="4" fill="#718A91"/><path d="M196 92a40 40 0 0 1 0 56M210 78a60 60 0 0 1 0 84" stroke="#D99A78" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" id="formacao">
+      <p class="kicker reveal" style="margin-bottom:18px" data-en="Education and continuous learning">Formação e aprendizado contínuo</p>
+      <div class="edu stagger reveal">
+        <div class="item"><b data-en="Master's degree <span class='now'>in preparation</span>">Mestrado <span class="now">em preparação</span></b><span data-en="Preparing to apply for a master's program">Em preparação para o mestrado</span></div>
+        <div class="item"><b data-en="Neuroscience and Behavior">Neurociência e Comportamento</b><span data-en="Postgraduate degree · PUC-RS">Pós-graduação · PUC-RS</span></div>
+        <div class="item"><b data-en="Business Administration">Administração de Empresas</b><span data-en="Bachelor's degree · Unicid">Graduação · Unicid</span></div>
+        <div class="item"><b>IA Strategic</b><span>Reforge</span></div>
+        <div class="item"><b>AI Product Manager Nanodegree</b><span>Bertelsmann Scholarship Program</span></div>
+        <div class="item"><b data-en="Mentor for Product Managers">Mentora para Product Managers</b><span data-en="Mentoring in product management">Mentoria em gestão de produto</span></div>
+        <div class="item"><b data-en="Entrepreneur">Empreendedora</b><span data-en="2.5 years running my own business">2 anos e meio à frente do próprio negócio</span></div>
+        <div class="item"><b data-en="English for professional communication">Inglês com foco em comunicação profissional</b><span data-en="Intermediate level · Professional presentations and product conversations">Nível intermediário · Apresentação profissional e conversas sobre produto</span></div>
+        <a class="item pub" href="https://journals.sagepub.com/doi/10.1177/15598276261484525" target="_blank" rel="noopener" data-cta="article">
+          <span class="ico" aria-hidden="true">✦</span>
+          <div><p class="k" data-en="Co-author · scientific article">Coautora · artigo científico</p><b><em>There Is No Pill for Time: The Missing Determinant of Lifestyle Medicine</em></b><span>American Journal of Lifestyle Medicine</span></div>
+          <span class="when" data-en="Sep 2026 · Read ↗">set. 2026 · Ler artigo ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="sobre">
+    <div class="wrap about">
+      <figure class="photo reveal">
+        <img src="assets/laissa.jpg" alt="Laíssa Margoni" width="720" height="720" loading="lazy" decoding="async">
+      </figure>
+      <div class="txt reveal">
+        <p class="kicker" data-en="About">Sobre</p>
+        <p class="lead" data-en="More than shipping features, I care about building products that are relevant, sustainable and that create <em>real impact</em>.">Mais do que entregar funcionalidades, me interessa construir produtos relevantes, sustentáveis e que gerem <em>impacto real</em>.</p>
+        <p data-en="I've been working in Product for 10 years, and what drives me is curiosity. I like to understand the why behind things, get to the root of problems, bring different perspectives together and turn what is complex into solutions that make sense for people and for the business.">Trabalho com Produto há 10 anos e o que me move é a curiosidade. Gosto de entender o porquê das coisas, ir atrás da causa dos problemas, juntar perspectivas diferentes e transformar o que é complexo em soluções que façam sentido para as pessoas e para o negócio.</p>
+        <p data-en="For the last five years I've been immersed in digital health, leading medical prescription products in an environment of high technical and regulatory complexity. I hold a degree in Business Administration, a postgraduate degree in Neuroscience and Behavior, and I'm a collaborating researcher in Lifestyle Medicine.">Nos últimos cinco anos, mergulhei na saúde digital liderando produtos de prescrição médica, um ambiente de alta complexidade técnica e regulatória. Sou formada em Administração, pós-graduada em Neurociência e Comportamento e pesquisadora colaboradora em Medicina do Estilo de Vida.</p>
+        <p data-en="I believe in product management that brings strategy, evidence and collaboration together to create real impact.">Acredito em uma gestão de produto que une estratégia, evidências e colaboração para gerar impacto real.</p>
+        <a class="insta" href="https://www.instagram.com/laissamargoni.lab/" target="_blank" rel="noopener" data-cta="about_instagram"><span class="ig" aria-hidden="true"></span><span data-en="I also talk about health on Instagram: <b>@laissamargoni.lab</b> ↗">Também falo sobre saúde no Instagram: <b>@laissamargoni.lab</b> ↗</span></a>
+        <div class="offwork">
+          <button type="button" class="ow-btn" aria-expanded="false" aria-controls="ow-panel" data-cta="about_offwork"><span class="ow-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><svg viewBox="0 0 24 24"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg></span><span data-en="Outside work">Fora do trabalho</span><span class="ow-plus" aria-hidden="true">+</span></button>
+          <div class="ow-panel" id="ow-panel" hidden>
+            <p class="ow-k" data-en="Interests">Interesses</p>
+            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><span data-en="Reading">Leitura</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><span data-en="The beach">Praia</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9" ry="5.5" transform="rotate(-35 12 12)"/><path d="M9 15l6-6M10 11.5l2.5 2.5M12 9.5l2.5 2.5"/></svg><span data-en="I used to play rugby">Já joguei rugby</span></li></ul>
+            <p class="ow-k" data-en="Practices">Práticas</p>
+            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg><span data-en="Strength training">Musculação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg><span data-en="Yoga">Yoga</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 9v4M4 19c2-3 5-4 8-4s6 1 8 4M7 14l5-1 5 1"/></svg><span data-en="Meditation">Meditação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-4-3-9 0-8 5 1 6 5 9 8 7 3 2 7-1 8-7 1-5-4-8-8-5z"/><path d="M12 7c0-2 1-3 3-4"/></svg><span data-en="Nutrition">Alimentação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/></svg><span data-en="Sleep">Sono</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span data-en="Stress management">Gestão de estresse</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 10h8"/></svg><span data-en="Therapy">Terapia</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="como-trabalho">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="kicker" data-en="How I work">Como trabalho</p>
+          <h2 data-en="Four principles behind every decision">Quatro princípios por trás de cada decisão</h2>
+        </div>
+      </div>
+      <div class="ways stagger reveal">
+        <div><i>01</i><b data-en="Strategy">Estratégia</b><span data-en="I start from the role the product plays in the ecosystem and in the business, not from a list of features.">Começo pelo papel que o produto cumpre no ecossistema e no negócio, não por uma lista de funcionalidades.</span></div>
+        <div><i>02</i><b data-en="Evidence">Evidências</b><span data-en="Decisions backed by data. Continuous discovery, so strategy can move fast when it needs to.">Decisão com dado do lado. Discovery contínuo, para que a estratégia possa ser rápida quando precisa ser.</span></div>
+        <div><i>03</i><b data-en="Collaboration">Colaboração</b><span data-en="A shared vision built with physicians, design, engineering, business and leadership, from the squad to executive leadership.">Visão compartilhada com médicos, design, engenharia, negócio e liderança, do squad à liderança executiva.</span></div>
+        <div><i>04</i><b data-en="Real impact">Impacto real</b><span data-en="Success is measured by what changes for people and for the business, not by the number of deliveries: a clear north star metric, explicit trade-offs and course correction.">Sucesso se mede pelo que muda para as pessoas e para o negócio, não pela quantidade de entregas: métrica norte clara, trade-offs explícitos e ajuste de rota.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="depoimentos" hidden>
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <div>
+          <p class="kicker" data-en="Testimonials">Depoimentos</p>
+          <h2 data-en="What it's like to work with me">Como é trabalhar comigo</h2>
+        </div>
+      </div>
+      <div class="quotes" id="quotes"></div>
+      <p class="q-note" data-en="Excerpts from recommendations published on LinkedIn, lightly edited for length and translated where needed.">Trechos de recomendações publicadas no LinkedIn, editados para caber aqui e traduzidos quando necessário.</p>
+    </div>
+  </section>
+
+  <section class="contact wrap reveal" id="contato">
+    <p class="kicker" data-en="Contact">Contato</p>
+    <h2 style="margin-top:16px" data-en="Let's <em>talk</em>.">Vamos <em>conversar</em>.</h2>
+    <p data-en="About product, digital health or the next challenge.">Sobre produto, saúde digital ou o próximo desafio.</p>
+    <div class="ctas">
+      <a class="btn" id="contact-linkedin" href="#" target="_blank" rel="noopener" hidden>LinkedIn ↗</a>
+      <a class="btn ghost" id="contact-instagram" href="#" target="_blank" rel="noopener" hidden>Instagram ↗</a>
+      <a class="btn ghost" id="contact-email" href="#" hidden data-en="Email">E-mail</a>
+      <a class="btn ghost" id="contact-resume" href="#" target="_blank" rel="noopener" hidden data-en="Resume ↗">Currículo ↗</a>
+    </div>
+  </section>
+</main>
+
+
+<dialog class="evt" id="evt" aria-labelledby="evt-title">
+  <button type="button" class="evt-close" id="evt-close" aria-label="Fechar">×</button>
+  <div id="evt-body"></div>
+</dialog>
+<footer><div class="wrap"><span>© Laíssa Margoni · Staff Product Manager</span><a href="#top" data-en="Back to top ↑">Voltar ao topo ↑</a></div></footer>
+
+<script>
+{
+  /* ===== Conteúdo editável ===== */
+  /* Links: preencha e eles aparecem no cabeçalho e no contato */
+  const CONTACT = { linkedin:'https://www.linkedin.com/in/laissamargoni/', instagram:'https://www.instagram.com/laissamargoni.lab/', email:'laissa.margoni@yahoo.com.br',
+    resume:{ pt:'assets/cv/laissa-margoni-curriculo-pt.pdf', en:'assets/cv/laissa-margoni-resume-en.pdf' } };
+
+  /* Depoimentos: a seção só aparece quando houver pelo menos um.
+     **trecho** vira destaque em cobre. */
+  const QUOTES = [
+    // { name:'Nome', role:'Cargo @Empresa', roleEn:'Role @Company', pt:'Texto com **destaque**.', en:'Text with **highlight**.' },
+    { name:'Ricardo Piccoli', role:'Vice President Sales · Red Bull', roleEn:'Vice President Sales · Red Bull',
+      pt:'A Laíssa é um grande talento, um daqueles raros exemplos de profissional que **combina know-how de produto com visão, gestão e trabalho em time**. Tem **sentimento de dono de verdade**: o projeto se torna realmente dela.',
+      en:'Laíssa is a great talent, one of those rare professionals who **combines product know-how with vision, management and teamwork**. She has **a true sense of ownership**: the project truly becomes hers.' },
+    { name:'Gustavo Morais', role:'CDO · AeC', roleEn:'CDO · AeC',
+      pt:'Trabalhei com a Laíssa em dois momentos, na SKY e na AeC. Ela tem **profundo conhecimento das boas práticas de agilidade e de gestão de produto** e se destaca pela **comunicação clara e objetiva**. Essa soma a torna uma importante referência de cultura em projetos de transformação digital.',
+      en:'I worked with Laíssa twice, at SKY and at AeC. She has **deep knowledge of agile and product management best practices** and stands out for **clear, objective communication**. Together, these make her an important cultural reference in digital transformation projects.' },
+    { name:'Walmir Bulhon Junior', role:'Head de Produto · Afya', roleEn:'Head of Product · Afya',
+      pt:'Tive a honra de liderar a Laíssa de perto em 2025, e ela foi **meu braço direito na construção do Afya ReceitaPro**. Liderou o discovery e ajudou a conceber o novo produto com um rigor raro: alta técnica no domínio e profundidade em comportamento do usuário, **aplicando neurociência para embasar decisões de experiência e priorização**.\n\nO trabalho dela teve impacto direto nos resultados: aumento de NPS, geração de savings, mais volume de prescrições e expansão da base de médicos prescritores. Recomendo fortemente a Laíssa para posições sêniores de liderança de produto em HealthTech.',
+      en:'I had the honor of managing Laíssa closely in 2025, and she was **my right hand in building Afya ReceitaPro**. She led discovery and helped conceive the new product with rare rigor: deep domain expertise and depth in user behavior, **applying neuroscience to ground experience and prioritization decisions**.\n\nHer work had a direct impact on results: higher NPS, savings, more prescription volume and a larger base of prescribing physicians. I strongly recommend Laíssa for senior product leadership roles in HealthTech.' },
+    { name:'Fabiane Pellegrino', role:'CTPO e cofundadora · Makasí', roleEn:'CTPO and co-founder · Makasí',
+      pt:'Encontrei na Laíssa **a capacidade necessária para tirar um projeto do papel**. Ela contribui para times e companhias em qualquer fase do ciclo de vida do produto, com **conhecimento técnico e um elevado nível de habilidades comportamentais**.',
+      en:'In Laíssa I found **the ability it takes to get a project off the ground**. She contributes to teams and companies at any stage of the product lifecycle, with **technical knowledge and strong interpersonal skills**.' },
+    { name:'Guilherme Vasconcelos dos Santos', role:'UX/UI Design Leader · Trusted Health', roleEn:'UX/UI Design Leader · Trusted Health',
+      pt:'Trabalhei com a Laíssa em diversos momentos na Afya, nas frentes de prescrição digital e B2B. Foi um prazer estar em par com uma profissional tão capaz e orientada a resultados, que **concilia a estratégia de produto com as complexidades de design e tecnologia**, buscando o melhor desempenho da tríade.\n\nAcompanhei seus discoveries em diferentes níveis de escala e complexidade, sempre **conciliando resultado de negócio com as necessidades reais dos usuários**, algo muito valioso para um designer de experiência.',
+      en:'I worked with Laíssa at several points at Afya, on digital prescription and B2B. It was a pleasure to pair with such a capable, results-oriented professional, who **reconciles product strategy with the complexities of design and technology**, getting the best out of the trio.\n\nI followed her discoveries at different levels of scale and complexity, always **balancing business results with users\' real needs**, something an experience designer values deeply.' },
+    { name:'Bill Meireles', role:'Agile Coach e Squad Leader · Afya', roleEn:'Agile Coach and Squad Leader · Afya',
+      pt:'Destaco **o aprofundamento que a Laíssa faz nas entrelinhas**, tão relevante para entregas de produto com qualidade. **A escuta ativa que ela oferece** sempre gera algo construtivo e faz com que todas as pessoas possam participar do propósito em jogo.',
+      en:'I highlight **how deeply Laíssa reads between the lines**, so important for quality product work. **The active listening she offers** always leads to something constructive and lets everyone take part in the purpose at stake.' },
+    { name:'Rodrigo Martins', role:'Senior Product Designer · Afya', roleEn:'Senior Product Designer · Afya',
+      pt:'Durante quatro anos trabalhamos juntos no mesmo projeto, e essa colaboração levou o que fazíamos a outro patamar, **contribuindo para o crescimento expressivo do volume de prescrições**. Além da competência técnica, ela mantém **uma visão coerente do todo em um produto extremamente complexo, num cenário regulatório complicadíssimo**, atenta a temas que passam despercebidos por stakeholders e squad. Seu interesse genuíno por tecnologia aplicada à saúde a torna uma profissional como poucas no mercado.',
+      en:'For four years we worked together on the same project, and that collaboration took our work to another level, **contributing to the significant growth in prescription volume**. Beyond technical skill, she keeps **a coherent view of the whole in an extremely complex product, under very demanding regulation**, attentive to issues stakeholders and the squad often miss. Her genuine interest in technology applied to health makes her one of a kind.' },
+    { name:'Rebeca Fernandes', role:'Product Manager · Afya', roleEn:'Product Manager · Afya',
+      pt:'Além da capacidade analítica e da organização, destaco o quanto aprendi com ela. A Lai tem **uma forma muito estruturada de transformar problemas complexos em planos de ação claros**, sempre com base em dados e uma visão prática de execução. Admiro sua disponibilidade para compartilhar conhecimento e dar contexto: **combina excelência na entrega, colaboração e uma postura genuína de mentoria**.',
+      en:'Beyond her analytical skills and organization, I want to highlight how much I learned from her. Lai has **a very structured way of turning complex problems into clear action plans**, always grounded in data and a practical view of execution. I admire how she shares knowledge and context: **she combines excellence in delivery, collaboration and a genuine mentoring attitude**.' },
+    { name:'Júlia Marchi', role:'Business Analyst · McKinsey & Company', roleEn:'Business Analyst · McKinsey & Company',
+      pt:'Mergulhei em produto sem experiência prévia, e a Lai me acolheu: assumiu uma responsabilidade que não era dela e **me deu direcionamento, contexto e as regras não ditas** para navegar naquele universo.\n\nAcompanhar o trabalho dela de perto é inspirador. **Está sempre cinco passos à frente**, entrega muito além do esperado e resolve problemas reais, com muita clareza sobre o que gera impacto de verdade e o que é ruído. Ela me ajudou a me tornar uma profissional melhor.',
+      en:'I dove into product with no prior experience, and Lai took me in: she took on a responsibility that wasn\'t hers and **gave me direction, context and the unwritten rules** to navigate that world.\n\nWatching her work up close is inspiring. **She is always five steps ahead**, delivers far beyond what is expected and solves real problems, with great clarity about what creates real impact and what is noise. She helped me become a better professional.' },
+  ];
+
+  const root = document.documentElement;
+  const store = (k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+  const read = k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+  const still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id=>document.getElementById(id);
+  const esc = s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const darkNow = ()=>false;
+
+  /* links do cabeçalho e do contato */
+  if(CONTACT.linkedin){for(const id of ['nav-linkedin','contact-linkedin']){$(id).href=CONTACT.linkedin;$(id).hidden=false}}
+  if(CONTACT.instagram){for(const id of ['nav-instagram','contact-instagram']){$(id).href=CONTACT.instagram;$(id).hidden=false}}
+  if(CONTACT.email){for(const id of ['nav-email','contact-email']){$(id).href='mailto:'+CONTACT.email;$(id).hidden=false}$('nav-email').textContent='e-mail'}
+  const setResume=l=>{if(!CONTACT.resume)return;for(const id of ['nav-resume','contact-resume']){$(id).href=CONTACT.resume[l]||CONTACT.resume.pt;$(id).hidden=false}};setResume('pt');
+  if(!QUOTES.length) $('nav-quotes').hidden=true;
+
+  /* menu no celular */
+  $('menu-btn').onclick=()=>{const o=$('links').classList.toggle('open');$('menu-btn').setAttribute('aria-expanded',o)};
+  $('links').addEventListener('click',e=>{if(e.target.closest('a')){$('links').classList.remove('open');$('menu-btn').setAttribute('aria-expanded','false')}});
+
+  /* depoimentos */
+  function renderQuotes(lang){
+    if(!QUOTES.length) return;
+    $('depoimentos').hidden=false;
+    const cols=[[],[]];
+    QUOTES.forEach((q,i)=>{
+      const t=esc(lang==='en'&&q.en?q.en:q.pt).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').split(/\n\n/).map(p=>'<p>'+p+'</p>').join('');
+      const ini=q.name.split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+      const role=lang==='en'&&q.roleEn?q.roleEn:q.role;
+      cols[i%2].push('<figure class="q t'+(i%3)+'"><span class="mark" aria-hidden="true">“</span><blockquote>'+t+'</blockquote><figcaption><span class="av" aria-hidden="true">'+esc(ini)+'</span><span class="who"><b>'+esc(q.name)+'</b><span class="role">'+esc(role)+'</span></span></figcaption></figure>');
+    });
+    $('quotes').innerHTML=cols.map(c=>'<div class="qcol">'+c.join('')+'</div>').join('');
+  }
+
+  /* frase de abertura digitada */
+  const COPY={
+    pt:{base:'Oi! Sou a Laíssa, Staff Product Manager com 10 anos em Produto e 5 em saúde digital, construindo produtos ',words:['relevantes.','sustentáveis.','guiados por evidência.','de impacto real.']},
+    en:{base:"Hi! I'm Laíssa, a Staff Product Manager with 10 years in Product and 5 in digital health, building products that are ",words:['relevant.','sustainable.','evidence-driven.','truly impactful.']}
+  };
+  const typed=$('typed'),intro=$('intro');let timer=null,run=0;
+  const paint=(b,w)=>{typed.innerHTML=esc(b)+'<span class="word">'+esc(w)+'</span>'};
+  const wait=(ms,id)=>new Promise(r=>{timer=setTimeout(()=>{if(id===run)r()},ms)});
+  function startTyping(lang){
+    const c=COPY[lang],id=++run;clearTimeout(timer);
+    intro.setAttribute('aria-label',c.base+c.words.join(' '));
+    if(still){paint(c.base,c.words[c.words.length-1]);return}
+    (async()=>{
+      for(let i=0;i<=c.base.length;i++){paint(c.base.slice(0,i),'');await wait(i<4?120:22,id)}
+      let w=0;
+      while(id===run){
+        const word=c.words[w];
+        for(let j=1;j<=word.length;j++){paint(c.base,word.slice(0,j));await wait(70,id)}
+        await wait(1900,id);
+        for(let k=word.length;k>=0;k--){paint(c.base,word.slice(0,k));await wait(32,id)}
+        await wait(260,id);
+        w=(w+1)%c.words.length;
+      }
+    })();
+  }
+
+  /* idioma */
+  const nodes=[...document.querySelectorAll('[data-en]')];
+  nodes.forEach(n=>{n._pt=n.innerHTML});
+  function setLang(l){
+    nodes.forEach(n=>{n.innerHTML=(l==='en')?n.getAttribute('data-en'):n._pt});
+    root.lang=(l==='en')?'en-US':'pt-BR';
+    $('lang-pt').setAttribute('aria-pressed',l!=='en');$('lang-en').setAttribute('aria-pressed',l==='en');
+    $('deck-prev').setAttribute('aria-label',l==='en'?'Previous':'Anterior');$('deck-next').setAttribute('aria-label',l==='en'?'Next':'Próximo');
+    $('menu-btn').textContent='Menu';
+    store('lm-lang',l);startTyping(l);renderQuotes(l);setResume(l);if(typeof renderEvt==='function')renderEvt();
+  }
+  $('lang-pt').onclick=()=>setLang('pt');$('lang-en').onclick=()=>setLang('en');
+
+  setLang(location.hash==='#en'||(location.hash!=='#pt'&&read('lm-lang')==='en')?'en':'pt');
+
+
+  /* ===== eventos: conteúdo da janela ===== */
+  const ARTICLE='https://journals.sagepub.com/doi/10.1177/15598276261484525';
+  const EVENTS={
+    cbmev:{
+      pt:{k:'Congresso Brasileiro de Medicina do Estilo de Vida · 2026',t:'Não há remédio para o tempo',
+        p:['Apresentei com o GPMEV o pôster <i>O Determinante Ausente da Medicina do Estilo de Vida: Não Há Remédio Para o Tempo</i>, que depois virou artigo no American Journal of Lifestyle Medicine. A pergunta de partida veio do consultório: pacientes dizem que não têm tempo para cuidar da saúde. Mas quanto tempo, de fato, um estilo de vida saudável exige?',
+           'O estudo, exploratório e de métodos mistos, combinou uma síntese de diretrizes e da literatura científica com estimativas individuais de tempo feitas pelos próprios autores. Somando as recomendações mínimas baseadas em evidência para os pilares da Medicina do Estilo de Vida, o resultado foi de cerca de 11,4 horas por dia. Nas estimativas pessoais, de 9,8 a 16,7 horas.',
+           'Quando entra o “tempo invisível” (preparo, deslocamento, higiene, organização e demandas logísticas), a conta chega a até 22,6 horas por dia. A conclusão: o tempo é um determinante estrutural, e pouco reconhecido, da adesão. O planejamento terapêutico deveria tratar a disponibilidade de tempo do paciente como variável clínica central, com intervenções pragmáticas, graduais e individualizadas.'],
+        f:['<b>11,4 h</b> por dia','<b>9,8 a 16,7 h</b> nas estimativas pessoais','até <b>22,6 h</b> com o “tempo invisível”','9 autores · <b>coautora</b>'],
+        clock:'O “Relógio do Estilo de Vida Saudável”: sono 7h30, trabalho 8h, administração da vida 4h35, alimentação 2h, conectividade social 1h, exercício 35 min e manejo do estresse 20 min.',
+        story:'Meu resumo no @laissamargoni.lab',
+        cta:'Ler o artigo no American Journal of Lifestyle Medicine ↗'},
+      en:{k:'Brazilian Congress of Lifestyle Medicine · 2026',t:'There is no pill for time',
+        p:['With GPMEV, I presented the poster <i>The Missing Determinant of Lifestyle Medicine: There Is No Pill for Time</i>, later published in the American Journal of Lifestyle Medicine. The starting question came from clinical practice: patients say they have no time to take care of their health. But how much time does a healthy lifestyle actually require?',
+           'The exploratory, mixed-methods study combined a synthesis of guidelines and scientific literature with individual time estimates made by the authors themselves. Adding up the evidence-based minimum recommendations for the pillars of Lifestyle Medicine, the result was about 11.4 hours a day. In personal estimates, 9.8 to 16.7 hours.',
+           'Once “invisible time” is included (preparation, commuting, hygiene, organization and logistics), the total reaches up to 22.6 hours a day. The conclusion: time is a structural, under-recognized determinant of adherence. Therapeutic planning should treat the patient\'s time availability as a central clinical variable, with pragmatic, gradual and individualized interventions.'],
+        f:['<b>11.4 h</b> a day','<b>9.8 to 16.7 h</b> in personal estimates','up to <b>22.6 h</b> with “invisible time”','9 authors · <b>co-author</b>'],
+        clock:'The “Healthy Lifestyle Clock”: sleep 7h30, work 8h, life administration 4h35, eating 2h, social connection 1h, exercise 35 min and stress management 20 min.',
+        story:'My summary on @laissamargoni.lab',
+        cta:'Read the article in the American Journal of Lifestyle Medicine ↗'},
+      href:ARTICLE,
+      storyHref:'https://www.instagram.com/p/Dd932o2FAoy/',storyImg:'story-capa.jpg',
+      clockImg:'cbmev-relogio.jpg',
+      media:['cbmev-com-marcos-e-regina.jpg','cbmev-selfie-poster.jpg','cbmev-apresentando.jpg','video:cbmev-apresentacao.mp4','cbmev-equipe.jpg','cbmev-poster.jpg']
+    },
+    live:{
+      pt:{k:'Live · YouTube · 09/06/2026',t:'RDC Anvisa nº 1000/2025: receituários eletrônicos',
+        p:['Live gratuita realizada pela Afya Whitebook e pela Afya iClinic sobre a nova regra da Anvisa para receituários eletrônicos, incluindo as receitas azuis e amarelas.',
+           'Participei como especialista em produtos de prescrição médica digital, ao lado de Geisa Lucho (especialista de Farmácia na Afya), Dr. Adriano Falvo (farmacêutico especialista em legislação e secretário-geral do CRF-SP) e Dr. Renato Bergallo (médico de Família e Comunidade).'],
+        f:['<b>Regulação</b> na prática','Receitas <b>azuis e amarelas</b>','Produto + farmácia + medicina'],cta:'Assistir à gravação no YouTube ↗'},
+      en:{k:'Live · YouTube · Jun 9, 2026',t:'Anvisa RDC No. 1000/2025: electronic prescriptions',
+        p:['A free live session by Afya Whitebook and Afya iClinic on Anvisa\'s new rule for electronic prescriptions, including controlled-drug (blue and yellow) prescriptions.',
+           'I joined as the specialist in digital medical prescription products, alongside Geisa Lucho (pharmacy specialist at Afya), Dr. Adriano Falvo (pharmacist specialized in legislation and secretary-general of CRF-SP) and Dr. Renato Bergallo (family physician).'],
+        f:['<b>Regulation</b> in practice','<b>Blue and yellow</b> prescriptions','Product + pharmacy + medicine'],cta:'Watch the recording on YouTube (in Portuguese) ↗'},
+      href:'https://www.youtube.com/live/JoalEUkisu0',
+      media:['live-rdc-anvisa.jpg']
+    },
+    carreira:{
+      pt:{k:'Carreira em Foco 2025 · Afya · 14/10/2025',t:'IA e Carreira na Afya',
+        p:['Painel do Carreira em Foco sobre tendências de carreira e as competências em destaque na área de produtos digitais de saúde, com foco no papel da IA.',
+           'Participei como facilitadora, representando Produto, ao lado de Marcela Castro (cientista de dados) e Daniel Rocha (gerente de TI sênior).'],
+        f:['<b>IA</b> e carreira','Competências em <b>destaque</b>','Produto + dados + tecnologia'],cta:''},
+      en:{k:'Carreira em Foco 2025 · Afya · Oct 14, 2025',t:'AI and Career at Afya',
+        p:['A Carreira em Foco panel on career trends and the skills in demand in digital health products, with a focus on the role of AI.',
+           'I joined as a facilitator representing Product, alongside Marcela Castro (data scientist) and Daniel Rocha (senior IT manager).'],
+        f:['<b>AI</b> and career','Skills in <b>demand</b>','Product + data + technology'],cta:''},
+      href:'',
+      media:['carreira-em-foco-ia.jpg']
+    }
+  };
+  const evt=$('evt');var curEvt=null;
+  function renderEvt(){
+    if(!curEvt)return;const e=EVENTS[curEvt],l=root.lang==='en-US'?'en':'pt',c=e[l];
+    const media=e.media.map(m=>m.startsWith('video:')
+      ?'<video controls playsinline preload="none" poster="assets/eventos/cbmev-apresentacao-poster.jpg" src="assets/eventos/'+m.slice(6)+'"></video>'
+      :'<img src="assets/eventos/'+m+'" alt="" loading="lazy">').join('');
+    const story=e.storyHref?'<a class="story" href="'+e.storyHref+'" target="_blank" rel="noopener" data-cta="event_story"><span class="ring"><img src="assets/eventos/'+e.storyImg+'" alt=""></span><span><b>'+c.story+'</b><small>'+(l==='en'?'Tap to open on Instagram ↗':'Toque para abrir no Instagram ↗')+'</small></span></a>':'';
+    const clock=e.clockImg?'<figure class="evt-clock"><img src="assets/eventos/'+e.clockImg+'" alt="" loading="lazy"><figcaption>'+c.clock+'</figcaption></figure>':'';
+    $('evt-body').innerHTML='<div class="evt-in"><p class="kicker">'+c.k+'</p><h3 id="evt-title">'+c.t+'</h3>'+story+c.p.map(x=>'<p>'+x+'</p>').join('')+
+      '<div class="evt-facts">'+c.f.map(x=>'<span>'+x+'</span>').join('')+'</div>'+clock+'<div class="gallery">'+media+'</div>'+
+      (e.href&&c.cta?'<div class="ctas"><a class="btn" href="'+e.href+'" target="_blank" rel="noopener" data-cta="'+(curEvt==='cbmev'?'article':'event_link')+'">'+c.cta+'</a></div>':'')+'</div>';
+    $('evt-close').setAttribute('aria-label',l==='en'?'Close':'Fechar');
+  }
+  document.querySelectorAll('[data-event]').forEach(b=>b.addEventListener('click',()=>{curEvt=b.dataset.event;renderEvt();evt.showModal()}));
+  $('evt-close').onclick=()=>evt.close();
+  evt.addEventListener('click',e=>{if(e.target===evt)evt.close()});
+  evt.addEventListener('close',()=>{evt.querySelectorAll('video').forEach(v=>v.pause())});
+
+  /* vídeo da capa do card: toca só quando aparece na tela */
+  document.querySelectorAll('.card-video').forEach(v=>{
+    if(still){v.preload='metadata';return}
+    new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.play().catch(()=>{})}else v.pause()}),{threshold:.3}).observe(v);
+  });
+
+  /* deck */
+  const deck=$('deck');const step=d=>deck.scrollBy({left:d*260,behavior:still?'auto':'smooth'});
+  $('deck-prev').onclick=()=>step(-1);$('deck-next').onclick=()=>step(1);
+  deck.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+
+  /* barra de progresso e link ativo */
+  const prog=$('progress');const navLinks=[...document.querySelectorAll('.links a[href^="#"]:not([href="#"])')];
+  const onScroll=()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+    let cur='';for(const a of navLinks){const s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=a.getAttribute('href')}
+    navLinks.forEach(a=>a.setAttribute('aria-current',a.getAttribute('href')===cur))};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* entradas suaves */
+  const rev=[...document.querySelectorAll('.reveal')];
+  if('IntersectionObserver' in window&&!still){
+    const revealer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealer.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+    rev.forEach(el=>revealer.observe(el));
+  } else rev.forEach(el=>el.classList.add('in'));
+
+  /* ===== cérebro (hero): desenho estático; só as sinapses se movem ===== */
+  {
+    const cv=$('synapses'),ctx=cv.getContext('2d');
+    // máscara da silhueta: diz onde fica o cérebro (unidades: 200 de largura)
+    const maskImg=new Image();let MW=0,MH=0,mdata=null;
+    const UH=200*729/1100;
+    const inside=(x,y)=>{if(!mdata)return false;const i=Math.floor(x/200*MW),j=Math.floor(y/UH*MH);if(i<0||j<0||i>=MW||j>=MH)return false;return mdata[(j*MW+i)*4]>128};
+    let W=0,H=0,S=1,dpr=1,sparks=[],motes=[],flashes=[],t=0,last=0,visible=true,next=0;
+    const rnd=(a,b)=>a+Math.random()*(b-a);
+    function build(){
+      const box=cv.getBoundingClientRect();W=box.width;H=box.height;if(!W)return;
+      dpr=Math.min(devicePixelRatio||1,2);cv.width=W*dpr;cv.height=H*dpr;S=W/200;
+      motes=[];let g=0;
+      while(motes.length<130&&g++<6000){const x=rnd(-20,220),y=rnd(-8,UH+8),inn=inside(x,y);
+        if(inn||Math.random()<.3)motes.push({x,y,inside:inn,ph:rnd(0,6.28),sp:rnd(.6,1.6),r:inn?rnd(.35,.9):rnd(.25,.6),dx:rnd(-.002,.002),dy:rnd(-.0015,.0015)})}
+    }
+    // trilha da faísca: caminho sinuoso que fica dentro do cérebro
+    function track(){
+      let x,y,g=0;do{x=rnd(10,190);y=rnd(8,UH-8)}while(!inside(x,y)&&g++<200);
+      let h=rnd(0,6.283),tr=[[x,y]];
+      for(let i=0;i<40;i++){h+=rnd(-.45,.45);let nx=x+Math.cos(h)*1.4,ny=y+Math.sin(h)*1.4,k=0;
+        while(!inside(nx,ny)&&k++<8){h+=1.1;nx=x+Math.cos(h)*1.4;ny=y+Math.sin(h)*1.4}
+        if(!inside(nx,ny))break;x=nx;y=ny;tr.push([x,y])}
+      return tr;
+    }
+    function spawn(){
+      const tr=track();if(tr.length<14)return;
+      sparks.push({tr,from:0,to:tr.length-1,k:0,dur:rnd(900,1600)});
+    }
+    function glow(x,y,r,a){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(196,112,78,'+a+')');g.addColorStop(.4,'rgba(217,154,120,'+(a*.5)+')');g.addColorStop(1,'rgba(217,154,120,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill()}
+    function draw(now){
+      if(!visible)return;
+      const dt=last?Math.min(now-last,50):16;last=now;t+=dt;
+      ctx.setTransform(dpr*S,0,0,dpr*S,0,0);ctx.clearRect(-40,-20,280,UH+40);
+      // partículas: brilho suave, cintilando
+      for(const m of motes){
+        if(!still){m.x+=m.dx*dt;m.y+=m.dy*dt}
+        const tw=still?.6:0.5+0.5*Math.sin(t*0.0012*m.sp+m.ph);
+        const a=(m.inside?0.25+0.6*tw:0.12+0.35*tw);
+        ctx.fillStyle=m.inside?'rgba(135,75,55,'+a.toFixed(3)+')':'rgba(113,138,145,'+a.toFixed(3)+')';
+        ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,6.283);ctx.fill();
+        if(m.inside&&tw>.97&&!still)glow(m.x,m.y,3.2,.35);
+      }
+      if(still)return;
+      // faíscas correndo pelos giros
+      if(t>next){spawn();if(Math.random()<.35)spawn();next=t+rnd(200,550)}
+      ctx.lineCap='round';
+      sparks=sparks.filter(sp=>{
+        sp.k+=dt/sp.dur;const e=sp.k<1?sp.k:1,dir=sp.to>sp.from?1:-1,head=sp.from+(sp.to-sp.from)*e,tail=head-dir*9;
+        const fade=sp.k>1?Math.max(0,1-(sp.k-1)*4):1;
+        for(let i=0;i<9;i++){const i0=Math.round(head-dir*i),i1=Math.round(head-dir*(i+1));
+          if(i1<0||i1>=sp.tr.length||i0<0||i0>=sp.tr.length)break;
+          const a=(1-i/9)*0.95*fade;ctx.strokeStyle='rgba(160,88,60,'+a.toFixed(3)+')';ctx.lineWidth=1.15*(1-i/12);
+          ctx.beginPath();ctx.moveTo(sp.tr[i0][0],sp.tr[i0][1]);ctx.lineTo(sp.tr[i1][0],sp.tr[i1][1]);ctx.stroke()}
+        const hp=sp.tr[Math.round(head)];if(hp)glow(hp[0],hp[1],4.2,.85*fade);
+        if(sp.k>=1&&!sp.done){sp.done=1;const p=sp.tr[sp.to];flashes.push({x:p[0],y:p[1],k:0})}
+        return fade>0;
+      });
+      // sinapse: clarão breve no fim de cada faísca
+      flashes=flashes.filter(f=>{f.k+=dt/800;if(f.k>=1)return false;glow(f.x,f.y,2.5+f.k*7,(1-f.k)*.8);return true});
+      requestAnimationFrame(draw);
+    }
+    maskImg.onload=()=>{
+      const o=document.createElement('canvas');MW=o.width=maskImg.naturalWidth;MH=o.height=maskImg.naturalHeight;
+      const c=o.getContext('2d');c.drawImage(maskImg,0,0);mdata=c.getImageData(0,0,MW,MH).data;
+      build();requestAnimationFrame(draw);
+    };
+    maskImg.src='assets/brain-mask.png';
+    let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{build();if(still)requestAnimationFrame(draw)},150)});
+    new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&!still&&mdata){last=0;requestAnimationFrame(draw)}}).observe(cv);
+  }
+
+}
+(function(){var b=document.querySelector('.ow-btn'),p=document.getElementById('ow-panel');if(!b||!p)return;b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));p.hidden=o;});})();
+</script>
+<script src="analytics.js" defer>
+</script>
+</body>
+</html>

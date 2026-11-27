@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('lm-theme-case')==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A primeira prescrição por smartwatch do Brasil · Laíssa Margoni</title>
+<meta name="description" content="A primeira prescrição médica por smartwatch do Brasil: renovar a receita do paciente em segundos, só com a voz. Case de Laíssa Margoni, Staff Product Manager.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a story told in numbered chapters. Left rail carries the chapter number and stage,
+   right column carries the narrative; figures break out to full content width. */
+:root{
+  --bg:#F2F4F5;         /* névoa clareada */
+  --surface:#FFFFFF;
+  --ink:#172D4D;        /* azul profundo */
+  --ink-2:#4B626A;      /* azul acinzentado escurecido p/ texto */
+  --line:#BFC6C8;       /* cinza névoa */
+  --accent:#874B37;     /* cobre */
+  --accent-2:#D99A78;   /* pêssego */
+  --steel:#718A91;      /* azul acinzentado */
+  --tint:#E7ECEE;
+  --on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+    --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F2038;--surface:#172D4D;--ink:#EEF1F2;--ink-2:#AEBBBF;--line:#3A4F6C;
+  --accent:#D99A78;--accent-2:#874B37;--steel:#8FA6AD;--tint:#1D3558;--on-accent:#172D4D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
+.brand small{font-family:var(--body);font-weight:500;color:var(--ink-2);font-size:14px;margin-left:10px}
+.controls{display:flex;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{font:600 13px/1 var(--body);color:var(--ink-2);background:none;border:0;border-radius:999px;padding:8px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,.tab:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.eyebrow{font:600 13px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(44px,8vw,96px);font-weight:700;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.45;max-width:36em;color:var(--ink)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.meta dt{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.meta dd{margin:0;font-size:16px;line-height:1.45}
+.headline{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:36px}
+.headline div{background:var(--surface);padding:22px 20px}
+.headline b{display:block;font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:700;line-height:1;color:var(--accent)}
+.headline span{display:block;margin-top:8px;font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+
+/* chapters */
+.chapter{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;padding:64px 0;border-top:1px solid var(--line)}
+.rail{position:sticky;top:84px;align-self:start}
+.rail .n{font-family:var(--display);font-size:54px;font-weight:700;line-height:1;color:var(--accent-2)}
+.rail .stage{font:600 13px/1.3 var(--body);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font:600 12px/1 var(--body);padding:6px 9px;border-radius:6px;background:var(--tint);color:var(--ink-2)}
+.body{display:flex;flex-direction:column;gap:22px;min-width:0}
+.body h2{font-size:clamp(28px,4vw,44px);font-weight:700;max-width:18em}
+.body p{max-width:38em}
+.body p strong{font-weight:600}
+.pull{font-family:var(--display);font-size:clamp(24px,3.4vw,36px);font-weight:500;line-height:1.2;border-left:4px solid var(--accent);padding:6px 0 6px 20px;max-width:22em}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;margin:6px 0}
+.fig h3{font-family:var(--body);font-size:16px;font-weight:600;line-height:1.35;letter-spacing:0}
+.fig .sub{font-size:14px;color:var(--ink-2);margin-top:2px}
+.note{font-size:13.5px;color:var(--ink-2);margin-top:14px;max-width:none}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ul.plain li{padding-left:18px;position:relative;font-size:16px;line-height:1.45}
+ul.plain li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--accent)}
+.label{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+
+/* bar chart */
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end;height:230px;margin-top:22px;border-bottom:1px solid var(--line)}
+.bars .col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:6px}
+.bars .v{font-weight:600;font-size:15px}
+.bars .b{width:min(72px,70%);background:var(--steel);border-radius:4px 4px 0 0}
+.bars .col.hi .b{background:var(--accent)}
+.years{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;font-size:14px;color:var(--ink-2);margin-top:8px}
+.route{width:100%;height:auto;margin-top:14px;overflow:visible}
+.route text{font-family:var(--body);font-size:13px;fill:var(--ink-2)}
+.route .strong{fill:var(--ink);font-weight:600}
+
+/* compare */
+.cmp{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.cmp .row{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-size:15px}
+.cmp .t{height:18px;border-radius:0 4px 4px 0;background:var(--steel)}
+.cmp .row.hi .t{background:var(--accent)}
+.cmp .row b{font-weight:600;text-align:right}
+
+/* timeline */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;counter-increment:s}
+.step::before{content:counter(s,decimal-leading-zero);font:700 14px/1 var(--display);color:var(--accent)}
+.step b{display:block;margin:8px 0 4px;font-weight:600;font-size:16px;line-height:1.3}
+.step span{font-size:14.5px;color:var(--ink-2);line-height:1.4;display:block}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ladder li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500}
+.ladder li:last-child{background:var(--accent);color:var(--on-accent)}
+.ladder li+li{position:relative;margin-left:18px}
+.ladder li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.shift{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.shift div{border-top:3px solid var(--accent);padding-top:12px}
+.shift b{font-family:var(--display);font-size:30px;font-weight:700;display:block;line-height:1.1}
+.shift b i{font-style:normal;color:var(--ink-2);font-weight:500}
+.shift span{font-size:14.5px;color:var(--ink-2)}
+
+/* portfolio orbit */
+.portfolio{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px) minmax(0,1fr);gap:22px;align-items:center}
+.levers{display:flex;flex-direction:column;gap:22px}
+.lever{border-left:3px solid var(--steel);padding-left:14px}
+.lever .k{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lever b{display:block;font-family:var(--display);font-size:21px;font-weight:700;margin:4px 0 6px;line-height:1.15}
+.lever span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+.orbit{position:relative;aspect-ratio:1;width:100%;max-width:400px;margin:0 auto}
+.orbit .ring{position:absolute;inset:13%;border:1.5px dashed var(--steel);border-radius:50%}
+.orbit .ring.r2{inset:30%;border-style:solid;border-color:var(--line)}
+.orbit .core{position:absolute;inset:32%;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-weight:700;font-size:clamp(17px,2.4vw,22px);line-height:1.1}
+.orbit .node{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;background:var(--surface);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-size:clamp(12.5px,1.5vw,14.5px);line-height:1.15;padding:6px}
+.orbit .n1{top:0;left:35%}.orbit .n2{top:35%;right:0}.orbit .n3{bottom:0;left:35%}.orbit .n4{top:35%;left:0}
+.actors{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.actors b{display:block;font-weight:600;margin-bottom:4px}
+.actors span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+
+/* solution */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.pillar b{font-family:var(--display);font-size:22px;font-weight:700;display:block}
+.pillar em{display:block;font-style:normal;color:var(--accent);font-weight:500;font-size:15px;margin:4px 0 10px}
+.pillar span{font-size:15px;line-height:1.5;color:var(--ink-2);display:block}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{font:600 14px/1 var(--body);padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.shot{background:#000;border-radius:10px;overflow-x:auto}
+.shot img{min-width:640px;width:100%}
+.shot[hidden]{display:none}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.quotes figure{margin:0;border-top:1px solid var(--line);padding-top:14px}
+.quotes blockquote{margin:0;font-size:17px;line-height:1.45}
+.quotes figcaption{margin-top:8px;font-size:14px;color:var(--ink-2)}
+.horizons{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.horizons div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.horizons div:nth-child(2){background:var(--tint)}
+.horizons div:last-child{border-right:0}
+.horizons b{display:block;font-weight:600;margin:6px 0 4px}
+.horizons span{font-size:14.5px;color:var(--ink-2);display:block;line-height:1.45}
+video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/9}
+
+/* table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:16px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+td.now{font-weight:600;color:var(--accent)}
+.fronts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 22px}
+.fronts div{border-top:1px solid var(--line);padding-top:10px}
+.fronts b{font-weight:600;display:block}
+.fronts span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+ol.learn{margin:0;padding:0;list-style:none;counter-reset:l;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+ol.learn li{counter-increment:l;border-top:3px solid var(--accent-2);padding-top:12px}
+ol.learn b{display:block;font-family:var(--display);font-size:20px;font-weight:700;line-height:1.2;margin-bottom:6px}
+ol.learn span{font-size:15px;color:var(--ink-2);line-height:1.5}
+
+/* about */
+.about{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.about img{border-radius:14px;width:200px;aspect-ratio:1/1.15;object-fit:cover}
+.about h2{font-size:32px;margin-bottom:6px}
+.about .role{color:var(--accent);font-weight:600;margin-bottom:12px}
+.about p{max-width:38em}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:14px;color:var(--ink-2)}
+
+@media (max-width:860px){
+  .chapter{grid-template-columns:1fr;gap:18px;padding:44px 0}
+  .rail{position:static;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+  .rail .n{font-size:36px}
+  .rail .chips{width:100%;margin-top:4px}
+  .portfolio{grid-template-columns:1fr}
+  .portfolio .orbit{order:-1}
+  .about{grid-template-columns:1fr}
+  .cmp .row{grid-template-columns:110px 1fr 60px}
+  .hero{padding-top:40px}
+}
+
+/* v2 additions */
+.bar .wrap{justify-content:space-between}
+.back{font:500 20px/1 var(--display);letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:8px 0}
+.back:hover{color:var(--accent)}
+.exec{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 28px;margin-top:40px;padding:26px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px}
+.exec .k{font:600 12px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.exec p{font-size:15.5px;line-height:1.5}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.why div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:15px;line-height:1.45}
+.why b{display:block;font:700 14px/1 var(--display);color:var(--accent);margin-bottom:8px}
+.fly{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin:0;padding:0}
+.fly li{list-style:none;background:var(--tint);border-radius:999px;padding:9px 14px;font-size:15px;font-weight:500;position:relative}
+.fly li+li::before{content:"→";position:absolute;left:-20px;color:var(--ink-2)}
+.fly li:last-child::after{content:"↻";margin-left:8px;color:var(--accent);font-weight:700}
+.gem{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gem div{padding:18px;background:var(--surface);border-right:1px solid var(--line)}
+.gem div:last-child{border-right:0}
+.gem .h{font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.gem b{display:block;font-family:var(--display);font-size:20px;line-height:1.15;margin:8px 0 6px}
+.gem em{font-style:normal;color:var(--accent);font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+.gem span{font-size:14.5px;color:var(--ink-2);line-height:1.45;display:block}
+.shiftrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.shiftrow div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15px}
+.shiftrow s{text-decoration:none;color:var(--ink-2)}
+.shiftrow i{font-style:normal;color:var(--accent);font-weight:700}
+.shiftrow b{font-weight:600}
+
+/* phone mockups: product screens stay light in both themes */
+.phones{display:flex;gap:22px;overflow-x:auto;padding:30px 24px 22px;border-radius:12px;background:linear-gradient(135deg,var(--tint),var(--bg));justify-content:safe center}
+.phones[hidden]{display:none}
+.phw{flex:0 0 236px;margin:0}
+.phw figcaption{margin-top:14px;font-size:13.5px;line-height:1.4;color:var(--ink-2);text-align:center}
+.phw figcaption b{color:var(--ink);font-weight:600}
+.ph{height:486px;border-radius:34px;border:7px solid #0C182B;background:linear-gradient(165deg,#FBEDE4 0%,#F6F7F8 42%,#E2EAEE 100%);color:#172D4D;position:relative;overflow:hidden;font-size:11.5px;line-height:1.38;display:flex;flex-direction:column;gap:9px;padding:38px 14px 14px;box-shadow:0 22px 44px -20px rgba(12,24,43,.55)}
+.ph::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:68px;height:17px;border-radius:10px;background:#0C182B}
+.ph .top{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:12px;color:#172D4D}
+.ph .top span{color:#718A91;font-weight:400}
+.ph .hello{color:#4B626A;margin-top:26px}
+.ph .q{font-family:var(--display);font-size:23px;line-height:1.12;font-weight:500;letter-spacing:-.01em}
+.ph .grow{flex:1}
+.ph .card{background:#fff;border:1px solid #E1E7EA;border-radius:11px;padding:10px}
+.ph .card small{display:block;color:#718A91;font-size:10px;margin-top:2px}
+.ph .card hr{border:0;border-top:1px solid #E9EEF0;margin:8px 0}
+.ph .hint{background:#FBEDE4;border:1px solid #EBC9B5;border-radius:11px;padding:10px}
+.ph .tag{display:inline-block;font-weight:600;font-size:10px;color:#874B37;margin-bottom:5px}
+.ph .btns{display:flex;gap:6px;justify-content:flex-end;margin-top:9px}
+.ph .btn{font-weight:600;font-size:10.5px;padding:7px 10px;border-radius:7px;background:#172D4D;color:#fff;text-align:center}
+.ph .btn.ghost{background:none;color:#172D4D}
+.ph .btn.wide{display:block;padding:10px}
+.ph .input{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #D5DDE0;border-radius:12px;padding:11px 12px;color:#718A91}
+.ph .input.on{border-color:#874B37}
+.ph .mic{width:8px;height:13px;border-radius:5px;background:#874B37;flex:none}
+.ph .wave{flex:1;height:18px;margin-right:10px;background:repeating-linear-gradient(90deg,#D99A78 0 2px,transparent 2px 5px);-webkit-mask:radial-gradient(ellipse at center,#000 30%,transparent 72%);mask:radial-gradient(ellipse at center,#000 30%,transparent 72%)}
+.ph .typed{font-size:14px;font-weight:500}
+.ph .typed i{display:inline-block;width:1.5px;height:15px;background:#874B37;vertical-align:-2px;margin-left:1px}
+.ph .pat{display:flex;gap:9px;align-items:center}
+.ph .av{width:30px;height:30px;border-radius:50%;background:#D99A78;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:11px;flex:none}
+.ph .pat b{display:block;font-size:12.5px}
+.ph .pat small{color:#718A91;font-size:10px}
+.ph .act{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid #DCE3E6;font-size:11px}
+.ph .act::after{content:"↗";color:#718A91}
+.ph .said{font-weight:600;font-size:13px;line-height:1.35}
+.ph .reply{color:#4B626A}
+.ph .center{text-align:center;margin:auto 0;display:flex;flex-direction:column;gap:10px;align-items:center}
+.ph .center b{font-family:var(--display);font-size:17px;line-height:1.15}
+.ph .center small{color:#718A91;font-size:10.5px}
+.ph .paper{flex:1;background:#fff;border-radius:6px;padding:14px 12px;box-shadow:0 6px 16px -8px rgba(12,24,43,.4);transform:rotate(-1.5deg);margin:4px 6px;display:flex;flex-direction:column;gap:11px}
+.ph .paper u{display:block;text-decoration:none;font:700 9px/1 var(--body);letter-spacing:.14em;text-align:center;color:#4B626A;border-bottom:1px solid #BFC6C8;padding-bottom:7px}
+.ph .paper i{display:block;height:9px;border-bottom:2px solid #2B3F86;border-radius:50% 40% 60% 30%/0 0 100% 100%;transform:skewX(-18deg);opacity:.8}
+.ph .paper i:nth-child(odd){width:78%}.ph .paper i:nth-child(3n){width:55%}
+.ph .ex{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #E1E7EA;border-radius:9px;padding:8px 9px;font-size:11px}
+.ph .ex::before{content:"";width:12px;height:12px;border-radius:3px;background:#D99A78;flex:none}
+.ph .pill{display:flex;gap:8px;align-items:center}
+.ph .pill::before{content:"";width:14px;height:8px;border-radius:5px;background:#718A91;flex:none;transform:rotate(-35deg)}
+.about{grid-template-columns:210px minmax(0,1fr);align-items:start;gap:40px}
+.about img{width:200px;height:200px;aspect-ratio:1;border-radius:50%;outline:2px solid var(--accent);outline-offset:6px;margin:8px}
+.about .txt{display:flex;flex-direction:column;gap:14px}
+.about h2{margin-bottom:0}.about .role{margin:0}
+@media (max-width:860px){.about{grid-template-columns:1fr}.gem div{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* closing (v3: about moved to Home) */
+.closing{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;padding:48px 0;border-top:1px solid var(--line)}
+.closing img{width:96px;height:96px;border-radius:50%;object-fit:cover;outline:2px solid var(--accent);outline-offset:4px;margin:4px}
+.closing h2{font-size:30px;margin-top:6px}
+.closing .role{color:var(--accent);font-weight:600;margin-top:2px}
+.closing-cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);text-decoration:none;padding:14px 20px;border-radius:999px;background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:none}
+@media (max-width:860px){.closing{grid-template-columns:auto minmax(0,1fr)}.closing-cta{grid-column:1/-1}}
+
+/* case smartwatch */
+.jtbd{border-left:4px solid var(--accent)}
+.jtbd-text{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);font-weight:500;line-height:1.35;max-width:none}
+.jtbd-text b{color:var(--accent);font-weight:700}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.flow figure{margin:0;display:flex;flex-direction:column;gap:12px}
+.flow img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:16px;box-shadow:0 18px 40px -26px rgba(0,0,0,.6);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.flow figure:hover img{transform:translateY(-4px) scale(1.02)}
+.flow figcaption{font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+.flow figcaption i{font:700 13px/1 var(--display);font-style:normal;color:var(--accent);display:block;margin-bottom:6px}
+.flow figcaption b{display:block;color:var(--ink);font-family:var(--display);font-size:19px;margin-bottom:2px}
+.channels{padding:18px;max-width:760px}
+.channels img{display:block;width:100%;height:auto;aspect-ratio:1280/719;object-fit:contain;border-radius:10px;background:#fff}
+.channels .sub{margin-top:12px}
+.note a{color:var(--accent)}
+.reel{margin:34px 0 0;position:relative;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+.reel video{display:block;width:100%;height:auto;aspect-ratio:960/454;object-fit:cover;border-radius:0}
+.reel figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:28px 20px 16px;background:linear-gradient(transparent,rgba(8,16,30,.85));color:#EEF1F2;font-size:14.5px}
+.reel figcaption a{margin-left:auto;color:#D99A78;font-weight:600;text-decoration:none}
+.reel .dot{width:8px;height:8px;border-radius:50%;background:#D99A78;box-shadow:0 0 0 0 rgba(217,154,120,.7);animation:rec 1.8s infinite}
+@keyframes rec{70%{box-shadow:0 0 0 10px rgba(217,154,120,0)}100%{box-shadow:0 0 0 0 rgba(217,154,120,0)}}
+.launch video{margin-top:14px;width:100%;height:auto;aspect-ratio:1024/484;border-radius:10px;background:#000}
+@media (prefers-reduced-motion:reduce){.reel .dot{animation:none}}
+@media (max-width:860px){.flow{grid-template-columns:1fr 1fr}.flow figure:last-child{grid-column:1/-1;max-width:50%}}
+</style>
+</head>
+<body data-page="case" data-case="prescricao-no-pulso">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="../" id="back-home">Laíssa Margoni</a>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-pt" aria-pressed="true">PT</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <div class="seg" role="group" aria-label="Tema / Theme">
+        <button type="button" id="theme-light" aria-pressed="false" data-en="Light">Claro</button>
+        <button type="button" id="theme-dark" aria-pressed="false" data-en="Dark">Escuro</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <p class="eyebrow" data-en="Prescription on the wrist · Afya ReceitaPro · Innovation · AI · 2026">Prescrição no pulso · Afya ReceitaPro · Inovação · IA · 2026</p>
+    <h1 data-en="Brazil's first prescription on a <em>smartwatch</em>">A primeira prescrição por <em>smartwatch</em> do Brasil</h1>
+    <p class="lede" data-en="Renewing a patient's prescription in a few seconds, by voice only, wherever the physician is. An experiment in innovation designed around the doctor's real routine, and an early step towards AI agents in the clinical flow.">Renovar a receita de um paciente em poucos segundos, apenas com a voz, de onde o médico estiver. Um experimento de inovação pensado para a rotina real do médico, e um primeiro passo em direção a agentes de IA no fluxo clínico.</p>
+
+    <figure class="reel">
+      <video id="reel" src="../assets/pulso/smartwatch-loop.mp4" poster="../assets/pulso/smartwatch-loop-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Médica renovando uma prescrição por voz no smartwatch"></video>
+      <figcaption><span class="dot" aria-hidden="true"></span><span data-en="Renewing a prescription by voice, on the run">Renovando uma prescrição por voz, em movimento</span><a href="#lancamento" data-en="Watch the full video with audio ↓">Assistir ao vídeo completo com áudio ↓</a></figcaption>
+    </figure>
+
+    <div class="exec">
+      <div><p class="k" data-en="The challenge">O desafio</p><p data-en="Physicians split their day across several workplaces and a lot of commuting. Renewing continuous-use treatments is simple, but it usually waits until the doctor is back at a computer.">O médico divide o dia entre vários vínculos e muitos deslocamentos. Renovar um tratamento de uso contínuo é simples, mas costuma esperar até ele voltar a um computador.</p></div>
+      <div><p class="k" data-en="The bet">A aposta</p><p data-en="Take prescription to where the doctor is: a voice flow on the watch that finds the patient, retrieves the last prescription and sends it straight to the patient's WhatsApp.">Levar a prescrição até onde o médico está: um fluxo por voz no relógio que encontra o paciente, recupera a última prescrição e envia direto para o WhatsApp do paciente.</p></div>
+      <div><p class="k" data-en="My scope">Meu escopo</p><p data-en="Product vision and thesis, the end-to-end flow designed with design and engineering, and running the experiment with voice and AI as a new channel of Afya ReceitaPro.">Visão de produto e tese, desenho do fluxo end to end junto com design e engenharia, e a condução do experimento com voz e IA como um novo canal do Afya ReceitaPro.</p></div>
+      <div><p class="k" data-en="The outcome">O resultado</p><p data-en="The first prescription issued from a smartwatch in Brazil, in 2026, as far as our market mapping showed. Renewal in a few seconds: say it, check it, confirm it, and the patient receives it on WhatsApp.">A primeira prescrição emitida por smartwatch no Brasil, em 2026, até onde nosso mapeamento de mercado mostrou. Renovação em poucos segundos: falar, conferir, confirmar, e o paciente recebe no WhatsApp.</p></div>
+    </div>
+
+    <div class="headline">
+      <div><b class="num" data-en="1st">1ª</b><span data-en="medical prescription on a smartwatch in Brazil">prescrição médica por smartwatch do Brasil</span></div>
+      <div><b class="num" data-en="Seconds">Segundos</b><span data-en="to renew a prescription, by voice only">para renovar uma receita, só com a voz</span></div>
+      <div><b class="num">1</b><span data-en="confirmation: the doctor reviews and sends, the AI does the rest">confirmação: o médico revisa e envia, a IA faz o resto</span></div>
+      <div><b class="num">78%</b><span data-en="of physicians in Brazil have more than one employer (CFM)">dos médicos no Brasil têm mais de um empregador (CFM)</span></div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="chapter" id="contexto">
+    <div class="rail">
+      <div class="n">01</div>
+      <div class="stage" data-en="Context">Contexto</div>
+      <div class="chips"><span class="chip" data-en="User research">Pesquisa com usuários</span><span class="chip" data-en="Physician routine">Rotina médica</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="The physician's routine doesn't fit in one office">A rotina do médico não cabe em um consultório</h2>
+      <p data-en="In Brazil, working in a single place is the exception. According to the Demografia Médica no Brasil study (FMUSP, CFM and Cremesp), only 22% of physicians have a single employer, and almost half work in three or more places. The day is split between hospital, clinic, on-call shifts and the commute between them.">No Brasil, trabalhar em um único lugar é exceção. Segundo o estudo Demografia Médica no Brasil (FMUSP, CFM e Cremesp), apenas 22% dos médicos têm um único empregador, e quase metade trabalha em três lugares ou mais. O dia se divide entre hospital, consultório, plantão e o trânsito entre eles.</p>
+      <p data-en="In the middle of that routine come the renewals: patients on continuous treatment who need a new prescription to keep taking their medication. It is a quick task, but it depends on the doctor stopping, opening a computer and going through the whole flow. Meanwhile, the patient waits, and treatment adherence is at risk.">No meio dessa rotina chegam as renovações: pacientes em tratamento contínuo que precisam de uma nova receita para seguir com a medicação. É uma tarefa rápida, mas depende de o médico parar, abrir um computador e percorrer o fluxo inteiro. Enquanto isso, o paciente espera, e a adesão ao tratamento fica em risco.</p>
+
+      <div class="fig">
+        <h3 data-en="Number of employers per physician in Brazil">Número de empregadores por médico no Brasil</h3>
+        <p class="sub" data-en="Share of physicians. Source: Demografia Médica no Brasil 2015 (FMUSP, CFM, Cremesp).">Percentual de médicos. Fonte: Demografia Médica no Brasil 2015 (FMUSP, CFM, Cremesp).</p>
+        <div class="cmp">
+          <div class="row"><span data-en="1 employer">1 empregador</span><div class="t" style="width:74.6%"></div><b class="num" data-en="22%">22%</b></div>
+          <div class="row hi"><span data-en="2 employers">2 empregadores</span><div class="t" style="width:100%"></div><b class="num" data-en="29.5%">29,5%</b></div>
+          <div class="row hi"><span data-en="3 employers">3 empregadores</span><div class="t" style="width:82.4%"></div><b class="num" data-en="24.3%">24,3%</b></div>
+          <div class="row hi"><span data-en="4 employers">4 empregadores</span><div class="t" style="width:40.7%"></div><b class="num">12%</b></div>
+          <div class="row hi"><span data-en="5 employers">5 empregadores</span><div class="t" style="width:23.1%"></div><b class="num" data-en="6.8%">6,8%</b></div>
+          <div class="row hi"><span data-en="6 or more">6 ou mais</span><div class="t" style="width:18.3%"></div><b class="num" data-en="5.4%">5,4%</b></div>
+        </div>
+        <p class="note"><a href="https://portal.cfm.org.br/noticias/demografia-medica-2015-medicos-sofrem-com-multiplos-vinculos-e-longas-jornadas-de-trabalho-e-plantoes/" target="_blank" rel="noopener" data-en="Source: CFM, Demografia Médica 2015 ↗">Fonte: CFM, Demografia Médica 2015 ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="chapter" id="job">
+    <div class="rail">
+      <div class="n">02</div>
+      <div class="stage" data-en="The job">O job</div>
+      <div class="chips"><span class="chip">Jobs to be done</span><span class="chip" data-en="Value proposition">Proposta de valor</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Renew in seconds, wherever the doctor is">Renovar em segundos, de onde o médico estiver</h2>
+      <div class="fig jtbd">
+        <p class="label">Job to be done</p>
+        <p class="jtbd-text" data-en="<b>When</b> I'm on the move between appointments and a patient on continuous treatment needs a new prescription, <b>I want to</b> renew it in a few seconds, without stopping to open a computer, <b>so that</b> the treatment isn't interrupted and my patient feels cared for.">
+          <b>Quando</b> estou em deslocamento entre um atendimento e outro e um paciente em tratamento contínuo precisa de uma nova receita, <b>quero</b> renovar em poucos segundos, sem parar para abrir um computador, <b>para que</b> o tratamento não seja interrompido e meu paciente se sinta acompanhado.</p>
+      </div>
+      <p class="pull" data-en="Technology working for the physician, not the physician adapting to technology.">A tecnologia a favor do médico, e não o médico se adaptando à tecnologia.</p>
+      <p data-en="The product thesis behind Afya ReceitaPro is to let physicians prescribe wherever and however they want. The smartwatch takes that thesis to the extreme: in traffic, running, surfing, between appointments, the renewal is one sentence away.">A tese de produto do Afya ReceitaPro é deixar o médico prescrever onde e como quiser. O smartwatch leva essa tese ao limite: no trânsito, correndo, surfando ou entre uma consulta e outra, a renovação está a uma frase de distância.</p>
+      <div class="fronts">
+        <div><b data-en="For the physician">Para o médico</b><span data-en="Less friction in a routine split across several workplaces. A recurring task solved in seconds, without breaking the flow of the day.">Menos fricção numa rotina dividida entre vários vínculos. Uma tarefa recorrente resolvida em segundos, sem quebrar o fluxo do dia.</span></div>
+        <div><b data-en="For the patient">Para o paciente</b><span data-en="The prescription arrives on WhatsApp, where they already are, with no waiting and no extra trip.">A receita chega no WhatsApp, onde ele já está, sem espera e sem deslocamento extra.</span></div>
+        <div><b data-en="For the relationship">Para a relação</b><span data-en="Faster responses strengthen the physician-patient bond and support treatment adherence.">Resposta mais rápida fortalece o vínculo médico-paciente e apoia a adesão ao tratamento.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="chapter" id="solucao">
+    <div class="rail">
+      <div class="n">03</div>
+      <div class="stage" data-en="The solution">A solução</div>
+      <div class="chips"><span class="chip" data-en="Voice">Voz</span><span class="chip" data-en="AI">IA</span><span class="chip" data-en="Wearables">Wearables</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Say it, check it, send it">Falar, conferir, enviar</h2>
+      <p data-en="The whole flow fits on a wrist. The physician speaks naturally, the AI understands the intent, finds the patient and retrieves the last prescription. The doctor stays in control: nothing is sent without a confirmation.">O fluxo inteiro cabe no pulso. O médico fala de forma natural, a IA entende a intenção, encontra o paciente e recupera a última prescrição. O médico continua no controle: nada é enviado sem a confirmação dele.</p>
+      <div class="flow">
+        <figure><img src="../assets/pulso/pulso-apps.jpg" alt="Apple Watch com o ícone do Afya ReceitaPro entre os apps" loading="lazy" width="900" height="900"><figcaption><i>01</i><b data-en="Open">Abre</b><span data-en="Afya ReceitaPro is right there on the watch.">O Afya ReceitaPro está ali, no relógio.</span></figcaption></figure>
+        <figure><img src="../assets/pulso/pulso-voz.jpg" alt="Tela do relógio: Pronto para renovar? Fale o nome do paciente." loading="lazy" width="900" height="900"><figcaption><i>02</i><b data-en="Speak and check">Fala e confere</b><span data-en="&quot;Renew Camila Soares's prescription.&quot; The AI finds the patient and shows the last prescription to confirm.">"Renovar a receita da Camila Soares." A IA encontra a paciente e mostra a última prescrição para confirmar.</span></figcaption></figure>
+        <figure><img src="../assets/pulso/pulso-enviada.jpg" alt="Tela do relógio: Prescrição renovada!" loading="lazy" width="900" height="900"><figcaption><i>03</i><b data-en="Sent">Enviada</b><span data-en="Prescription renewed and delivered to the patient's WhatsApp.">Prescrição renovada e entregue no WhatsApp do paciente.</span></figcaption></figure>
+      </div>
+      <p class="note" data-en="Real photos of the experiment. Camila Soares is a fictitious demo patient.">Fotos reais do experimento. Camila Soares é uma paciente fictícia, usada na demonstração.</p>
+      <div class="fig launch" id="lancamento">
+        <h3 data-en="Launch video">Vídeo de lançamento</h3>
+        <p class="sub" data-en="The full flow in action, with audio.">O fluxo completo em ação, com áudio.</p>
+        <video controls playsinline preload="none" data-video="lancamento-smartwatch" poster="../assets/pulso/lancamento-poster.jpg" src="../assets/pulso/lancamento-smartwatch.mp4"></video>
+      </div>
+      <div class="fig channels">
+        <img src="../assets/pulso/receitapro-multicanal.jpg" alt="Afya ReceitaPro em app, WhatsApp e smartwatch: prescreva onde e como quiser" loading="lazy" width="1280" height="719">
+        <p class="sub" data-en="The watch as one more channel of Afya ReceitaPro, alongside the app and WhatsApp: multichannel, multiformat, free digital signature and AI built into the experience.">O relógio como mais um canal do Afya ReceitaPro, ao lado do app e do WhatsApp: experiência multicanal, prescrição em multiformato, assinatura digital gratuita e IA integrada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="chapter" id="visao">
+    <div class="rail">
+      <div class="n">04</div>
+      <div class="stage" data-en="The vision">A visão</div>
+      <div class="chips"><span class="chip">Agentic AI</span><span class="chip">Voice AI</span><span class="chip">Human-in-the-loop</span><span class="chip" data-en="Intent-based UX">UX por intenção</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Agentic AI on the wrist: from intent to action">Agentic AI no pulso: da intenção à ação</h2>
+      <p data-en="More than a new screen, the smartwatch was an agentic AI experiment applied to clinical practice. Instead of navigating menus and filling in fields, the physician states an intention in natural language, and the AI orchestrates the steps on its own: it transcribes the voice command, identifies the patient, retrieves the last prescription, prepares the renewal and delivers it to the patient on WhatsApp. The physician stays human-in-the-loop, reviewing and approving before anything is sent.">Mais do que uma nova tela, o smartwatch foi um experimento de IA agêntica aplicada à prática clínica. Em vez de navegar por menus e preencher campos, o médico expressa uma intenção em linguagem natural, e a IA orquestra as etapas sozinha: transcreve o comando de voz, identifica o paciente, recupera a última prescrição, prepara a renovação e entrega ao paciente no WhatsApp. O médico segue como human-in-the-loop, revisando e aprovando antes de qualquer envio.</p>
+      <div class="shiftrow">
+        <div><s data-en="Clicks and forms">Cliques e formulários</s><i>→</i><b data-en="Natural language intent">Intenção em linguagem natural</b></div>
+        <div><s data-en="The doctor goes to the system">O médico vai até o sistema</s><i>→</i><b data-en="The system goes to the doctor">O sistema vai até o médico</b></div>
+        <div><s data-en="The user executes every step">O usuário executa cada etapa</s><i>→</i><b data-en="The AI orchestrates, the human approves">A IA orquestra, o humano aprova</b></div>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><b data-en="Intent over interface">Intenção acima da interface</b><em data-en="Voice as the main input">Voz como entrada principal</em><span data-en="The smaller the screen, the more the product needs to understand what the user wants instead of asking for every detail.">Quanto menor a tela, mais o produto precisa entender o que o usuário quer, em vez de pedir cada detalhe.</span></div>
+        <div class="pillar"><b>Human-in-the-loop</b><em data-en="Confirmation before sending">Confirmação antes do envio</em><span data-en="The AI prepares, the physician decides. In a regulated, clinical context, the final word is always the doctor's.">A IA prepara, o médico decide. Em um contexto clínico e regulado, a palavra final é sempre do médico.</span></div>
+        <div class="pillar"><b data-en="Context is the moat">Contexto é o diferencial</b><em data-en="The last prescription as a starting point">A última prescrição como ponto de partida</em><span data-en="Renewal works because the history already exists. The data the product already has is what makes one sentence enough.">A renovação funciona porque o histórico já existe. Os dados que o produto já tem são o que tornam uma frase suficiente.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="chapter" id="aprendizados">
+    <div class="rail">
+      <div class="n">05</div>
+      <div class="stage" data-en="Impact and learnings">Impacto e aprendizados</div>
+      <div class="chips"><span class="chip" data-en="Experimentation">Experimentação</span></div>
+    </div>
+    <div class="body">
+      <h2 data-en="Innovation that starts from the routine, not from the technology">Inovação que nasce da rotina, não da tecnologia</h2>
+      <p data-en="The smartwatch put Afya ReceitaPro at the forefront of digital prescription in Brazil, with the country's first prescription issued from the wrist. Beyond the milestone, the experiment opened a path: proving that voice, AI and the product's own data can turn a recurring clinical task into a sentence.">O smartwatch colocou o Afya ReceitaPro na vanguarda da prescrição digital no Brasil, com a primeira prescrição do país emitida pelo pulso. Além do marco, o experimento abriu um caminho: mostrou que voz, IA e os dados do próprio produto podem transformar uma tarefa clínica recorrente em uma frase.</p>
+      <ol class="learn">
+        <li><b data-en="Start from the job, not the device">Comece pelo job, não pelo dispositivo</b><span data-en="The watch only made sense because renewal is short, frequent and happens on the move. The right channel depends on the right task.">O relógio só fez sentido porque a renovação é curta, frequente e acontece em movimento. O canal certo depende do job certo.</span></li>
+        <li><b data-en="Less interface, more intention">Menos interface, mais intenção</b><span data-en="Small screens force you to design what the product understands, not what the user fills in.">Telas pequenas obrigam a desenhar o que o produto entende, e não o que o usuário preenche.</span></li>
+        <li><b data-en="Confirmation is the new form">A confirmação é o novo formulário</b><span data-en="With AI doing the steps, the core of the UX becomes a clear, safe review before sending.">Com a IA executando as etapas, o centro da experiência passa a ser uma revisão clara e segura antes do envio.</span></li>
+        <li><b data-en="Measuring on the wrist is a different game">Medir no pulso é outro jogo</b><span data-en="Collecting usage data on the Apple Watch was one of the hardest parts: a third-party interface, a new technology, and fewer instrumentation options than web or app. Planning measurement from the start is part of the experiment.">Coletar dados de uso na interface do Apple Watch foi um dos maiores desafios: uma interface de terceiros, uma tecnologia nova e menos opções de instrumentação do que na web ou no app. Planejar a medição desde o início faz parte do experimento.</span></li>
+        <li><b data-en="Experiment small to learn big">Experimente pequeno para aprender grande</b><span data-en="A focused experiment, with one job and one channel, tested the agentic model without putting the core product at risk.">Um experimento focado, com um job e um canal, testou o modelo agêntico sem colocar o produto principal em risco.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="closing" id="fim">
+    <img src="../assets/laissa.jpg" alt="Laíssa Margoni" width="720" height="720" loading="lazy">
+    <div>
+      <p class="eyebrow" data-en="Case led by">Case conduzido por</p>
+      <h2>Laíssa Margoni</h2>
+      <p class="role">Staff Product Manager</p>
+    </div>
+    <div class="closing-cta">
+      <a class="btn" href="../ia-whatsapp/" data-case-link="ia-whatsapp" data-cta="next_case" data-en="Next case: AI and WhatsApp →">Próximo case: IA e WhatsApp →</a>
+      <a class="btn ghost" href="../#contato" id="cta-contact" data-en="Get in touch">Vamos conversar</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© Laíssa Margoni</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+  /* language */
+  var nodes=[].slice.call(document.querySelectorAll('[data-en]'));
+  nodes.forEach(function(n){n._pt=n.innerHTML});
+  function setLang(l){
+    nodes.forEach(function(n){n.innerHTML=(l==='en')?n.getAttribute('data-en'):n._pt});
+    root.lang=(l==='en')?'en-US':'pt-BR';
+    document.getElementById('lang-pt').setAttribute('aria-pressed',l!=='en');
+    document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+    store('lm-lang',l);
+  }
+  document.getElementById('lang-pt').onclick=function(){setLang('pt')};
+  document.getElementById('lang-en').onclick=function(){setLang('en')};
+  if(location.hash==='#en'||(location.hash!=='#pt'&&read('lm-lang')==='en'))setLang('en');
+
+  /* theme */
+  function isDark(){
+    var t=root.getAttribute('data-theme');
+    if(t)return t==='dark';
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paintTheme(){
+    var d=isDark();
+    document.getElementById('theme-dark').setAttribute('aria-pressed',d);
+    document.getElementById('theme-light').setAttribute('aria-pressed',!d);
+  }
+  function setTheme(t){root.setAttribute('data-theme',t);store('lm-theme-case',t);paintTheme()}
+  document.getElementById('theme-light').onclick=function(){setTheme('light')};
+  document.getElementById('theme-dark').onclick=function(){setTheme('dark')};
+  var saved=read('lm-theme-case');root.setAttribute('data-theme',saved==='light'?'light':'dark'); /* case: escuro por padrão */
+  paintTheme();
+
+  /* prototype tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){t.onclick=function(){
+    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('data-shot')).hidden=!on});
+  }});
+})();
+</script>
+<script>try{if(matchMedia('(prefers-reduced-motion: reduce)').matches){var r=document.getElementById('reel');r.removeAttribute('autoplay');r.pause();r.controls=true}}catch(e){}</script>
+<script src="../analytics.js" defer></script>
+</body>
+</html>
