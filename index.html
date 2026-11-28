@@ -125,15 +125,9 @@ button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .card:nth-child(8){--r:3deg;margin-top:12px}.card:nth-child(9){--r:-2deg;margin-top:6px}.card:nth-child(10){--r:2.5deg;margin-top:12px}
 .offwork{margin-top:18px}
 .ow-btn{display:inline-flex;align-items:center;gap:10px;padding:9px 14px 9px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .2s,color .2s}
-.ow-btn:hover,.ow-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.ow-btn{text-decoration:none}.ow-btn:hover{border-color:var(--accent);color:var(--accent)}
 .ow-ico{display:inline-flex}.ow-ico svg{width:26px;height:26px;padding:4px;margin-right:-6px;border-radius:50%;background:var(--surface);border:1px solid var(--line);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.ow-plus{font-size:18px;transition:transform .25s}.ow-btn[aria-expanded="true"] .ow-plus{transform:rotate(45deg)}
-.ow-panel{margin-top:14px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;animation:owIn .35s ease}
-@keyframes owIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.ow-k{font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
-.ow-panel ul{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-wrap:wrap;gap:8px}.ow-panel ul:last-child{margin-bottom:0}
-.ow-panel li{display:inline-flex;align-items:center;gap:7px;padding:7px 11px 7px 8px;border-radius:999px;background:var(--surface);font:500 13px/1 var(--body)}
-.ow-panel li svg{width:18px;height:18px;fill:none;stroke:#874B37;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ow-plus{font-size:18px;transition:transform .25s}
 .q-note{margin:22px auto 0;text-align:center;font-size:13px;color:var(--ink-2);max-width:60ch}
 .deck-nav{display:flex;gap:8px}
 .deck-nav button{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 22px/1 var(--body);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
@@ -337,6 +331,49 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   .bar .wrap{gap:8px;padding:0 16px}
   .menu-btn{padding:8px 10px;font-size:13px}
 }
+
+/* Fora do trabalho */
+.fora .lead{font-size:clamp(19px,2vw,23px);line-height:1.45}
+.fora-open{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,80px);align-items:center;margin-top:36px}
+.fora-txt{display:flex;flex-direction:column;gap:16px}
+.album{margin:0;justify-self:center;background:#fff;padding:12px 12px 0;box-shadow:0 18px 40px -18px rgba(23,45,77,.45),0 2px 6px rgba(23,45,77,.12);transform:rotate(-2.5deg);position:relative;max-width:380px;transition:transform .4s}
+.album:hover{transform:rotate(0)}
+.album::before{content:"";position:absolute;top:-12px;left:50%;width:96px;height:26px;transform:translateX(-50%) rotate(3deg);background:rgba(217,154,120,.55);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.album img{display:block;width:100%;height:auto;filter:saturate(.92) contrast(1.02)}
+.album figcaption{font:500 14px/1.3 var(--body);color:#172D4D;text-align:center;padding:12px 6px 16px;font-style:italic}
+.rugby{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:clamp(48px,7vw,88px)}
+.rugby figure{margin:0}
+.rugby img{display:block;width:100%;height:auto;border-radius:22px}
+.rugby-txt{display:flex;flex-direction:column;gap:12px}
+.rugby-txt p:first-child{font-size:18px;line-height:1.5}
+.rugby-q{font:600 clamp(34px,4.6vw,56px)/1.05 var(--display);color:var(--accent);letter-spacing:-.02em;margin:6px 0 0}
+.rugby-gloss{font-size:14px;opacity:.75;max-width:30em}
+.fora-values{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);margin-top:clamp(48px,7vw,88px);align-items:start}
+.fora-values>p{font-size:18px;line-height:1.6}
+.ow-k{font:600 12px/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.ow-list{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-wrap:wrap;gap:8px}
+.ow-list li{display:inline-flex;align-items:center;gap:7px;padding:7px 11px 7px 8px;border-radius:999px;background:var(--surface);font:500 13px/1 var(--body)}
+.ow-list li svg{width:18px;height:18px;fill:none;stroke:#874B37;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.press{display:flex;gap:12px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:16px;color:var(--ink);text-decoration:none;font-size:14px;line-height:1.4;transition:border-color .2s}
+.press:hover{border-color:var(--accent)}
+.press-play{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#874B37;color:#fff;font-size:12px;padding-left:2px}
+.shelf-wrap{margin-top:clamp(48px,7vw,88px)}
+.shelf{display:flex;align-items:flex-end;gap:5px;overflow-x:auto;padding:22px 6px 0;border-bottom:10px solid #874B37;border-radius:0 0 4px 4px;box-shadow:0 10px 16px -12px rgba(23,45,77,.5);scrollbar-width:thin}
+.bk{flex:1 1 40px;min-width:36px;max-width:58px;display:flex;align-items:center;justify-content:center;border-radius:3px 3px 0 0;text-decoration:none;padding:12px 0;transition:transform .25s;box-shadow:inset -3px 0 0 rgba(0,0,0,.12),inset 3px 0 0 rgba(255,255,255,.12)}
+.bk span{writing-mode:vertical-rl;transform:rotate(180deg);font:600 13px/1 var(--body);letter-spacing:.01em;white-space:nowrap}
+.bk:hover,.bk:focus-visible{transform:translateY(-10px)}
+.bk0{background:#874B37;color:#fff;height:248px}
+.bk1{background:#D99A78;color:#172D4D;height:226px}
+.bk2{background:#172D4D;color:#F2F4F5;height:262px}
+.bk3{background:#718A91;color:#fff;height:236px}
+.bk4{background:#BFC6C8;color:#172D4D;height:254px}
+.bk5{background:#5E3426;color:#F2E4DA;height:242px}
+.bk6{background:#2E4A6B;color:#fff;height:230px}
+.shelf-note{font-size:13px;opacity:.65;margin-top:10px}
+.fora-close{font:500 clamp(26px,3.6vw,44px)/1.2 var(--display);letter-spacing:-.02em;text-align:center;max-width:20em;margin:clamp(56px,8vw,96px) auto 0;text-wrap:balance}
+.fora-close::before{content:"";display:block;width:40px;height:3px;background:#D99A78;border-radius:2px;margin:0 auto 22px}
+@media (max-width:860px){.fora-open,.rugby,.fora-values{grid-template-columns:1fr}.album{max-width:300px}}
+@media (prefers-reduced-motion:reduce){.album,.bk{transition:none}}
 </style>
 </head>
 <body data-page="home">
@@ -520,13 +557,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
         <p data-en="I believe in product management that brings strategy, evidence and collaboration together to create real impact.">Acredito em uma gestão de produto que une estratégia, evidências e colaboração para gerar impacto real.</p>
         <a class="insta" href="https://www.instagram.com/laissamargoni.lab/" target="_blank" rel="noopener" data-cta="about_instagram"><span class="ig" aria-hidden="true"></span><span data-en="I also talk about health on Instagram: <b>@laissamargoni.lab</b> ↗">Também falo sobre saúde no Instagram: <b>@laissamargoni.lab</b> ↗</span></a>
         <div class="offwork">
-          <button type="button" class="ow-btn" aria-expanded="false" aria-controls="ow-panel" data-cta="about_offwork"><span class="ow-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><svg viewBox="0 0 24 24"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg></span><span data-en="Outside work">Fora do trabalho</span><span class="ow-plus" aria-hidden="true">+</span></button>
-          <div class="ow-panel" id="ow-panel" hidden>
-            <p class="ow-k" data-en="Interests">Interesses</p>
-            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><span data-en="Reading">Leitura</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><span data-en="The beach">Praia</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9.2" ry="6.8" transform="rotate(-35 12 12)"/><path d="M5.4 17.4C9.5 15.8 15.5 9.9 18.6 6.6"/><path d="M6.8 14.2c2.6-1.6 6.2-5.2 8-7.4M9.2 17.2c2.2-1.4 5.8-4.8 7.9-7.6"/></svg><span data-en="I used to play rugby">Já joguei rugby</span></li></ul>
-            <p class="ow-k" data-en="Practices">Práticas</p>
-            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg><span data-en="Strength training">Musculação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg><span data-en="Yoga">Yoga</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 9v4M4 19c2-3 5-4 8-4s6 1 8 4M7 14l5-1 5 1"/></svg><span data-en="Meditation">Meditação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-4-3-9 0-8 5 1 6 5 9 8 7 3 2 7-1 8-7 1-5-4-8-8-5z"/><path d="M12 7c0-2 1-3 3-4"/></svg><span data-en="Nutrition">Alimentação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/></svg><span data-en="Sleep">Sono</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span data-en="Stress management">Gestão de estresse</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 10h8"/></svg><span data-en="Therapy">Terapia</span></li></ul>
-          </div>
+          <a class="ow-btn" href="#fora" data-cta="about_offwork"><span class="ow-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><svg viewBox="0 0 24 24"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg></span><span data-en="Outside work">Fora do trabalho</span><span class="ow-plus" aria-hidden="true">↓</span></a>
         </div>
       </div>
     </div>
@@ -591,6 +622,75 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
         <li><b data-en="Volunteer">Voluntária</b><span data-en="career mentoring for refugees">mentoria de carreira para pessoas refugiadas</span></li>
         <li><b data-en="Knowledge Pills">Pílulas de Conhecimento</b><span data-en="a weekly product newsletter I created for other areas of a company">newsletter semanal sobre produto que criei para outras áreas de uma empresa</span></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="fora">
+    <div class="wrap fora">
+      <div class="sec-head reveal">
+        <div>
+          <p class="kicker" data-en="Outside work">Fora do trabalho</p>
+          <h2 data-en="A life worth living">Uma vida que valha a pena</h2>
+        </div>
+      </div>
+
+      <div class="fora-open">
+        <figure class="album reveal">
+          <img src="assets/fora/infancia-praia.webp" alt="Laíssa criança na praia, de braços abertos, com uma boia rosa na cintura e o mar ao fundo" width="700" height="810" loading="lazy" decoding="async">
+          <figcaption data-en="Arms open to the sea since forever">De braços abertos pro mar desde sempre</figcaption>
+        </figure>
+        <div class="fora-txt reveal">
+          <p class="lead" data-en="I was born in São Paulo, the capital, and I've lived in Balneário Camboriú since 2018. I moved for the quality of life and because I really love living near the sea.">Nasci em São Paulo, capital, e moro em Balneário Camboriú desde 2018. Me mudei pela qualidade de vida e porque gosto muito de viver perto do mar.</p>
+          <p data-en="I want to live a life worth living. When I think about growing old, I think about still going to the beach, swimming in the sea, spending time in nature, traveling with my husband and playing with my dogs. I also really love my life at home. An afternoon coffee and a movie or a series with my husband and the dogs nearby is already a good day for me.">Quero viver uma vida que valha a pena. Quando penso em envelhecer, penso em continuar indo à praia, tomando banho de mar, passando tempo na natureza, viajando com meu marido e brincando com as minhas cachorras. Também gosto muito da minha vida em casa. Um café da tarde e um filme ou uma série com meu marido e as cachorras por perto já fazem um dia bom pra mim.</p>
+          <p data-en="I love Christmas and my birthday. I read a lot, I like philosophy, art and memes, and I listen to a bit of everything, especially rock and R&amp;B.">Amo o Natal e o meu aniversário. Leio bastante, gosto de filosofia, arte e memes, e ouço de tudo um pouco, principalmente rock e R&amp;B.</p>
+        </div>
+      </div>
+
+      <div class="rugby reveal">
+        <figure>
+          <img src="assets/fora/rugby.webp" alt="Laíssa de costas, de uniforme, segurando a bola num campo de rugby à noite" width="1170" height="820" loading="lazy" decoding="async">
+        </figure>
+        <div class="rugby-txt">
+          <p data-en="Something few people would guess about me is that I used to play amateur rugby.">Uma coisa que pouca gente imagina sobre mim é que já joguei rugby amador.</p>
+          <p class="rugby-q" data-en="“I've got your support.”">“Tô no apoio.”</p>
+          <p class="rugby-gloss" data-en="In rugby, it's what you call out so whoever has the ball knows you're right there, ready for the pass.">No rugby, é o que se grita pra quem está com a bola saber que você está ali, pronta pro passe.</p>
+        </div>
+      </div>
+
+      <div class="fora-values reveal">
+        <p data-en="I like feeling that what I do has purpose. I take my values seriously and I believe it's possible to build a more equal and inclusive society. For me, that also shows up in everyday choices, in how I treat people and in who I consider when I make a decision.">Gosto de sentir que o que eu faço tem propósito. Levo meus valores a sério e acredito que dá pra construir uma sociedade mais igualitária e inclusiva. Pra mim, isso também aparece nas escolhas do dia a dia, no jeito como trato as pessoas e em quem eu considero quando tomo uma decisão.</p>
+        <div class="fora-daily">
+          <p class="ow-k" data-en="In my routine">Na rotina</p>
+          <ul class="ow-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg><span data-en="Strength training">Musculação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg><span data-en="Yoga">Yoga</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 9v4M4 19c2-3 5-4 8-4s6 1 8 4M7 14l5-1 5 1"/></svg><span data-en="Meditation">Meditação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-4-3-9 0-8 5 1 6 5 9 8 7 3 2 7-1 8-7 1-5-4-8-8-5z"/><path d="M12 7c0-2 1-3 3-4"/></svg><span data-en="Nutrition">Alimentação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/></svg><span data-en="Sleep">Sono</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span data-en="Stress management">Gestão de estresse</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 10h8"/></svg><span data-en="Therapy">Terapia</span></li></ul>
+          <a class="press" href="https://ndmais.com.br/video/pratica-ao-ar-livre-marca-dia-internacional-do-yoga-em-balneario-camboriu/" target="_blank" rel="noopener" data-cta="press_yoga"><span class="press-play" aria-hidden="true">▶</span><span data-en="I was interviewed for an ND+ report on International Yoga Day in Balneário Camboriú ↗">Fui entrevistada numa reportagem do ND+ sobre o Dia Internacional do Yoga em Balneário Camboriú ↗</span></a>
+        </div>
+      </div>
+
+      <div class="shelf-wrap reveal">
+        <p class="ow-k" data-en="Some books I've read">Alguns livros que li</p>
+        <div class="shelf">
+          <a class="bk bk0" href="https://www.google.com/search?tbm=bks&amp;q=Flores+para+Algernon+Daniel+Keyes+livro" target="_blank" rel="noopener" data-cta="book_1" aria-label="Flores para Algernon, de Daniel Keyes (abre a busca no Google Livros)" data-en-label="Flores para Algernon, by Daniel Keyes (opens a Google Books search)" title="Flores para Algernon · Daniel Keyes"><span>Flores para Algernon</span></a>
+          <a class="bk bk1" href="https://www.google.com/search?tbm=bks&amp;q=Tudo+sobre+o+amor+bell+hooks+livro" target="_blank" rel="noopener" data-cta="book_2" aria-label="Tudo sobre o amor, de bell hooks (abre a busca no Google Livros)" data-en-label="Tudo sobre o amor, by bell hooks (opens a Google Books search)" title="Tudo sobre o amor · bell hooks"><span>Tudo sobre o amor</span></a>
+          <a class="bk bk2" href="https://www.google.com/search?tbm=bks&amp;q=O+mito+de+S%C3%ADsifo+Albert+Camus+livro" target="_blank" rel="noopener" data-cta="book_3" aria-label="O mito de Sísifo, de Albert Camus (abre a busca no Google Livros)" data-en-label="O mito de Sísifo, by Albert Camus (opens a Google Books search)" title="O mito de Sísifo · Albert Camus"><span>O mito de Sísifo</span></a>
+          <a class="bk bk3" href="https://www.google.com/search?tbm=bks&amp;q=O+jantar+secreto+Raphael+Montes+livro" target="_blank" rel="noopener" data-cta="book_4" aria-label="O jantar secreto, de Raphael Montes (abre a busca no Google Livros)" data-en-label="O jantar secreto, by Raphael Montes (opens a Google Books search)" title="O jantar secreto · Raphael Montes"><span>O jantar secreto</span></a>
+          <a class="bk bk4" href="https://www.google.com/search?tbm=bks&amp;q=Factfulness+Hans+Rosling+livro" target="_blank" rel="noopener" data-cta="book_5" aria-label="Factfulness, de Hans Rosling (abre a busca no Google Livros)" data-en-label="Factfulness, by Hans Rosling (opens a Google Books search)" title="Factfulness · Hans Rosling"><span>Factfulness</span></a>
+          <a class="bk bk5" href="https://www.google.com/search?tbm=bks&amp;q=Pra+vida+toda+valer+a+pena+viver+Ana+Claudia+Quintana+Arantes+livro" target="_blank" rel="noopener" data-cta="book_6" aria-label="Pra vida toda valer a pena viver, de Ana Claudia Quintana Arantes (abre a busca no Google Livros)" data-en-label="Pra vida toda valer a pena viver, by Ana Claudia Quintana Arantes (opens a Google Books search)" title="Pra vida toda valer a pena viver · Ana Claudia Quintana Arantes"><span>Pra vida toda valer a pena viver</span></a>
+          <a class="bk bk6" href="https://www.google.com/search?tbm=bks&amp;q=Respire+James+Nestor+livro" target="_blank" rel="noopener" data-cta="book_7" aria-label="Respire, de James Nestor (abre a busca no Google Livros)" data-en-label="Respire, by James Nestor (opens a Google Books search)" title="Respire · James Nestor"><span>Respire</span></a>
+          <a class="bk bk0" href="https://www.google.com/search?tbm=bks&amp;q=A+paciente+silenciosa+Alex+Michaelides+livro" target="_blank" rel="noopener" data-cta="book_8" aria-label="A paciente silenciosa, de Alex Michaelides (abre a busca no Google Livros)" data-en-label="A paciente silenciosa, by Alex Michaelides (opens a Google Books search)" title="A paciente silenciosa · Alex Michaelides"><span>A paciente silenciosa</span></a>
+          <a class="bk bk1" href="https://www.google.com/search?tbm=bks&amp;q=Hygge+Meik+Wiking+livro" target="_blank" rel="noopener" data-cta="book_9" aria-label="Hygge, de Meik Wiking (abre a busca no Google Livros)" data-en-label="Hygge, by Meik Wiking (opens a Google Books search)" title="Hygge · Meik Wiking"><span>Hygge</span></a>
+          <a class="bk bk2" href="https://www.google.com/search?tbm=bks&amp;q=Mais+Plat%C3%A3o%2C+menos+Prozac+Lou+Marinoff+livro" target="_blank" rel="noopener" data-cta="book_10" aria-label="Mais Platão, menos Prozac, de Lou Marinoff (abre a busca no Google Livros)" data-en-label="Mais Platão, menos Prozac, by Lou Marinoff (opens a Google Books search)" title="Mais Platão, menos Prozac · Lou Marinoff"><span>Mais Platão, menos Prozac</span></a>
+          <a class="bk bk3" href="https://www.google.com/search?tbm=bks&amp;q=A+roda+da+vida+Elisabeth+K%C3%BCbler-Ross+livro" target="_blank" rel="noopener" data-cta="book_11" aria-label="A roda da vida, de Elisabeth Kübler-Ross (abre a busca no Google Livros)" data-en-label="A roda da vida, by Elisabeth Kübler-Ross (opens a Google Books search)" title="A roda da vida · Elisabeth Kübler-Ross"><span>A roda da vida</span></a>
+          <a class="bk bk4" href="https://www.google.com/search?tbm=bks&amp;q=Na%C3%A7%C3%A3o+dopamina+Anna+Lembke+livro" target="_blank" rel="noopener" data-cta="book_12" aria-label="Nação dopamina, de Anna Lembke (abre a busca no Google Livros)" data-en-label="Nação dopamina, by Anna Lembke (opens a Google Books search)" title="Nação dopamina · Anna Lembke"><span>Nação dopamina</span></a>
+          <a class="bk bk5" href="https://www.google.com/search?tbm=bks&amp;q=Nada+mais+ser%C3%A1+como+antes+Miguel+Nicolelis+livro" target="_blank" rel="noopener" data-cta="book_13" aria-label="Nada mais será como antes, de Miguel Nicolelis (abre a busca no Google Livros)" data-en-label="Nada mais será como antes, by Miguel Nicolelis (opens a Google Books search)" title="Nada mais será como antes · Miguel Nicolelis"><span>Nada mais será como antes</span></a>
+          <a class="bk bk6" href="https://www.google.com/search?tbm=bks&amp;q=Desestresse+livro" target="_blank" rel="noopener" data-cta="book_14" aria-label="Desestresse (abre a busca no Google Livros)" data-en-label="Desestresse (opens a Google Books search)" title="Desestresse"><span>Desestresse</span></a>
+          <a class="bk bk0" href="https://www.google.com/search?tbm=bks&amp;q=O+%C3%BAltimo+sopro+de+vida+Paul+Kalanithi+livro" target="_blank" rel="noopener" data-cta="book_15" aria-label="O último sopro de vida, de Paul Kalanithi (abre a busca no Google Livros)" data-en-label="O último sopro de vida, by Paul Kalanithi (opens a Google Books search)" title="O último sopro de vida · Paul Kalanithi"><span>O último sopro de vida</span></a>
+          <a class="bk bk1" href="https://www.google.com/search?tbm=bks&amp;q=Sem+esfor%C3%A7o+Greg+McKeown+livro" target="_blank" rel="noopener" data-cta="book_16" aria-label="Sem esforço, de Greg McKeown (abre a busca no Google Livros)" data-en-label="Sem esforço, by Greg McKeown (opens a Google Books search)" title="Sem esforço · Greg McKeown"><span>Sem esforço</span></a>
+          <a class="bk bk2" href="https://www.google.com/search?tbm=bks&amp;q=Os+originais+Adam+Grant+livro" target="_blank" rel="noopener" data-cta="book_17" aria-label="Os originais, de Adam Grant (abre a busca no Google Livros)" data-en-label="Os originais, by Adam Grant (opens a Google Books search)" title="Os originais · Adam Grant"><span>Os originais</span></a>
+        </div>
+        <p class="shelf-note" data-en="Tap a book to find it.">Toque num livro para encontrá-lo.</p>
+      </div>
+
+      <p class="fora-close reveal" data-en="How much of you is in the people you spend your life with?">Quanto de você tem nas pessoas com quem você convive?</p>
     </div>
   </section>
 
@@ -731,6 +831,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   nodes.forEach(n=>{n._pt=n.innerHTML});
   function setLang(l){
     nodes.forEach(n=>{n.innerHTML=(l==='en')?n.getAttribute('data-en'):n._pt});
+    document.querySelectorAll('[data-en-label]').forEach(n=>{if(!n._ptl)n._ptl=n.getAttribute('aria-label');n.setAttribute('aria-label',l==='en'?n.getAttribute('data-en-label'):n._ptl);});
     root.lang=(l==='en')?'en-US':'pt-BR';
     $('lang-pt').setAttribute('aria-pressed',l!=='en');$('lang-en').setAttribute('aria-pressed',l==='en');
     $('deck-prev').setAttribute('aria-label',l==='en'?'Previous':'Anterior');$('deck-next').setAttribute('aria-label',l==='en'?'Next':'Próximo');
@@ -939,7 +1040,6 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   }
 
 }
-(function(){var b=document.querySelector('.ow-btn'),p=document.getElementById('ow-panel');if(!b||!p)return;b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));p.hidden=o;});})();
 </script>
 <script src="analytics.js" defer>
 </script>
