@@ -191,6 +191,19 @@ button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .about .lead em{font-style:normal;color:var(--accent);font-weight:500}
 
 /* como trabalho */
+.multiverso{margin-top:56px;background:#172D4D;color:#EEF1F2;border-radius:32px;padding:clamp(26px,4.5vw,54px);position:relative;overflow:hidden}
+.multiverso::before{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;border:1px dashed rgba(217,154,120,.35);box-shadow:0 0 0 60px rgba(217,154,120,.04),0 0 0 120px rgba(217,154,120,.03);pointer-events:none}
+.multiverso .kicker{color:#D99A78}
+.mv-head h3{font-family:var(--display);font-size:clamp(26px,3.2vw,38px);font-weight:500;letter-spacing:-.02em;margin:10px 0 14px;max-width:22em;text-wrap:balance}
+.mv-head p{color:#BFC6C8;line-height:1.6;max-width:62ch;margin:0}
+.mv-steps{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;position:relative}
+.mv-steps li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;transition:border-color .25s,background .25s}
+.mv-steps li:hover{border-color:#D99A78;background:rgba(217,154,120,.08)}
+.mv-steps i{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#D99A78;color:#172D4D;font:700 13px/1 var(--display);font-style:normal}
+.mv-steps b{display:block;font-family:var(--display);font-size:19px;font-weight:500;margin:14px 0 8px;color:#fff}
+.mv-steps span{display:block;font-size:14.5px;line-height:1.5;color:#BFC6C8}
+@media (max-width:900px){.mv-steps{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.mv-steps{grid-template-columns:1fr}}
 .tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .tools>div{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 22px 24px;transition:border-color .25s,transform .25s}
 .tools>div:hover{border-color:var(--accent-2);transform:translateY(-2px)}
@@ -523,7 +536,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
       <div class="sec-head reveal">
         <div>
           <p class="kicker" data-en="How I work">Como trabalho</p>
-          <h2 data-en="Four principles behind every decision">Quatro princípios por trás de cada decisão</h2>
+          <h2 data-en="Four principles and a method behind every decision">Quatro princípios e um método por trás de cada decisão</h2>
         </div>
       </div>
       <div class="ways stagger reveal">
@@ -532,9 +545,16 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
         <div><i>03</i><b data-en="Collaboration">Colaboração</b><span data-en="A shared vision built with physicians, design, engineering, business and leadership, from the squad to executive leadership.">Visão compartilhada com médicos, design, engenharia, negócio e liderança, do squad à liderança executiva.</span></div>
         <div><i>04</i><b data-en="Real impact">Impacto real</b><span data-en="Success is measured by what changes for people and for the business, not by the number of deliveries: a clear north star metric, explicit trade-offs and course correction.">Sucesso se mede pelo que muda para as pessoas e para o negócio, não pela quantidade de entregas: métrica norte clara, trade-offs explícitos e ajuste de rota.</span></div>
       </div>
+      <div class="multiverso reveal">
+        <div class="mv-head">
+          <p class="kicker" data-en="My method">Minha metodologia</p>
+          <h3 data-en="Product Multiverse: qualification, prioritization and visual management">Multiverso de Produto: qualificação, priorização e gestão à vista</h3>
+          <p data-en="A quarterly ritual I created in 2022 and used with the prescription squad: every request gets a place, a weight and a reason, and the whole company can see why something is in, and why something is out.">Um ritual trimestral que criei em 2022 e usei com o squad de prescrição: todo pedido ganha um lugar, um peso e um motivo, e a empresa inteira consegue ver por que algo entrou, e por que algo ficou de fora.</p>
+        </div>
+        <ol class="mv-steps"><li><i>01</i><b data-en="Request intake and map">Coleta e mapa de pedidos</b><span data-en="Everything that comes in (physicians, CX, business, partners) becomes a map by theme, with simulated data to size each request.">Tudo o que chega (médicos, CX, negócio, parceiros) vira um mapa por tema, com dados simulados para dimensionar cada pedido.</span></li><li><i>02</i><b data-en="Quarter focus">Foco do quarter</b><span data-en="The backlog is filtered by what matters in that cycle, before any discussion of solutions.">O backlog é filtrado pelo que importa naquele ciclo, antes de qualquer discussão de solução.</span></li><li><i>03</i><b data-en="Effort and value matrix">Matriz de esforço e valor</b><span data-en="Separates operational initiatives with incremental gains from strategic ones with disruptive gains, making the weight and return of each visible.">Separa iniciativas operacionais, de ganho incremental, das estratégicas, de ganho disruptivo, e deixa visível o peso e o retorno de cada uma.</span></li><li><i>04</i><b data-en="AVB matrix">Matriz AVB</b><span data-en="Advantages and benefits of each strategic action, explained to people outside the team&#39;s day to day.">Vantagens e benefícios de cada ação estratégica, explicados para quem não está no dia a dia do time.</span></li><li><i>05</i><b data-en="Radar and sequencing">Radar e sequenciamento</b><span data-en="The radar shows what is strategic, operational, just being followed and what we will not do this quarter. Sequencing orders themes by priority.">O radar mostra o que é estratégico, operacional, só acompanhamento e o que não faremos no quarter. O sequenciamento ordena os temas por prioridade.</span></li><li><i>06</i><b data-en="Planning and retro">Planning e retrospectiva</b><span data-en="Prioritized highlights become planning, and the cycle closes with what worked and what did not.">Os destaques priorizados viram planning, e o ciclo fecha com o que deu bom e o que deu ruim.</span></li></ol>
+      </div>
     </div>
   </section>
-
 
   <section class="sec" id="ferramentas">
     <div class="wrap">
