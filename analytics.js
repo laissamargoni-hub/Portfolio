@@ -166,7 +166,7 @@
   // Seções vistas (funil de leitura) — na Home são seções, no case são capítulos
   var order = PAGE === 'case'
     ? [].map.call(document.querySelectorAll('section.chapter[id]'), function (e) { return e.id; }).concat('fim')
-    : ['trabalho', 'formacao', 'sobre', 'como-trabalho', 'depoimentos', 'contato'];
+    : ['trabalho', 'formacao', 'sobre', 'como-trabalho', 'ferramentas', 'mentoria', 'depoimentos', 'contato'];
   var seen = {};
   var deepest = 0;
   var start = Date.now();

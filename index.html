@@ -191,6 +191,22 @@ button.card{font:inherit;text-align:left;border:0;cursor:pointer}
 .about .lead em{font-style:normal;color:var(--accent);font-weight:500}
 
 /* como trabalho */
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tools>div{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 22px 24px;transition:border-color .25s,transform .25s}
+.tools>div:hover{border-color:var(--accent-2);transform:translateY(-2px)}
+.tools b{display:block;font-family:var(--display);font-size:20px;font-weight:500;margin-bottom:14px}
+.tools ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
+.tools li{font-size:13.5px;line-height:1;padding:7px 11px;border-radius:999px;background:var(--tint);color:var(--ink)}
+.tools-note{margin-top:22px;max-width:62ch;color:var(--ink-2);font-size:15.5px;line-height:1.55}
+.mentor{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:start;background:var(--bg-2);border-radius:32px;padding:clamp(26px,4.5vw,54px)}
+.mentor h2{font-size:clamp(26px,3.2vw,38px);font-weight:500;letter-spacing:-.02em;margin:10px 0 14px;text-wrap:balance}
+.mentor p{color:var(--ink-2);line-height:1.6;margin:0 0 22px;max-width:52ch}
+.mentor-proof{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.mentor-proof li{background:var(--surface);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.mentor-proof b{font-family:var(--display);font-size:20px;font-weight:500;color:var(--accent)}
+.mentor-proof span{font-size:14.5px;color:var(--ink-2);line-height:1.45}
+@media (max-width:900px){.tools{grid-template-columns:1fr 1fr}.mentor{grid-template-columns:1fr}}
+@media (max-width:600px){.tools{grid-template-columns:1fr}}
 .ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
 .ways div{padding-top:18px;border-top:2px solid var(--ink);transition:border-color .3s}
 .ways div:hover{border-color:var(--accent)}
@@ -481,17 +497,19 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
         <img src="assets/laissa.jpg" alt="Laíssa Margoni" width="720" height="720" loading="lazy" decoding="async">
       </figure>
       <div class="txt reveal">
-        <p class="kicker" data-en="About">Sobre</p>
+        <p class="kicker" data-en="About · Health in real life">Sobre · Saúde na vida real</p>
         <p class="lead" data-en="More than shipping features, I care about building products that are relevant, sustainable and that create <em>real impact</em>.">Mais do que entregar funcionalidades, me interessa construir produtos relevantes, sustentáveis e que gerem <em>impacto real</em>.</p>
         <p data-en="I've been working in Product for 10 years, and what drives me is curiosity. I like to understand the why behind things, get to the root of problems, bring different perspectives together and turn what is complex into solutions that make sense for people and for the business.">Trabalho com Produto há 10 anos e o que me move é a curiosidade. Gosto de entender o porquê das coisas, ir atrás da causa dos problemas, juntar perspectivas diferentes e transformar o que é complexo em soluções que façam sentido para as pessoas e para o negócio.</p>
         <p data-en="For the last five years I've been immersed in digital health, leading medical prescription products in an environment of high technical and regulatory complexity. I hold a degree in Business Administration, a postgraduate degree in Neuroscience and Behavior, and I'm a collaborating researcher in Lifestyle Medicine.">Nos últimos cinco anos, mergulhei na saúde digital liderando produtos de prescrição médica, um ambiente de alta complexidade técnica e regulatória. Sou formada em Administração, pós-graduada em Neurociência e Comportamento e pesquisadora colaboradora em Medicina do Estilo de Vida.</p>
+        <p data-en="I'm a product person who lives health. My work is to close the gap between knowing and being able to: making what science and physicians know actually fit into people's real lives.">Sou uma pessoa de produto que vive saúde. Meu trabalho é diminuir a distância entre saber e conseguir: fazer o que a ciência e os médicos sabem caber na vida real das pessoas.</p>
+        <p data-en="For three years I was the only PM of Afya's prescription product, with a team of about ten people, before leading the Future of Prescription. Before that, as Product Lead, I led and mentored 8 Product Owners across 5 squads in a transformation from waterfall to agile.">Por três anos fui a única PM do produto de prescrição da Afya, com um time de cerca de dez pessoas, antes de liderar a Prescrição do Futuro. Antes disso, como Product Lead, liderei e mentorei 8 Product Owners em 5 squads numa transformação de waterfall para agile.</p>
         <p data-en="I believe in product management that brings strategy, evidence and collaboration together to create real impact.">Acredito em uma gestão de produto que une estratégia, evidências e colaboração para gerar impacto real.</p>
         <a class="insta" href="https://www.instagram.com/laissamargoni.lab/" target="_blank" rel="noopener" data-cta="about_instagram"><span class="ig" aria-hidden="true"></span><span data-en="I also talk about health on Instagram: <b>@laissamargoni.lab</b> ↗">Também falo sobre saúde no Instagram: <b>@laissamargoni.lab</b> ↗</span></a>
         <div class="offwork">
           <button type="button" class="ow-btn" aria-expanded="false" aria-controls="ow-panel" data-cta="about_offwork"><span class="ow-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><svg viewBox="0 0 24 24"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg></span><span data-en="Outside work">Fora do trabalho</span><span class="ow-plus" aria-hidden="true">+</span></button>
           <div class="ow-panel" id="ow-panel" hidden>
             <p class="ow-k" data-en="Interests">Interesses</p>
-            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><span data-en="Reading">Leitura</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><span data-en="The beach">Praia</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9" ry="5.5" transform="rotate(-35 12 12)"/><path d="M9 15l6-6M10 11.5l2.5 2.5M12 9.5l2.5 2.5"/></svg><span data-en="I used to play rugby">Já joguei rugby</span></li></ul>
+            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><span data-en="Reading">Leitura</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="6" r="2.5"/><path d="M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M8 16 11 6"/><path d="M5 9c2-3 8-4 11-1-4-.5-8 .2-11 1z"/></svg><span data-en="The beach">Praia</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9.2" ry="6.8" transform="rotate(-35 12 12)"/><path d="M5.4 17.4C9.5 15.8 15.5 9.9 18.6 6.6"/><path d="M6.8 14.2c2.6-1.6 6.2-5.2 8-7.4M9.2 17.2c2.2-1.4 5.8-4.8 7.9-7.6"/></svg><span data-en="I used to play rugby">Já joguei rugby</span></li></ul>
             <p class="ow-k" data-en="Practices">Práticas</p>
             <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg><span data-en="Strength training">Musculação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M5 11l7 2 7-2M8 20l4-6 4 6"/></svg><span data-en="Yoga">Yoga</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 9v4M4 19c2-3 5-4 8-4s6 1 8 4M7 14l5-1 5 1"/></svg><span data-en="Meditation">Meditação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-4-3-9 0-8 5 1 6 5 9 8 7 3 2 7-1 8-7 1-5-4-8-8-5z"/><path d="M12 7c0-2 1-3 3-4"/></svg><span data-en="Nutrition">Alimentação</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/></svg><span data-en="Sleep">Sono</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span data-en="Stress management">Gestão de estresse</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 10h8"/></svg><span data-en="Therapy">Terapia</span></li></ul>
           </div>
@@ -510,10 +528,48 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
       </div>
       <div class="ways stagger reveal">
         <div><i>01</i><b data-en="Strategy">Estratégia</b><span data-en="I start from the role the product plays in the ecosystem and in the business, not from a list of features.">Começo pelo papel que o produto cumpre no ecossistema e no negócio, não por uma lista de funcionalidades.</span></div>
-        <div><i>02</i><b data-en="Evidence">Evidências</b><span data-en="Decisions backed by data. Continuous discovery, so strategy can move fast when it needs to.">Decisão com dado do lado. Discovery contínuo, para que a estratégia possa ser rápida quando precisa ser.</span></div>
+        <div><i>02</i><b data-en="Evidence">Evidências</b><span data-en="The question before the answer: &quot;based on what?&quot;. I go to the root cause, with data on the table and continuous discovery, so strategy can move fast when it needs to.">A pergunta antes da resposta: "foi baseado em quê?". Vou até a causa raiz, com dado do lado e discovery contínuo, para que a estratégia possa ser rápida quando precisa ser.</span></div>
         <div><i>03</i><b data-en="Collaboration">Colaboração</b><span data-en="A shared vision built with physicians, design, engineering, business and leadership, from the squad to executive leadership.">Visão compartilhada com médicos, design, engenharia, negócio e liderança, do squad à liderança executiva.</span></div>
         <div><i>04</i><b data-en="Real impact">Impacto real</b><span data-en="Success is measured by what changes for people and for the business, not by the number of deliveries: a clear north star metric, explicit trade-offs and course correction.">Sucesso se mede pelo que muda para as pessoas e para o negócio, não pela quantidade de entregas: métrica norte clara, trade-offs explícitos e ajuste de rota.</span></div>
       </div>
+    </div>
+  </section>
+
+
+  <section class="sec" id="ferramentas">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="kicker" data-en="Tools and methods">Ferramentas e metodologias</p>
+          <h2 data-en="What I use most to go from question to result">O que mais uso para ir da pergunta ao resultado</h2>
+        </div>
+      </div>
+      <div class="tools stagger reveal">
+        <div><b data-en="Strategy and product">Estratégia e produto</b><ul><li>Product Strategy & Vision</li><li>Roadmap & Prioritization</li><li data-en="Portfolio management">Gestão de portfólio</li><li data-en="OKRs & product metrics">OKRs e métricas de produto</li><li>0→1</li><li>Go-to-Market</li><li>TAM, SAM, SOM</li><li>Lean Canvas</li><li>SWOT</li><li>Working Backwards</li></ul></div>
+        <div><b data-en="Discovery and research">Discovery e pesquisa</b><ul><li>Continuous Discovery</li><li>Design Sprint</li><li>Jobs to Be Done</li><li>Personas</li><li data-en="Empathy map">Mapa de empatia</li><li data-en="User interviews">Entrevistas com usuários</li><li>Voice of Customer</li><li>Benchmarking</li><li data-en="Scientific literature review">Revisão de literatura científica</li></ul></div>
+        <div><b data-en="Data and experimentation">Dados e experimentação</b><ul><li>Product Analytics</li><li data-en="Experimentation & A/B testing">Experimentação e testes A/B</li><li data-en="NPS & CSAT">NPS e CSAT</li><li>Mixpanel</li><li>Google Analytics 4</li><li>Microsoft Clarity</li><li>Power BI</li><li>Metabase</li></ul></div>
+        <div><b data-en="AI and prototyping">IA e prototipagem</b><ul><li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>Lovable</li><li>Figma</li><li data-en="Clickable prototypes">Protótipos navegáveis</li><li data-en="Generative AI products">Produtos com IA generativa</li></ul></div>
+        <div><b data-en="Delivery and collaboration">Execução e colaboração</b><ul><li>Agile</li><li>Scrum</li><li>Kanban</li><li>Jira</li><li>Azure DevOps</li><li>Miro</li><li>Notion</li><li>Canva</li></ul></div>
+        <div><b data-en="Health and regulation">Saúde e regulatório</b><ul><li data-en="E-prescribing">Prescrição eletrônica</li><li data-en="ANVISA (RDC 1,000/2025 and SNCR)">ANVISA (RDC 1.000/2025 e SNCR)</li><li data-en="ICP-Brasil digital signature">Assinatura digital ICP-Brasil</li><li data-en="LGPD & data privacy">LGPD e privacidade de dados</li><li data-en="Regulated products">Produtos regulados</li><li data-en="Lifestyle Medicine">Medicina do Estilo de Vida</li></ul></div>
+      </div>
+      <p class="tools-note reveal" data-en="I also build with AI: clickable prototypes and executive one-pagers (roadmaps, market sizing, regulatory analyses and research summaries) made with Lovable and Claude, so decisions start from something people can see and use.">Também construo com IA: protótipos navegáveis e onepages executivos (roadmaps, dimensionamento de mercado, análises regulatórias e resumos de pesquisa) feitos com Lovable e Claude, para que as decisões comecem por algo que as pessoas veem e usam.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="mentoria">
+    <div class="wrap mentor reveal">
+      <div>
+        <p class="kicker" data-en="Mentoring">Mentoria</p>
+        <h2 data-en="Opening the door for people who want to work with product in health">Abrindo a porta para quem quer fazer produto em saúde</h2>
+        <p data-en="Health has its own vocabulary, regulation and pace. I help product people who want to enter health, and health professionals who want to enter product, to find their way in: the market, the language, a portfolio case and the interview.">Saúde tem vocabulário, regulação e ritmo próprios. Ajudo pessoas de produto que querem entrar em saúde, e profissionais de saúde que querem entrar em produto, a encontrar o caminho: o mercado, a linguagem, um case de portfólio e a entrevista.</p>
+        <a class="btn" id="mentor-cta" href="mailto:laissa.margoni@yahoo.com.br?subject=Mentoria" data-cta="mentoring" data-en="Talk about mentoring">Conversar sobre mentoria</a>
+      </div>
+      <ul class="mentor-proof">
+        <li><b>8 POs</b><span data-en="led and mentored across 5 squads as Product Lead">liderados e mentorados em 5 squads como Product Lead</span></li>
+        <li><b>PMs</b><span data-en="onboarded and mentored as the prescription reference for growth, monetization and new-product squads">formados e mentorados como referência em prescrição para os squads de growth, monetização e novo produto</span></li>
+        <li><b data-en="Volunteer">Voluntária</b><span data-en="career mentoring for refugees">mentoria de carreira para pessoas refugiadas</span></li>
+        <li><b data-en="Knowledge Pills">Pílulas de Conhecimento</b><span data-en="a weekly product newsletter I created for other areas of a company">newsletter semanal sobre produto que criei para outras áreas de uma empresa</span></li>
+      </ul>
     </div>
   </section>
 
@@ -533,7 +589,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--accent)}
   <section class="contact wrap reveal" id="contato">
     <p class="kicker" data-en="Contact">Contato</p>
     <h2 style="margin-top:16px" data-en="Let's <em>talk</em>.">Vamos <em>conversar</em>.</h2>
-    <p data-en="About product, digital health or the next challenge.">Sobre produto, saúde digital ou o próximo desafio.</p>
+    <p data-en="About product, digital health, mentoring or the next challenge.">Sobre produto, saúde digital, mentoria ou o próximo desafio.</p>
     <div class="ctas">
       <a class="btn" id="contact-linkedin" href="#" target="_blank" rel="noopener" hidden>LinkedIn ↗</a>
       <a class="btn ghost" id="contact-instagram" href="#" target="_blank" rel="noopener" hidden>Instagram ↗</a>
