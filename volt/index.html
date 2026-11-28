@@ -328,7 +328,14 @@ ol.pipe span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
 /* case Volt */
 .volt-hero{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(24px,5vw,64px);align-items:center;margin-top:30px}
 .volt-hero .device{max-width:260px}
-.volt-hero .device video{background:#141414}
+.volt-hero .device{background:#141414}
+.device.flip{position:relative}
+.device.flip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;animation:voltFlip 9s infinite}
+.device.flip img:nth-child(1){opacity:1;animation-delay:0s}
+.device.flip img:nth-child(2){animation-delay:3s}
+.device.flip img:nth-child(3){animation-delay:6s}
+@keyframes voltFlip{0%{opacity:0;transform:translateY(8px)}5%{opacity:1;transform:none}33%{opacity:1;transform:none}38%{opacity:0}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.device.flip img{animation:none}.device.flip img:nth-child(n+2){display:none}}
 .status{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
 .status::before{content:"";width:8px;height:8px;border-radius:50%;background:#C8F000}
 .li-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
@@ -371,7 +378,7 @@ ol.pipe span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
         <span class="status" data-en="MVP built and tested in a beta version · not yet launched in the stores">MVP construído e testado em versão beta · ainda não lançado nas lojas</span><br>
         <a class="li-link" href="https://lnkd.in/p/dFhf7y_9" target="_blank" rel="noopener" data-cta="linkedin_post" data-en="Read my LinkedIn post about Volt ↗">Ler minha publicação sobre a Volt no LinkedIn ↗</a>
       </div>
-      <div class="device"><video data-demo src="../assets/volt/volt-demo.mp4" poster="../assets/volt/volt-demo-poster.jpg" muted loop playsinline preload="none" aria-label="Demonstração da interface do app Volt"></video></div>
+      <div class="device flip" role="img" aria-label="Telas do app Volt: mapa de pistas e picos, detalhes de uma pista e avaliações da comunidade"><img src="../assets/volt/tela-22.webp" alt="" width="400" height="848"><img src="../assets/volt/tela-38.webp" alt="" width="400" height="848"><img src="../assets/volt/tela-42.webp" alt="" width="400" height="848"></div>
     </div>
 
     <div class="exec">
