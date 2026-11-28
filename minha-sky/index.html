@@ -323,6 +323,10 @@ ol.pipe li{counter-increment:p;background:var(--surface);border:1px solid var(--
 ol.pipe li::before{content:counter(p,decimal-leading-zero);font:700 13px/1 var(--display);color:var(--accent)}
 ol.pipe b{display:block;font-family:var(--display);font-size:19px;margin:8px 0 4px}
 ol.pipe span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
+.team-grid img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block}
+.team-cap{font-size:13px;color:var(--muted,inherit);opacity:.75;margin:0}
+@media (max-width:560px){.team-grid{gap:8px}}
 @media (max-width:860px){.phones-demo{grid-template-columns:1fr;max-width:300px}.wa{grid-template-columns:1fr}.wa-phone{max-width:220px}ol.pipe{grid-template-columns:1fr 1fr}}
 
 /* case Minha SKY */
@@ -454,6 +458,26 @@ ol.pipe span{font-size:14.5px;line-height:1.45;color:var(--ink-2);display:block}
     <div class="body">
       <h2 data-en="One conversation to centralize interactions">Uma conversa para centralizar as interações</h2>
       <p data-en="We built an AI chatbot to centralize customer interactions, reduce friction and increase operational efficiency. The case received international recognition in an IBM award and was presented in Texas.">Desenvolvemos um chatbot com Inteligência Artificial para centralizar as interações, reduzir fricções e aumentar a eficiência operacional. O case teve reconhecimento internacional em premiação da IBM e foi apresentado no Texas.</p>
+    </div>
+  </section>
+
+
+  <!-- 05 -->
+  <section class="chapter" id="time">
+    <div class="rail">
+      <div class="n">05</div>
+      <div class="stage" data-en="The team">O time</div>
+    </div>
+    <div class="body">
+      <h2 data-en="The people behind Minha SKY">As pessoas por trás do Minha SKY</h2>
+      <p data-en="Product, design, engineering and business, together in the office and outside it. Big outcomes come from a team that trusts each other.">Produto, design, engenharia e negócio, juntos no escritório e fora dele. Resultado grande vem de time que confia um no outro.</p>
+      <div class="team-grid">
+        <img src="../assets/sky/time-1.webp" alt="Time da SKY reunido no escritório, acenando para a câmera" width="1100" height="951" loading="lazy">
+        <img src="../assets/sky/time-2.webp" alt="Selfie do time em um encontro fora do escritório" width="953" height="1100" loading="lazy">
+        <img src="../assets/sky/time-3.webp" alt="Parte do time posando no escritório" width="1100" height="973" loading="lazy">
+        <img src="../assets/sky/time-4.webp" alt="Selfie do time em frente ao logo da SKY" width="1100" height="966" loading="lazy">
+      </div>
+      <p class="team-cap" data-en="Personal photos of the team.">Fotos pessoais do time.</p>
     </div>
   </section>
 
